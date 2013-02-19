@@ -15,7 +15,7 @@ main{
 	display: block;
 	padding: 2.5%;
 	margin: 2.5% auto;
-	width: 60%;
+	width: 80%;
 	border: 5px solid #ffffff;
 	outline: 1px solid #c2c2c2;
 	background: #191919;
@@ -33,5 +33,5 @@ main p{
 	text-shadow: 0 0 0.5em rgb(161, 255, 161);
 	font-family: monospace;
 	line-height: 1.5em;
-	font-size: 1em;
+	font-size: 1.2em;
 }
