@@ -1,3 +1,7 @@
+<?php
+include 'classes/player.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,10 +23,15 @@
 
 			$gameRunning = true;
 			$count = 0;
+
+			$player = new Player("George", 0, 0);
+
 			while($gameRunning){
-				echo " " . $count;
+				echo "<p>";
+				$player->printPlayerDetails();
+				echo "\n </p>";
 				$count++;
-				if($count == 200){
+				if($count == 10){
 					break;
 				}
 			}
