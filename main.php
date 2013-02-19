@@ -1,9 +1,14 @@
 <?php
-	for ($i = 0; $i < 10; $i++){
-		echo "<p>";
-		echo "DOES IT WORK!? " . rand(1, 100);
-		echo "</p>";
+	echo "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>";
+	echo "<p>Donec in neque ac nibh sagittis tincidunt a quis lorem. Sed eget nisl metus.</p>";
+	echo "<p>Mauris vestibulum justo quis velit porta ultrices. Cras nec lacus ut velit pellentesque euismod.</p>";
+	echo "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>";
+	echo "<p>Donec in neque ac nibh sagittis tincidunt a quis lorem. Sed eget nisl metus.</p>";
+	echo "<p>Mauris vestibulum justo quis velit porta ultrices. Cras nec lacus ut velit pellentesque euismod.</p>";
+	echo "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>";
+	echo "<p>Donec in neque ac nibh sagittis tincidunt a quis lorem. Sed eget nisl metus.</p>";
+	echo "<p>Mauris vestibulum justo quis velit porta ultrices. Cras nec lacus ut velit pellentesque euismod.</p>";
+	
 
-		echo "<input id='commands'>";
-	}
+	echo "<input id='commands' autofocus>";
 ?>

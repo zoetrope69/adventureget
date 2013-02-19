@@ -12,9 +12,7 @@ include 'classes/player.php';
 </head>
 <body>				
 	<main>		
-		<section id="text">
-			
-		</section>
+		<section id="text"></section>
 	</main>
 </body>
 </html>
