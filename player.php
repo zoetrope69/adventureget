@@ -15,6 +15,6 @@ class Player {
     } 
 } 
 
-$foo = new Player;
-$foo->aMemberFunc(); 
+$player = new Player;
+$player->aMemberFunc(); 
 ?> 

@@ -1,3 +1,7 @@
+<?php
+include 'classes/player.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
