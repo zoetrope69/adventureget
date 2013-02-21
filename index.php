@@ -1,5 +1,7 @@
 <?php
 include 'classes/player.php';
+
+$player = new Player('Player', 0, 0);
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +15,7 @@ include 'classes/player.php';
 	<main>		
 		<section id="text">
 			<p>Hello this is a text based RPG written in PHP and Javascript...</p>
+			<?php $player->printPlayerDetails(); ?>
 		</section>
 			<label>&gt;</label><input id="commands" autofocus autocomplete="off" />
 	</main>

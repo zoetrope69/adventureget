@@ -61,8 +61,10 @@ $('main').click(function(){
 $('#commands').keydown(function(event) { // When keys are pressed in the input #commands
 	code = event.keyCode || event.which; // Checks for key
 	if(code == 13){ // If it's enter
-		prevCommands[prevCommands.length] = this.value;
-		commandIndex = prevCommands.length;
+		if(this.value !== ""){ //add the entered command to the commands array
+			prevCommands[prevCommands.length] = this.value;
+			commandIndex = prevCommands.length;
+		}
 		refreshScreen(this); // AJAX AWAY!
 		event.preventDefault(); // Stops enter from doing what it normally does
 	}
