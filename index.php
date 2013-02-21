@@ -14,7 +14,7 @@ include 'classes/player.php';
 		<section id="text">
 			<p>Hello this is a text based RPG written in PHP and Javascript...</p>
 		</section>
-			<label>&gt;</label><input id="commands" autofocus autocomplete="off" />
+			<label>&gt;</label><input id="commands" autofocus autocomplete="off" spellcheck="false"/>
 	</main>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <!-- jQuery -->
 	<script type="text/javascript" src="js/scripts.js"></script>
