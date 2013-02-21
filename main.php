@@ -10,8 +10,9 @@ if (isset($_POST['commands'])){
 		echo "<p>You entered nothing!</p>";
 	}else if($_POST['commands'] == "help"){
 		echo "<p>- $command</p>";
-		echo "<p>available nouns:</p>";
-		$parser->printNouns();
+		echo "<p>Some helpful stuff printed here followed by a list of available commands</p>";
+		echo "<p>available verbs:</p>";
+		$parser->printVerbs();
 	}else{
 		echo "<p>- $command</p>";
 		echo "<p>Words in command:</p>";
