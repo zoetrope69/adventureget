@@ -5,7 +5,7 @@
 		$commands = explode(" ", $command);
 
 		if($_POST['commands'] == ""){
-		echo "<p>You entered nothing!</p>";
+			echo "<p>You entered nothing!</p>";
 		}else{
 
 			echo "<p>Words in command:</p>";

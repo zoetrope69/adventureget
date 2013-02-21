@@ -12,7 +12,7 @@ include 'classes/player.php';
 <body>				
 	<main>		
 		<section id="text">
-			<p>Hello this is a text based RPG written in PHP and Javascript by Zac Colley and Peter Jones</p>
+			<p>Hello this is a text based RPG written in PHP and Javascript...</p>
 		</section>
 			<label>&gt;</label><input id="commands" autofocus autocomplete="off" />
 	</main>

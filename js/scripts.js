@@ -61,5 +61,9 @@ $('#commands').keydown(function(event) { // When keys are pressed in the input #
 		refreshScreen(this); // AJAX AWAY!
 		event.preventDefault(); // Stops enter from doing what it normally does
 	}
+	if(code == 38){ // If it's enter
+		$('#commands').val("THIS SHOULD BRING UP PREVIOUS COMMANDS");
+		event.preventDefault(); // Stops enter from doing what it normally does
+	}
 });
 
