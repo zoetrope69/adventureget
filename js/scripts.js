@@ -15,7 +15,8 @@ function refreshScreen(query){
 		if (this.readyState == 4){
 			if (this.status == 200){
 				if (this.responseText != null){
-		    		document.getElementById('text').innerHTML = this.responseText;
+					$('#text').append(this.responseText); // Append on to the end of existing content
+		    		$('#commands').val("");	// Clear input box
 		    	}else{
 		    		alert("Ajax error: no data recieved");
 		    	} 
@@ -48,12 +49,17 @@ function ajaxRequest(){
 	return request
 }
 
-// If someone presses enter
+// When clicking the main terminal
+$('main').click(function(){ 
+	$('#commands').focus(); // Focus input #commands
+});
 
-$(document).on("keypress", "#commands", function(event) { // key down doesn't except you holding the key
-	//code = e.keyCode || e.which;
-	if(event.which == 13){		
-		refreshScreen(this);
+// If someone presses enter when inputting
+$('#commands').keydown(function(event) { // When keys are pressed in the input #commands
+	code = event.keyCode || event.which; // Checks for key
+	if(code == 13){ // If it's enter
+		refreshScreen(this); // AJAX AWAY!
+		event.preventDefault(); // Stops enter from doing what it normally does
 	}
 });
 

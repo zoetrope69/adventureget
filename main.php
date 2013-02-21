@@ -1,7 +1,4 @@
 <?php
-	echo "<p>Hello this is a text based RPG written in PHP and Javascript by Zac Colley and Peter Jones</p>";
-
-	echo "<p>------------------------------------------------------------------------------------------</p>";
 
 	if (isset($_POST['commands']))
 	{
@@ -17,8 +14,4 @@
 	{
 		echo "<p>$c</p>";
 	}
-
-	echo "<p>------------------------------------------------------------------------------------------</p>";
-
-	echo "<label>&gt;</label><input id=\"commands\" autofocus />";
 ?>
