@@ -26,7 +26,7 @@ function refreshScreen(query){
 		   	}
 		}
 	}
-	request.send(params)
+	request.send(params);
 }
 
 function ajaxRequest(){
@@ -42,11 +42,11 @@ function ajaxRequest(){
 	    	request = new ActiveXObject("Microsoft.XMLHTTP")
 	   	}
 	   	catch(e3){
-	    	request = false
+	    	request = false;
 	   	}
 	  }
  	}
-	return request
+	return request;
 }
 
 // When clicking the main terminal

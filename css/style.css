@@ -12,8 +12,10 @@ body{
 }
 
 main{
+	overflow-y: scroll;
+	height: 35em;
 	display: block;
-	padding: 2.5%;
+	padding: 0.5em 1em;
 	margin: 2.5% auto;
 	width: 80%;
 	border: 5px solid #ffffff;
