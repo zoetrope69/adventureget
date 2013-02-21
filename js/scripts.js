@@ -1,4 +1,5 @@
 var prevCommands = new Array(); //list of entered commands
+var commandIndex = 0;
 
 // AJAX SHIT
 
@@ -61,11 +62,22 @@ $('#commands').keydown(function(event) { // When keys are pressed in the input #
 	code = event.keyCode || event.which; // Checks for key
 	if(code == 13){ // If it's enter
 		prevCommands[prevCommands.length] = this.value;
+		commandIndex = prevCommands.length;
 		refreshScreen(this); // AJAX AWAY!
 		event.preventDefault(); // Stops enter from doing what it normally does
 	}
 	if(code == 38){ // If it's the up key
-		$('#commands').val(prevCommands[prevCommands.length - 1]);
+		if(commandIndex > 0){
+			commandIndex--;
+			$('#commands').val(prevCommands[commandIndex]);
+		}
+		event.preventDefault(); // Stops enter from doing what it normally does
+	}
+	if(code == 40){ // If it's the up key
+		if(commandIndex < prevCommands.length){
+			commandIndex++;
+			$('#commands').val(prevCommands[commandIndex]);
+		}
 		event.preventDefault(); // Stops enter from doing what it normally does
 	}
 });
