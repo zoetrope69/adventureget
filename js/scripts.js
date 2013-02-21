@@ -1,6 +1,8 @@
+// AJAX SHIT
+
 function refreshScreen(query){
 
-	params = "commands=" + query.value
+	params = "commands=" + query.value;
 	request = new ajaxRequest();
 	request.open("POST", "main.php", true)
 	request.setRequestHeader("Content-type",
@@ -45,4 +47,13 @@ function ajaxRequest(){
  	}
 	return request
 }
+
+// If someone presses enter
+
+$("#commands").keydown(function(e) { // key down doesn't except you holding the key
+	code = e.keyCode || e.which;
+	if(code == 13){		
+		refreshScreen(this);
+	}
+});
 

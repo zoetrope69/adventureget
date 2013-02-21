@@ -1,4 +1,8 @@
 <?php
+	echo "<p>Hello this is a text based RPG written in PHP and Javascript by Zac Colley and Peter Jones</p>";
+
+	echo "<p>------------------------------------------------------------------------------------------</p>";
+
 	if (isset($_POST['commands']))
 	{
 		$command = $_POST['commands'];
@@ -6,13 +10,15 @@
 	}
 	else
 	{
-		$command = 'got nothing from input';
+		$commands = 'No input.';
 	}
-	echo "<p>your command contains these words:</p>";
-	echo "<ul>";
+	echo "<p>Words in command:</p>";
 	foreach($commands as &$c)
 	{
-		echo "<li>$c</li>";
+		echo "<p>$c</p>";
 	}
-	echo "</ul>";
+
+	echo "<p>------------------------------------------------------------------------------------------</p>";
+
+	echo "<label>&gt;</label><input id=\"commands\" autofocus />";
 ?>
