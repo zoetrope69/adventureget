@@ -1,3 +1,5 @@
+var prevCommands = new Array(); //list of entered commands
+
 // AJAX SHIT
 
 function refreshScreen(query){
@@ -58,11 +60,12 @@ $('main').click(function(){
 $('#commands').keydown(function(event) { // When keys are pressed in the input #commands
 	code = event.keyCode || event.which; // Checks for key
 	if(code == 13){ // If it's enter
+		prevCommands[prevCommands.length] = this.value;
 		refreshScreen(this); // AJAX AWAY!
 		event.preventDefault(); // Stops enter from doing what it normally does
 	}
-	if(code == 38){ // If it's enter
-		$('#commands').val("THIS SHOULD BRING UP PREVIOUS COMMANDS");
+	if(code == 38){ // If it's the up key
+		$('#commands').val(prevCommands[prevCommands.length - 1]);
 		event.preventDefault(); // Stops enter from doing what it normally does
 	}
 });
