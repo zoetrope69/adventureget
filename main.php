@@ -1,14 +1,18 @@
 <?php
-	echo "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>";
-	echo "<p>Donec in neque ac nibh sagittis tincidunt a quis lorem. Sed eget nisl metus.</p>";
-	echo "<p>Mauris vestibulum justo quis velit porta ultrices. Cras nec lacus ut velit pellentesque euismod.</p>";
-	echo "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>";
-	echo "<p>Donec in neque ac nibh sagittis tincidunt a quis lorem. Sed eget nisl metus.</p>";
-	echo "<p>Mauris vestibulum justo quis velit porta ultrices. Cras nec lacus ut velit pellentesque euismod.</p>";
-	echo "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>";
-	echo "<p>Donec in neque ac nibh sagittis tincidunt a quis lorem. Sed eget nisl metus.</p>";
-	echo "<p>Mauris vestibulum justo quis velit porta ultrices. Cras nec lacus ut velit pellentesque euismod.</p>";
-	
-
-	echo "<input id='commands' autofocus>";
+	if (isset($_POST['commands']))
+	{
+		$command = $_POST['commands'];
+		$commands = explode(" ", $command);
+	}
+	else
+	{
+		$command = 'got nothing from input';
+	}
+	echo "<p>your command contains these words:</p>";
+	echo "<ul>";
+	foreach($commands as &$c)
+	{
+		echo "<li>$c</li>";
+	}
+	echo "</ul>";
 ?>
