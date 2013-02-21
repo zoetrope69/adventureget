@@ -50,9 +50,9 @@ function ajaxRequest(){
 
 // If someone presses enter
 
-$("#commands").keydown(function(e) { // key down doesn't except you holding the key
-	code = e.keyCode || e.which;
-	if(code == 13){		
+$(document).on("keypress", "#commands", function(event) { // key down doesn't except you holding the key
+	//code = e.keyCode || e.which;
+	if(event.which == 13){		
 		refreshScreen(this);
 	}
 });
