@@ -72,8 +72,14 @@ class Parser{
                     echo "<p>Enter a valid name (one word)</p>";
                 }
                 break;
-            case 98: //getname            
-                echo "<p>Your name is: ". $player->getName() . ".</p>";
+            case 98: //getname
+                $name =  $player->getName();
+                if($name == ""){
+                    echo "<p>You don't have a name! :¬(</p>";
+                }
+                else{
+                    echo "<p>Your name is: ". $player->getName() . ".</p>";
+                }     
                 break;
             case 99: // clearscreen
                 echo 'clearthatshit'; // this isn't the best way of doing it i think...
