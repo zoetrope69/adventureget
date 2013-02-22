@@ -1,4 +1,5 @@
 <?php
+//brads test
 include 'classes/player.php';
 $player = new Player('Player', 0, 0);
 ?>
