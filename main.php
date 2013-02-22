@@ -1,7 +1,9 @@
 <?php
-
+session_start();
 include "classes/parser.php";
+include "classes/player.php";
 $parser = new Parser();
+$_SESSION['player']= new Player('John Smith', 130, 50);
 
 if (isset($_POST['commands'])){
 
@@ -19,10 +21,9 @@ if (isset($_POST['commands'])){
 }
 else
 {
+
 	echo "<p>adventureGet - super super awesome text <em>adventure</em> game</p>";
-	include 'classes/player.php';
-	$player = new Player('John Smith', 130, 50);
-	$player->printDetails();
+	$_SESSION['player']->printDetails();
 }
 
 ?>

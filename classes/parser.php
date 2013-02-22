@@ -61,6 +61,9 @@ class Parser{
                 echo "<p>Available verbs:</p>";
                 $this->printVerbs();
                 break;
+            case 98:
+                $_SESSION['player']->printDetails();
+                break;
             case 99: // clearscreen
                 echo 'clearthatshit'; // this isn't the best way of doing it i think...
                break;
