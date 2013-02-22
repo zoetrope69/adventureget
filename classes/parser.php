@@ -34,11 +34,11 @@ class Parser{
         echo "<p>- $command</p>";
         foreach($commands as $c)
         {
-            elseif(strtolower($c) == "hello") // if text is "hello"
+            if(strtolower($c) == "hello") // if text is "hello"
             { 
                 echo "<p>Hi there!</p>";
             }
-            elseif(strtolower($c) == "help")
+            else if(strtolower($c) == "help")
             {
                 echo "<p>Some helpful stuff printed here followed by a list of available commands</p>";
                 echo "<p>Available verbs:</p>";
