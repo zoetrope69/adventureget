@@ -7,8 +7,10 @@ function refreshScreen(query){
 	.done(function(data) {		
 	 	$('#text').append(data); // Append on to the end of existing content
 		$('#commands').val("");	// Clear input box
+		$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom
 	});
 }
+
 // When clicking the main terminal
 $('#terminal').click(function(){ 
 	$('#commands').focus(); // Focus input #commands
