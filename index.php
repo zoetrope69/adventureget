@@ -1,5 +1,7 @@
 <?php
 include 'classes/player.php';
+
+$player = new Player('Player', 0, 0);
 ?>
 
 <!DOCTYPE html>
@@ -10,12 +12,13 @@ include 'classes/player.php';
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>				
-	<main>		
+	<article id="terminal">		
 		<section id="text">
 			<p>Hello this is a text based RPG written in PHP and Javascript...</p>
+			<?php $player->printPlayerDetails(); ?>
 		</section>
 			<label>&gt;</label><input id="commands" autofocus autocomplete="off" spellcheck="false"/>
-	</main>
+	</article>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <!-- jQuery -->
 	<script type="text/javascript" src="js/scripts.js"></script>
 </body>

@@ -15,7 +15,8 @@ class Player {
     
     public function printPlayerDetails() { 
         //print 'Inside `aMemberFunc()`'; 
-        echo "Player name " . $this->_name . " locX " . $this->_locX . " locY " . $this->_locY;
+        echo "<p>Player name: " . $this->_name . "</p>";
+        echo "<p>Location: X " . $this->_locX . ", Y " . $this->_locY . "</p>";
     } 
 } 
 ?> 
