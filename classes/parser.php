@@ -49,7 +49,10 @@ class Parser{
             switch ($id) {
             case 0: // walk, move etc
                 $commands = explode(" ", $command);
-                $command = $commands[1];
+                if(sizeof($commands) > 1)
+                {
+                    $command = $commands[1];
+                }
                 if($command == 'north' || $command == 'n')
                 {
                     echo "<p>You are walking north!</p>";
