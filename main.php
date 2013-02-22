@@ -16,30 +16,12 @@ if (isset($_POST['commands']))
 	{
 		$id = $parser->parseCommands($command);
 		//echo "<p>the id returned is $id</p>";
-		runCommand($id);
+		$parser->runCommand($id);
 	}	
 }
 else
 {
 	echo '<p>ERROR: Didn\'t get anything posted. :¬(</p>';
-}
-
-function runCommand($id)
-{
-	if($id != null)
-	{
-		switch ($id) {
-	    case 0:
-	        echo "<p>you are walking</p>";
-	        break;
-	    case 1:
-	        echo "<p>you are picking something up</p>";
-	        break;
-	    case 2:
-	        echo "<p>you are climbing</p>";
-	        break;
-		}
-	}
 }
 
 ?>
