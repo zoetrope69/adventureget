@@ -15,6 +15,10 @@ function updateTerminal(commandsInput){
 	});
 }
 
+function clearScreen(){
+	$('#text').html("");
+}
+
 // When clicking the main terminal
 $('#terminal').click(function(){ 
 	$('#commands').focus(); // Focus input #commands

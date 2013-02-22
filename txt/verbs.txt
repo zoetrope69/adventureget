@@ -5,4 +5,5 @@ grab:1
 climb:2
 up:2
 help:3
+clearscreen:99
 hello:100

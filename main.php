@@ -18,6 +18,7 @@ if (isset($_POST['commands']))
 		$parser->runCommand($id);
 	}	
 }
+<<<<<<< HEAD
 else
 {
 	echo "<p>adventureGet - super super awesome text <em>adventure</em> game</p>";
@@ -25,5 +26,7 @@ else
 	$player = new Player('John Smith', 130, 50);
 	$player->printDetails();
 }
+=======
+>>>>>>> added a clearscreen command
 
 ?>
