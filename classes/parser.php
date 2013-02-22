@@ -42,7 +42,7 @@ class Parser{
         return null;
     }
 
-    public function runCommand($id)
+    public function runCommand($command, $id, $player)
     {
         if($id != null)
         {
@@ -60,6 +60,20 @@ class Parser{
                 echo "<p>Some helpful stuff printed here followed by a list of available commands</p>";
                 echo "<p>Available verbs:</p>";
                 $this->printVerbs();
+                break;
+            case 97: //setname
+                $commands = explode(" ", $command);  // Commands to array              
+                if(sizeof($commands) > 1){ // If there are more than one word (setname forename surname)
+                    $name = trim(substr($command, 8)); // Tidy name
+                    $player->setName($name); 
+                    echo "<p>Your name is now: ". $player->getName() . ".</p>";
+                }
+                else{
+                    echo "<p>Enter a valid name (one word)</p>";
+                }
+                break;
+            case 98: //getname            
+                echo "<p>Your name is: ". $player->getName() . ".</p>";
                 break;
             case 99: // clearscreen
                 echo 'clearthatshit'; // this isn't the best way of doing it i think...

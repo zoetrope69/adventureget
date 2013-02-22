@@ -43,10 +43,5 @@ class Player {
         }
     }
 
-    public function printDetails(){ // print player details
-        echo "<p>Player's name: '". $this->getName() . "'.</p>";
-        echo "<p>Location: X " . $this->getLoc("x") . " | Y " . $this->getLoc("y") . "</p>";
-    }
-
 } 
 ?> 

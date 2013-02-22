@@ -5,5 +5,7 @@ grab:1
 climb:2
 up:2
 help:3
+setname:97
+getname:98
 clearscreen:99
 hello:100
