@@ -34,14 +34,7 @@ class Parser{
         echo "<p>- $command</p>";
         foreach($commands as $c)
         {
-            foreach($this->_verbs as $verb)
-            {
-                if($c == trim($verb)){ //trim as there is a linebreak in text file
-                    echo "<p>* $verb</p>";
-                }
-            }
-            /*
-            if(strtolower($c) == "hello") // if text is "hello"
+            elseif(strtolower($c) == "hello") // if text is "hello"
             { 
                 echo "<p>Hi there!</p>";
             }
@@ -53,8 +46,14 @@ class Parser{
             }
             else
             {
-                echo "<p>Ahh, I don't know what \"$c\" is... :¬(</p>";
-            }*/
+                foreach($this->_verbs as $verb)
+                {
+                    if($c == trim($verb)){ //trim as there is a linebreak in text file
+                        echo "<p>* $verb</p>";
+                    }
+                }
+                echo "<p>\"$c\" is not a valid input. :¬(</p>";
+            }
         }
     }
 }

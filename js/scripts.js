@@ -42,7 +42,7 @@ $('#commands').keydown(function(event) { // When keys are pressed in the input #
 			$('#commands').val(prevCommands[commandIndex]);
 		}
 		event.preventDefault(); // Stops enter from doing what it normally does
-	}	
+	}
 	
 });
 
