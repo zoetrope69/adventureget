@@ -2,14 +2,13 @@ var prevCommands = new Array(); //list of entered commands
 var commandIndex = 0;
 
 // AJAX
-function refreshScreen(inputCommands){
-	$.get("main.php", { commands: inputCommands.value })
-	.done(function(data) {
-	  $(data).hide().appendTo("#text").fadeIn(350); // Append on to the end of existing content
-	  $('#commands').val("");	// Clear input box
+function refreshScreen(query){
+	$.post("main.php", { commands: query.value })
+	.done(function(data) {		
+	 	$('#text').append(data); // Append on to the end of existing content
+		$('#commands').val("");	// Clear input box
 	});
 }
-
 // When clicking the main terminal
 $('#terminal').click(function(){ 
 	$('#commands').focus(); // Focus input #commands

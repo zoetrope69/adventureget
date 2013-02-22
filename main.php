@@ -1,12 +1,12 @@
 <?php
 
-//include "classes/parser.php";
-//$parser = new Parser();
+include "classes/parser.php";
+$parser = new Parser();
 
-if (isset($_GET['commands']))
+if (isset($_POST['commands']))
 	{
 
-	$command = trim($_GET['commands']);
+	$command = trim($_POST['commands']);
 	$commands = explode(" ", $command);
 
 	if($command == "")
@@ -17,6 +17,7 @@ if (isset($_GET['commands']))
 	{
 		foreach($commands as $c)
 		{
+			echo "<p>- $c</p>";
 			if(strtolower($c) == "hello") // if text is "hello"
 			{ 
 				echo "<p>Hi there!</p>";
@@ -25,7 +26,7 @@ if (isset($_GET['commands']))
 			{
 				echo "<p>Some helpful stuff printed here followed by a list of available commands</p>";
 				echo "<p>Available verbs:</p>";
-				//$parser->printVerbs();
+				$parser->printVerbs();
 			}
 			else
 			{
