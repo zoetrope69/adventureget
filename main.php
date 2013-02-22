@@ -15,7 +15,7 @@ if (isset($_POST['commands']))
 	else
 	{
 		$id = $parser->parseCommands($command);
-		echo "<p>the id returned is $id</p>";
+		//echo "<p>the id returned is $id</p>";
 		runCommand($id);
 	}	
 }
