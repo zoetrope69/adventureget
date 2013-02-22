@@ -1,9 +1,13 @@
 var prevCommands = new Array(); //list of entered commands
 var commandIndex = 0;
 
+(function(){ // When document is done loading, load main.php
+	$('#text').load("main.php");
+})();
+
 // AJAX
-function refreshScreen(query){
-	$.post("main.php", { commands: query.value })
+function updateTerminal(commandsInput){
+	$.post("main.php", { commands: commandsInput.value })
 	.done(function(data) {		
 	 	$('#text').append(data); // Append on to the end of existing content
 		$('#commands').val("");	// Clear input box
@@ -26,7 +30,7 @@ $('#commands').keydown(function(event) { // When keys are pressed in the input #
 			prevCommands[prevCommands.length] = $enterValue;
 			commandIndex = prevCommands.length;
 		}
-		refreshScreen(this); // AJAX AWAY!
+		updateTerminal(this); // AJAX AWAY!
 		event.preventDefault(); // Stops enter from doing what it normally does
 	}
 	if(code == 38){ // If it's the up key

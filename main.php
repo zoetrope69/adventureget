@@ -15,13 +15,15 @@ if (isset($_POST['commands']))
 	else
 	{
 		$id = $parser->parseCommands($command);
-		//echo "<p>the id returned is $id</p>";
 		runCommand($id);
 	}	
 }
 else
 {
-	echo '<p>ERROR: Didn\'t get anything posted. :¬(</p>';
+	echo "<p>adventureGet - super super awesome text <em>adventure</em> game</p>";
+	include 'classes/player.php';
+	$player = new Player('John Smith', 130, 50);
+	$player->printDetails();
 }
 
 function runCommand($id)
@@ -30,13 +32,13 @@ function runCommand($id)
 	{
 		switch ($id) {
 	    case 0:
-	        echo "<p>you are walking</p>";
+	        echo "<p>You are walking!</p>";
 	        break;
 	    case 1:
-	        echo "<p>you are picking something up</p>";
+	        echo "<p>You are picking something up!</p>";
 	        break;
 	    case 2:
-	        echo "<p>you are climbing</p>";
+	        echo "<p>You are climbing!</p>";
 	        break;
 		}
 	}

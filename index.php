@@ -1,9 +1,3 @@
-<?php
-//brads test
-include 'classes/player.php';
-$player = new Player('Player', 0, 0);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,8 +8,7 @@ $player = new Player('Player', 0, 0);
 <body>				
 	<article id="terminal">		
 		<section id="text">
-			<p>Hello this is a text based RPG written in PHP and Javascript...</p>
-			<?php $player->printPlayerDetails(); ?>
+			<!-- Nothing here yet! :D -->
 		</section>
 			<label>&gt;</label><input id="commands" autofocus autocomplete="off" spellcheck="false"/>
 	</article>
