@@ -62,11 +62,9 @@ class Parser{
                 $this->printVerbs();
                 break;
             case 99: // clearscreen
-            echo '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>'
-                ,'<script type="text/javascript">'
+            echo '<script type="text/javascript">'
                 , 'clearScreen();'
-                , '</script>'
-                , 'test string';
+                , '</script>';
                break;
             case 100: // hello
                 echo "<p>Hi there!</p>";
