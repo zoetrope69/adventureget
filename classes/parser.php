@@ -76,8 +76,7 @@ class Parser{
                 $name =  $player->getName();
                 if($name == ""){
                     echo "<p>You don't have a name! :¬(</p>";
-                }
-                else{
+                }else{
                     echo "<p>Your name is: ". $player->getName() . ".</p>";
                 }     
                 break;
@@ -89,6 +88,7 @@ class Parser{
                 break;
             }
         }
+        $_SESSION['player'] = serialize($player); // puts player back into the session
     }
 }
 
