@@ -8,15 +8,14 @@ var commandIndex = 0;
 // AJAX
 function updateTerminal(commandsInput){
 	$.post("main.php", { commands: commandsInput.value })
-	.done(function(data) {		
+	.done(function(data) {
 	 	$('#text').append(data); // Append on to the end of existing content
 		$('#commands').val("");	// Clear input box
 		$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom
+		if(data.indexOf("clearscreen") !== -1){ // If returned output has clearscreen in it
+			$('#text').html(""); // Clear screen
+		}
 	});
-}
-
-function clearScreen(){
-	$('#text').html("");
 }
 
 // When clicking the main terminal
