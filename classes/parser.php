@@ -38,7 +38,7 @@ class Parser{
             }
         }
         // if we get this far it isnt a valid input so return null
-        echo "<p>\"$c\" is not a valid input. :¬(</p>";
+        echo "<p>\"$command\" is not a valid input. :¬(</p>";
         return null;
     }
 
