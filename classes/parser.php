@@ -36,10 +36,10 @@ class Parser{
                     return $verbID;
                 }
             }
-            // if we get this far it isnt a valid input
-            echo "<p>\"$c\" is not a valid input. :¬(</p>";
-            return null;
         }
+        // if we get this far it isnt a valid input so return null
+        echo "<p>\"$c\" is not a valid input. :¬(</p>";
+        return null;
     }
 
     public function runCommand($id)
