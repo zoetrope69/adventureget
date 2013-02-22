@@ -4,3 +4,5 @@ pickup:1
 grab:1
 climb:2
 up:2
+help:3
+hello:100
