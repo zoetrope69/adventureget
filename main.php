@@ -23,10 +23,10 @@ if (isset($_POST['commands'])){
 }
 else
 {
-	echo "<p>adventureGet - super super awesome text <em>adventure</em> game</p>";
-	$player = new Player('', 130, 50);
-	echo "<p>Set your name with 'setname'";
+	$player = new Player('', 0, 0); // Create a new player class
 	$_SESSION['player'] = serialize($player);
+	echo "<p>adventureGet - super super awesome text <em>adventure</em> game</p>";
+	echo "<p>Set your name with 'setname'";
 }
 
 ?>

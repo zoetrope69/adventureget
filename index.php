@@ -7,10 +7,8 @@
 </head>
 <body>				
 	<article id="terminal">		
-		<section id="text">
-			<!-- Nothing here yet! :D -->
-		</section>
-			<label>&gt;</label><input id="commands" autofocus autocomplete="off" spellcheck="false"/>
+		<section id="text"></section>
+		<label>&gt;</label><input id="commands" autofocus autocomplete="off" spellcheck="false"/>
 	</article>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <!-- jQuery -->
 	<script type="text/javascript" src="js/scripts.js"></script>

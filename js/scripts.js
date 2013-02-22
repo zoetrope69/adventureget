@@ -8,8 +8,9 @@ var commandIndex = 0;
 // AJAX
 function updateTerminal(commandsInput){
 	$.post("main.php", { commands: commandsInput.value })
-	.done(function(data) {
+	.done(function(data) {		
 	 	$('#text').append(data); // Append on to the end of existing content
+		//$(data.trim()).hide().appendTo('#text').fadeIn(250); // fading, messes with scrolling
 		$('#commands').val("");	// Clear input box
 		$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom
 		if(data.indexOf("clearthatshit") !== -1){ // If returned output has clearscreen in it
