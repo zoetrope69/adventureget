@@ -38,7 +38,7 @@ class Parser{
             { 
                 echo "<p>Hi there!</p>";
             }
-            else if(strtolower($c) == "help")
+            elseif(strtolower($c) == "help")
             {
                 echo "<p>Some helpful stuff printed here followed by a list of available commands</p>";
                 echo "<p>Available verbs:</p>";
