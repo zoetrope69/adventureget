@@ -1,6 +1,6 @@
-shit
-dance
-throw
-get
-chop
-jump
+move:0
+walk:0
+pickup:1
+grab:1
+climb:2
+up:2

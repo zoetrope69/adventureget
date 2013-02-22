@@ -38,7 +38,7 @@ class Parser{
             { 
                 echo "<p>Hi there!</p>";
             }
-            elseif(strtolower($c) == "clr") // if text is "hello"
+            elseif(strtolower($c) == "clr") // if text is "clr"
             { 
                 //clear screen somehow...
             }
@@ -52,11 +52,14 @@ class Parser{
             {
                 foreach($this->_verbs as $verb)
                 {
-                    if($c == trim($verb)){ //trim as there is a linebreak in text file
-                        echo "<p>* $verb</p>";
+                    $commandParts = explode(":", $verb);
+                    if($c == trim($commandParts[0])){ //trim as there is a linebreak in text file
+                        $verbID = $commandParts[1];
+                        return $verbID;
                     }
                 }
-                echo "<p>\"$c\" is not a valid input. :¬(</p>";
+                echo "<p>\"$c\" is not a valid input. :¬(</p>"; // if we get this far it isnt a valid input
+                return null;
             }
         }
     }
