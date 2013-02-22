@@ -22,7 +22,7 @@ class Parser{
         }
     }
 
-    public function parseCommands($command)
+    public function parseCommands($command, $player)
     {
         $commands = explode(" ", $command);
         echo "<p>- $command</p>";
@@ -33,13 +33,13 @@ class Parser{
                 $commandParts = explode(":", $verb);
                 if($c == trim($commandParts[0])){ //trim as there is a linebreak in text file
                     $verbID = $commandParts[1];
-                    return $verbID;
+                    $this->runCommand($command, $verbID, $player);
+                    return;
                 }
             }
         }
         // if we get this far it isnt a valid input so return null
         echo "<p>\"$command\" is not a valid input. :¬(</p>";
-        return null;
     }
 
     public function runCommand($command, $id, $player)

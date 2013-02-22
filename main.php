@@ -17,8 +17,7 @@ if (isset($_POST['commands'])){
 	else
 	{
 		$player = unserialize($_SESSION['player']);
-		$id = $parser->parseCommands($command);
-		$parser->runCommand($command, $id, $player);
+		$parser->parseCommands($command, $player);
 	}	
 }
 else
