@@ -48,7 +48,22 @@ class Parser{
         {
             switch ($id) {
             case 0: // walk, move etc
-                echo "<p>You are walking!</p>";
+                if($command == 'north' || $command == 'n')
+                {
+                    echo "<p>You are walking north!</p>";
+                }
+                elseif($command == 'south' || $command == 's')
+                {
+                    echo "<p>You are walking south!</p>";
+                }
+                elseif($command == 'east' || $command == 'e')
+                {
+                    echo "<p>You are walking east!</p>";
+                }
+                elseif($command == 'west' || $command == 'w')
+                {
+                    echo "<p>You are walking south!</p>";
+                }
                 break;
             case 1: // pickup, grab etc
                 echo "<p>You are picking something up!</p>";
@@ -63,7 +78,7 @@ class Parser{
                 break;
             case 97: //setname
                 $commands = explode(" ", $command);  // Commands to array              
-                if(sizeof($commands) > 1){ // If there are more than one word (setname forename surname)
+                if(sizeof($commands) > 1){ // If there are more than one words (setname forename surname)
                     $name = trim(substr($command, 8)); // Tidy name
                     $player->setName($name); 
                     echo "<p>Your name is now: ". $player->getName() . ".</p>";

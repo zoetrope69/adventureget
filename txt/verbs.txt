@@ -1,5 +1,13 @@
 move:0
 walk:0
+north:0
+south:0
+east:0
+west:0
+n:0
+s:0
+e:0
+w:0
 pickup:1
 grab:1
 climb:2
