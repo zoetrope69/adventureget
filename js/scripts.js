@@ -10,7 +10,6 @@ function updateTerminal(commandsInput){
 	$.post("main.php", { commands: commandsInput.value })
 	.done(function(data) {		
 	 	$('#text').append(data); // Append on to the end of existing content
-		//$(data.trim()).hide().appendTo('#text').fadeIn(250); // fading, messes with scrolling
 		$('#commands').val("");	// Clear input box
 		$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom
 		if(data.indexOf("clearthatshit") !== -1){ // If returned output has clearscreen in it
@@ -44,7 +43,7 @@ $('#commands').keydown(function(event) { // When keys are pressed in the input #
 		}
 		event.preventDefault(); // Stops enter from doing what it normally does
 	}
-	if(code == 40){ // If it's the up key
+	if(code == 40){ // If it's the down key
 		if(commandIndex < prevCommands.length){
 			commandIndex++;
 			$('#commands').val(prevCommands[commandIndex]);
