@@ -62,7 +62,7 @@ class Parser{
                 $this->printVerbs();
                 break;
             case 99: // clearscreen
-                echo 'clearscreen';
+                echo 'clearthatshit'; // this isn't the best way of doing it i think...
                break;
             case 100: // hello
                 echo "<p>Hi there!</p>";

@@ -12,7 +12,7 @@ function updateTerminal(commandsInput){
 	 	$('#text').append(data); // Append on to the end of existing content
 		$('#commands').val("");	// Clear input box
 		$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom
-		if(data.indexOf("clearscreen") !== -1){ // If returned output has clearscreen in it
+		if(data.indexOf("clearthatshit") !== -1){ // If returned output has clearscreen in it
 			$('#text').html(""); // Clear screen
 		}
 	});
