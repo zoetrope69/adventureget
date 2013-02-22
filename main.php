@@ -15,24 +15,7 @@ if (isset($_POST['commands']))
 	}
 	else
 	{
-		foreach($commands as $c)
-		{
-			echo "<p>- $c</p>";
-			if(strtolower($c) == "hello") // if text is "hello"
-			{ 
-				echo "<p>Hi there!</p>";
-			}
-			elseif(strtolower($c) == "help")
-			{
-				echo "<p>Some helpful stuff printed here followed by a list of available commands</p>";
-				echo "<p>Available verbs:</p>";
-				$parser->printVerbs();
-			}
-			else
-			{
-				echo "<p>Ahh, I don't know what \"$c\" is... :¬(</p>";
-			}
-		}
+		$parser->parseCommands($command, $commands);
 	}	
 }
 else
