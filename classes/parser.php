@@ -38,6 +38,10 @@ class Parser{
             { 
                 echo "<p>Hi there!</p>";
             }
+            elseif(strtolower($c) == "clr") // if text is "hello"
+            { 
+                //clear screen somehow...
+            }
             elseif(strtolower($c) == "help")
             {
                 echo "<p>Some helpful stuff printed here followed by a list of available commands</p>";

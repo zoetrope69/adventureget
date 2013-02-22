@@ -7,7 +7,6 @@ if (isset($_POST['commands']))
 	{
 
 	$command = trim($_POST['commands']);
-	$commands = explode(" ", $command);
 
 	if($command == "")
 	{
@@ -15,7 +14,7 @@ if (isset($_POST['commands']))
 	}
 	else
 	{
-		$parser->parseCommands($command, $commands);
+		$parser->parseCommands($command);
 	}	
 }
 else
