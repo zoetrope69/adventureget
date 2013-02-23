@@ -24,6 +24,7 @@ class Parser{
 
     public function parseCommands($command, $player)
     {
+        $command = strtolower($command);
         $commands = explode(" ", $command);
         echo "<p>- $command</p>";
         foreach($commands as $c)
@@ -53,6 +54,7 @@ class Parser{
                 {
                     $command = $commands[1];
                 }
+                echo $command;
                 if($command == 'north' || $command == 'n')
                 {
                     echo "<p>You are walking north!</p>";
@@ -85,7 +87,7 @@ class Parser{
                 $commands = explode(" ", $command);  // Commands to array              
                 if(sizeof($commands) > 1){ // If there are more than one words (setname forename surname)
                     $name = trim(substr($command, 8)); // Tidy name
-                    $player->setName($name); 
+                    $player->setName(ucfirst($name)); 
                     echo "<p>Your name is now: ". $player->getName() . ".</p>";
                 }
                 else{
