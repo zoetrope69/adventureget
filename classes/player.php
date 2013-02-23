@@ -43,5 +43,18 @@ class Player {
         }
     }
 
+    public function walkNorth(){
+        $this->_locY++;
+    }
+    public function walkEast(){
+        $this->_locX++;
+    }
+    public function walkSouth(){
+        $this->_locY--;
+    }
+    public function walkWest(){
+        $this->_locX--;
+    }
+
 } 
 ?> 

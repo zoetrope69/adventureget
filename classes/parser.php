@@ -9,7 +9,6 @@ class Parser{
     function Parser()
     {
         $this->_verbs = file('txt/verbs.txt');
-        $this->_nouns = file('txt/nouns.txt');
     }
 
     public function printVerbs()
@@ -22,7 +21,7 @@ class Parser{
         }
     }
 
-    public function parseCommands($command, $player)
+    public function parseCommands($command, $player, $areas)
     {
         $command = strtolower($command);
         $commands = explode(" ", $command);
@@ -34,7 +33,7 @@ class Parser{
                 $commandParts = explode(":", $verb);
                 if($c == trim($commandParts[0])){ //trim as there is a linebreak in text file
                     $verbID = $commandParts[1];
-                    $this->runCommand($command, $verbID, $player);
+                    $this->runCommand($command, $verbID, $player, $areas);
                     return;
                 }
             }
@@ -43,7 +42,7 @@ class Parser{
         echo "<p>\"$command\" is not a valid input. :¬(</p>";
     }
 
-    public function runCommand($command, $id, $player)
+    public function runCommand($command, $id, $player, $areas)
     {
         if($id != null)
         {
@@ -54,22 +53,33 @@ class Parser{
                 {
                     $command = $commands[1];
                 }
-                echo $command;
                 if($command == 'north' || $command == 'n')
                 {
                     echo "<p>You are walking north!</p>";
+                    $player->walkNorth();
+                    echo "<p>X: " . $player->getLoc('x') . "</p>";
+                    echo "<p>Y: " . $player->getLoc('y') . "</p>";
                 }
                 elseif($command == 'south' || $command == 's')
                 {
                     echo "<p>You are walking south!</p>";
+                    $player->walkSouth();
+                    echo "<p>X: " . $player->getLoc('x') . "</p>";
+                    echo "<p>Y: " . $player->getLoc('y') . "</p>";
                 }
                 elseif($command == 'east' || $command == 'e')
                 {
                     echo "<p>You are walking east!</p>";
+                    $player->walkEast();
+                    echo "<p>X: " . $player->getLoc('x') . "</p>";
+                    echo "<p>Y: " . $player->getLoc('y') . "</p>";
                 }
                 elseif($command == 'west' || $command == 'w')
                 {
                     echo "<p>You are walking south!</p>";
+                    $player->walkWest();
+                    echo "<p>X: " . $player->getLoc('x') . "</p>";
+                    echo "<p>Y: " . $player->getLoc('y') . "</p>";
                 }
                 break;
             case 1: // pickup, grab etc
@@ -112,6 +122,7 @@ class Parser{
             }
         }
         $_SESSION['player'] = serialize($player); // puts player back into the session
+        $_SESSION['areas'] = serialize($areas); // puts areas back into the session
     }
 }
 
