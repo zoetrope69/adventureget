@@ -17,7 +17,11 @@ class Parser{
         {
             $commandParts = explode(":", $verb);
             $verb = $commandParts[0];
-            echo "<p>* $verb</p>";
+            if(sizeof($commandParts) > 2){
+                $desc = $commandParts[2];
+                echo "<p>* $verb :: $desc</p>";
+            }
+            else{echo "<p>* $verb</p>";}
         }
     }
 
@@ -99,7 +103,7 @@ class Parser{
                 break;
              case 3: // help
                 echo "<p>Some helpful stuff printed here followed by a list of available commands</p>";
-                echo "<p>Available verbs:</p>";
+                echo "<p>Available commands:</p>";
                 $this->printVerbs();
                 break;
             case 4: // inventory
