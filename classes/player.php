@@ -5,12 +5,14 @@ class Player {
     private $_name;
     private $_locX;
     private $_locY;
+    private $_items;
 
     function Player($name, $startX, $startY)
     {
         $this->_name = $name;
         $this->_locX = $startX;
         $this->_locY = $startY;
+        $this->_items = array();
     }
     
     public function getName(){ 
@@ -54,6 +56,14 @@ class Player {
     }
     public function walkWest(){
         $this->_locX--;
+    }
+
+    public function addItem($item){
+        array_push($this->_items, $item);
+    }
+
+    public function getItems(){
+        return $this->_items;
     }
 
 } 

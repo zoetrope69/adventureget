@@ -79,7 +79,20 @@ class Parser{
                 }
                 break;
             case 1: // pickup, grab etc
-                echo "<p>You are picking something up!</p>";
+                $commands = explode(" ", $command);
+                $items = $areas[$player->getLoc('x')][$player->getLoc('y')]->getItems();
+                $pickup = false;
+                foreach($items as $item){
+                    if($commands[1] == $item){
+                        echo "<p>You pick up the " . $item . "</p>";
+                        $player->addItem(trim($commands[1]));
+                        $areas[$player->getLoc('x')][$player->getLoc('y')]->removeItem($item);
+                        $pickup = true;
+                    }
+                }
+                if($pickup == false){
+                    echo "<p>There is no " . $commands[1] . " to pick up</p>";
+                }
                 break;
             case 2: // climb, up, dowm etc
                 echo "<p>You are climbing!</p>";
@@ -88,6 +101,18 @@ class Parser{
                 echo "<p>Some helpful stuff printed here followed by a list of available commands</p>";
                 echo "<p>Available verbs:</p>";
                 $this->printVerbs();
+                break;
+            case 4: // inventory
+                if(sizeof($player->getItems()) > 0){
+                    echo "<p>In your inventory you have:</p>";
+                    foreach($player->getItems() as $item){
+                        echo "<p>* " . $item . "</p>";
+                    }
+                }
+                else
+                {
+                    echo "<p>Your inventory is empty</p>";
+                }
                 break;
             case 97: //setname
                 $commands = explode(" ", $command);  // Commands to array              
