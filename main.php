@@ -40,7 +40,34 @@ else
 	$description = 'You are in room 0 2';
 	$area02 = new Area($title, $description, 0, 2); // Create a new area class
 
-	$areas = array($area00, $area01, $area02);
+	$title = 'room 1 0';
+	$description = 'You are in room 1 0';
+	$area10 = new Area($title, $description, 0, 0); // Create a new area class
+
+	$title = 'room 1 1';
+	$description = 'You are in room 1 1';
+	$area11 = new Area($title, $description, 0, 1); // Create a new area class
+
+	$title = 'room 1 2';
+	$description = 'You are in room 1 2';
+	$area12 = new Area($title, $description, 0, 2); // Create a new area class
+
+	$title = 'room 2 0';
+	$description = 'You are in room 2 0';
+	$area20 = new Area($title, $description, 0, 0); // Create a new area class
+
+	$title = 'room 2 1';
+	$description = 'You are in room 2 1';
+	$area21 = new Area($title, $description, 0, 1); // Create a new area class
+
+	$title = 'room 2 2';
+	$description = 'You are in room 2 2';
+	$area22 = new Area($title, $description, 0, 2); // Create a new area class
+
+	$areas = array( array($area00, $area01, $area02),
+					array($area10, $area11, $area12),
+					array($area20, $area21, $area22));
+
 	$_SESSION['player'] = serialize($player);
 	$_SESSION['areas'] = serialize($areas);
 	echo "<p>adventureGet - super super awesome text adventure game</p>";

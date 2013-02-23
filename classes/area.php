@@ -18,4 +18,9 @@ class Area{
 		$this->_items = array();
 	}
 
+	public function printDetails(){
+		echo "<p>" . $this->_title . "</p>";
+		echo "<p>" . $this->_description . "</p>";
+	}
+
 } 

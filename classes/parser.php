@@ -57,29 +57,25 @@ class Parser{
                 {
                     echo "<p>You are walking north!</p>";
                     $player->walkNorth();
-                    echo "<p>X: " . $player->getLoc('x') . "</p>";
-                    echo "<p>Y: " . $player->getLoc('y') . "</p>";
+                    $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
                 }
                 elseif($command == 'south' || $command == 's')
                 {
                     echo "<p>You are walking south!</p>";
                     $player->walkSouth();
-                    echo "<p>X: " . $player->getLoc('x') . "</p>";
-                    echo "<p>Y: " . $player->getLoc('y') . "</p>";
+                    $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
                 }
                 elseif($command == 'east' || $command == 'e')
                 {
                     echo "<p>You are walking east!</p>";
                     $player->walkEast();
-                    echo "<p>X: " . $player->getLoc('x') . "</p>";
-                    echo "<p>Y: " . $player->getLoc('y') . "</p>";
+                    $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
                 }
                 elseif($command == 'west' || $command == 'w')
                 {
                     echo "<p>You are walking south!</p>";
                     $player->walkWest();
-                    echo "<p>X: " . $player->getLoc('x') . "</p>";
-                    echo "<p>Y: " . $player->getLoc('y') . "</p>";
+                    $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
                 }
                 break;
             case 1: // pickup, grab etc
