@@ -24,7 +24,7 @@ else
 {
 	$player = new Player('', 0, 0); // Create a new player class
 	$_SESSION['player'] = serialize($player);
-	echo "<p>adventureGet - super super awesome text <em>adventure</em> game</p>";
+	echo "<p>adventureGet - super super awesome text adventure game</p>";
 	echo "<p>Set your name with 'setname'";
 }
 

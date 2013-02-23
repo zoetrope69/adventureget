@@ -50,3 +50,7 @@ body{
 #terminal input#commands:focus{
 	outline: none;
 }
+
+#terminal #text p{
+	white-space: pre;
+}
