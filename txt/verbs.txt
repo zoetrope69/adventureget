@@ -1,19 +1,19 @@
-move:0
-walk:0
-north:0
-south:0
-east:0
-west:0
-n:0
-s:0
-e:0
-w:0
-pickup:1
-grab:1
-climb:2
-up:2
-help:3
-i:4
+move:0:move -d allows you to move
+walk:0:walk -d allows you to move
+north:0:moves the player north
+south:0:moves the player south
+east:0:moves the player east
+west:0:moves the player west
+n:0:moves the player north
+s:0:moves the player south
+e:0:moves the player east
+w:0:moves the player west
+pickup:1:pickup -i allows you to ickup items
+grab:1:grab -i allows you to ickup items
+climb:2:allows the player to go up a level
+up:2:allows the player to go up a level
+help:3:Displays the help file
+i:4:Displays items in player inventory
 setname:97
 getname:98
 clearscreen:99
