@@ -4,7 +4,7 @@
 class Area{
 	private $_title;
 	private $_description;
-	private $_loxX;
+	private $_locX;
 	private $_locY;
 	private $_exits;
 	private $_items;
@@ -22,12 +22,16 @@ class Area{
 		echo "<p>" . $this->_title . "</p>";
 		echo "<p>" . $this->_description . "</p>";
 		if($this->_items != null){
-			echo "<p>Items in room:</p>";
+			echo "<p>Items in area:</p>";
 			foreach($this->_items as $item){
 				echo "<p>* " . $item . "</p>"; 
 			}
 		}
 		echo "<p> </p>";
+	}
+
+	public function getDescription(){
+		echo $this->_description;		
 	}
 
 	public function getItems(){

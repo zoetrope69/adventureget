@@ -114,6 +114,9 @@ class Parser{
                     echo "<p>Your inventory is empty</p>";
                 }
                 break;
+            case 5: // describearea
+                echo "<p>" . $areas[$player->getLoc('x')][$player->getLoc('y')]->getDescription(). "</p>";
+                break;
             case 97: //setname
                 $commands = explode(" ", $command);  // Commands to array              
                 if(sizeof($commands) > 1){ // If there are more than one words (setname forename surname)

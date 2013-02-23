@@ -28,41 +28,41 @@ else
 {
 	$player = new Player('', 0, 0); // Create a new player class
 
-	$title = 'room 0 0 - Large open field';
-	$description = 'You are in room 0 0 - You are standing in a large open field';
+	$title = 'area 0 0 - Large open field';
+	$description = 'You are in area 0 0 - You are standing in a large open field';
 	$items = array('knife', 'fork', 'spoon');
 	$area00 = new Area($title, $description, 0, 0, $items); // Create a new area class
 
-	$title = 'room 0 1';
-	$description = 'You are in room 0 1';
+	$title = 'area 0 1';
+	$description = 'You are in area 0 1';
 	$area01 = new Area($title, $description, 0, 1, null); // Create a new area class
 
-	$title = 'room 0 2';
-	$description = 'You are in room 0 2';
+	$title = 'area 0 2';
+	$description = 'You are in area 0 2';
 	$area02 = new Area($title, $description, 0, 2, null); // Create a new area class
 
-	$title = 'room 1 0';
-	$description = 'You are in room 1 0';
+	$title = 'area 1 0';
+	$description = 'You are in area 1 0';
 	$area10 = new Area($title, $description, 0, 0, null); // Create a new area class
 
-	$title = 'room 1 1';
-	$description = 'You are in room 1 1';
+	$title = 'area 1 1';
+	$description = 'You are in area 1 1';
 	$area11 = new Area($title, $description, 0, 1, null); // Create a new area class
 
-	$title = 'room 1 2';
-	$description = 'You are in room 1 2';
+	$title = 'area 1 2';
+	$description = 'You are in area 1 2';
 	$area12 = new Area($title, $description, 0, 2, null); // Create a new area class
 
-	$title = 'room 2 0';
-	$description = 'You are in room 2 0';
+	$title = 'area 2 0';
+	$description = 'You are in area 2 0';
 	$area20 = new Area($title, $description, 0, 0, null); // Create a new area class
 
-	$title = 'room 2 1';
-	$description = 'You are in room 2 1';
+	$title = 'area2 1';
+	$description = 'You are in area 2 1';
 	$area21 = new Area($title, $description, 0, 1, null); // Create a new area class
 
-	$title = 'room 2 2';
-	$description = 'You are in room 2 2';
+	$title = 'area 2 2';
+	$description = 'You are in area 2 2';
 	$area22 = new Area($title, $description, 0, 2, null); // Create a new area class
 
 	$areas = array( array($area00, $area01, $area02),

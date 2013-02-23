@@ -10,10 +10,12 @@ e:0
 w:0
 pickup:1
 grab:1
+get:1
 climb:2
 up:2
 help:3
 i:4
+describearea:5
 setname:97
 getname:98
 clearscreen:99
