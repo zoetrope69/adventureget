@@ -28,8 +28,8 @@ else
 {
 	$player = new Player('', 0, 0); // Create a new player class
 
-	$title = 'room 0 0';
-	$description = 'You are in room 0 0';
+	$title = 'room 0 0 - Large open field';
+	$description = 'You are in room 0 0 - You are standing in a large open field';
 	$area00 = new Area($title, $description, 0, 0); // Create a new area class
 
 	$title = 'room 0 1';
@@ -72,6 +72,7 @@ else
 	$_SESSION['areas'] = serialize($areas);
 	echo "<p>adventureGet - super super awesome text adventure game</p>";
 	echo "<p>Set your name with 'setname'";
+	$areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
 }
 
 ?>
