@@ -120,12 +120,22 @@ class Parser{
                 $commands = explode(" ", $command);
                 $items = $areas[$player->getLoc('x')][$player->getLoc('y')]->getItems();
                 $pickup = false;
-                foreach($items as $item){
-                    if($commands[1] == $item){
+                if($commands[1] == 'all'){
+                    foreach($items as $item){
                         echo "<p>You pick up the " . $item . "</p>";
                         $player->addItem(trim($commands[1]));
                         $areas[$player->getLoc('x')][$player->getLoc('y')]->removeItem($item);
                         $pickup = true;
+                    }
+                }
+                else{
+                    foreach($items as $item){
+                        if($commands[1] == $item){
+                            echo "<p>You pick up the " . $item . "</p>";
+                            $player->addItem(trim($commands[1]));
+                            $areas[$player->getLoc('x')][$player->getLoc('y')]->removeItem($item);
+                            $pickup = true;
+                        }
                     }
                 }
                 if($pickup == false){
