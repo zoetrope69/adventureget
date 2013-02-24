@@ -9,12 +9,12 @@ class Area{
 	private $_exits;
 	private $_items;
 
-	function Area($title, $description, $locX, $locY, $items){
+	function Area($title, $description, $locX, $locY, $exits, $items){
 		$this->_title = $title;
 		$this->_description = $description;
 		$this->_locX = $locX;
 		$this->_locY = $locY;
-		$this->_exits = array('north', 'south', 'east', 'west');
+		$this->_exits = $exits;
 		if ($items != null){$this->_items = $items;}
 		else{$this->_items = array();}
 	}
@@ -28,6 +28,12 @@ class Area{
 				echo "<p>* " . $item . "</p>"; 
 			}
 		}
+		if($this->_exits != null){
+			echo "<p>Available Exits:</p>";
+			foreach($this->_exits as $exit){
+				echo "<p>* " . $exit . "</p>"; 
+			}
+		}
 		echo "<p> </p>";
 	}
 
@@ -39,14 +45,17 @@ class Area{
 		return $this->_items;
 	}
 
+	public function addItem($item){
+		array_push($this->_items, $item);
+	}
+
 	public function removeItem($item){
 		$this->_items = array_diff($this->_items, array($item));
 		$this->_items = array_values($this->_items);
 	}
 
-
-	public function addItem($item){
-		array_push($this->_items, $item);
+	public function getExits(){
+		return $this->_exits;
 	}
 
 } 

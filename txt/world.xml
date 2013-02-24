@@ -1,31 +1,34 @@
 <map>
 	<area>
-		<title>this is area 0 0</title>
-		<description>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate quia recusandae aliquid vitae atque neque odit sequi rem eius qui vel amet praesentium quasi est perspiciatis ducimus eligendi corrupti dicta?</description>
+		<title>Large open field</title>
+		<description>You are standing in a large open field, the grass is long and brushes your ankles. You can just about see the tips of small yellow flowers sticking out where they have been swamped by the unkept grass. To the north you can see a large building.</description>
 		<loc>
 			<x>0</x>
 			<y>0</y>
 		</loc>
+		<exits>north</exits>
 		<items>knife fork spoon</items>
 	</area>
 	
 	<area>
-		<title>this is area 0 1</title>
-		<description>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate quia recusandae aliquid vitae atque neque odit sequi rem eius qui vel amet praesentium quasi est perspiciatis ducimus eligendi corrupti dicta?</description>
+		<title>Building entrance</title>
+		<description>You are standing at the enterance of a large university building. Above the door is a large sign that reads 'The University of Portsmouth'. It appears the door is open.</description>
 		<loc>
 			<x>0</x>
 			<y>1</y>
 		</loc>
+		<exits>north south</exits>
 		<items></items>
 	</area>
 	
 	<area>
-		<title>this is area 0 2</title>
-		<description>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate quia recusandae aliquid vitae atque neque odit sequi rem eius qui vel amet praesentium quasi est perspiciatis ducimus eligendi corrupti dicta?</description>
+		<title>Inside the University</title>
+		<description>Standing inside the university building you can why this environment might be a good place for people to learn things.</description>
 		<loc>
 			<x>0</x>
 			<y>2</y>
 		</loc>
+		<exits>north south</exits>
 		<items></items>
 	</area>
 	
@@ -36,6 +39,7 @@
 			<x>0</x>
 			<y>3</y>
 		</loc>
+		<exits>south</exits>
 		<items></items>
 	</area>
 </map>

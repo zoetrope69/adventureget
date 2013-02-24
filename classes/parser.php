@@ -53,33 +53,67 @@ class Parser{
             switch ($id) {
             case 0: // walk, move etc
                 $commands = explode(" ", $command);
+                $exits = $areas[$player->getLoc('x')][$player->getLoc('y')]->getExits();
                 if(sizeof($commands) > 1)
                 {
                     $command = $commands[1];
                 }
                 if($command == 'north' || $command == 'n')
                 {
-                    echo "<p>You are walking north!</p>";
-                    $player->walkNorth();
-                    $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
+                    foreach($exits as $exit){
+                        if($command == $exit){
+                            $player->walkNorth();
+                            $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
+                            break;
+                        }
+                        else
+                        {
+                            echo "<p>You cannot walk this way</p>";
+                        }
+                    }
+                    
                 }
                 elseif($command == 'south' || $command == 's')
                 {
-                    echo "<p>You are walking south!</p>";
-                    $player->walkSouth();
-                    $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
+                    foreach($exits as $exit){
+                        if($command == $exit){
+                            $player->walkSouth();
+                            $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
+                            break;
+                        }
+                        else
+                        {
+                            echo "<p>You cannot walk this way</p>";
+                        }
+                    }
                 }
                 elseif($command == 'east' || $command == 'e')
                 {
-                    echo "<p>You are walking east!</p>";
-                    $player->walkEast();
-                    $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
+                    foreach($exits as $exit){
+                        if($command == $exit){
+                            $player->walkEast();
+                            $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
+                            break;
+                        }
+                        else
+                        {
+                            echo "<p>You cannot walk this way</p>";
+                        }
+                    }
                 }
                 elseif($command == 'west' || $command == 'w')
                 {
-                    echo "<p>You are walking south!</p>";
-                    $player->walkWest();
-                    $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
+                    foreach($exits as $exit){
+                        if($command == $exit){
+                            $player->walkWest();
+                            $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
+                            break;
+                        }
+                        else
+                        {
+                            echo "<p>You cannot walk this way</p>";
+                        }
+                    }
                 }
                 break;
             case 1: // pickup, grab etc
