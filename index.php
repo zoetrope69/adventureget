@@ -5,7 +5,7 @@
 	<title>adventureGET</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body>	
+<body>
 	<article id="terminal">		
 		<section id="text"></section>
 		<label>&gt;</label><input id="commands" autofocus autocomplete="off" spellcheck="false"/>

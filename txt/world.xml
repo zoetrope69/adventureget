@@ -23,7 +23,7 @@
 	
 	<area>
 		<title>Inside the University</title>
-		<description>Standing inside the university building you can why this environment might be a good place for people to learn things.</description>
+		<description>Standing inside the university building you can see why this environment might be a good place for people to learn things.</description>
 		<loc>
 			<x>0</x>
 			<y>2</y>
@@ -33,7 +33,7 @@
 	</area>
 	
 	<area>
-		<title>this is area 0 3</title>
+		<title>this is a lecture theatre</title>
 		<description>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate quia recusandae aliquid vitae atque neque odit sequi rem eius qui vel amet praesentium quasi est perspiciatis ducimus eligendi corrupti dicta?</description>
 		<loc>
 			<x>0</x>
