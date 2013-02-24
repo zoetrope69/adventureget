@@ -1,0 +1,41 @@
+<map>
+	<area>
+		<title>this is area 0 0</title>
+		<description>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate quia recusandae aliquid vitae atque neque odit sequi rem eius qui vel amet praesentium quasi est perspiciatis ducimus eligendi corrupti dicta?</description>
+		<loc>
+			<x>0</x>
+			<y>0</y>
+		</loc>
+		<items>knife fork spoon</items>
+	</area>
+	
+	<area>
+		<title>this is area 0 1</title>
+		<description>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate quia recusandae aliquid vitae atque neque odit sequi rem eius qui vel amet praesentium quasi est perspiciatis ducimus eligendi corrupti dicta?</description>
+		<loc>
+			<x>0</x>
+			<y>1</y>
+		</loc>
+		<items></items>
+	</area>
+	
+	<area>
+		<title>this is area 0 2</title>
+		<description>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate quia recusandae aliquid vitae atque neque odit sequi rem eius qui vel amet praesentium quasi est perspiciatis ducimus eligendi corrupti dicta?</description>
+		<loc>
+			<x>0</x>
+			<y>2</y>
+		</loc>
+		<items></items>
+	</area>
+	
+	<area>
+		<title>this is area 0 3</title>
+		<description>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate quia recusandae aliquid vitae atque neque odit sequi rem eius qui vel amet praesentium quasi est perspiciatis ducimus eligendi corrupti dicta?</description>
+		<loc>
+			<x>0</x>
+			<y>3</y>
+		</loc>
+		<items></items>
+	</area>
+</map>
