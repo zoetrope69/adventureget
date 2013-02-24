@@ -119,7 +119,7 @@ class Parser{
                 }
                 break;
             case 5: // describearea
-                echo "<p>" . $areas[$player->getLoc('x')][$player->getLoc('y')]->getDescription(). "</p>";
+                echo "<p>" . $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails(). "</p>";
                 break;
             case 6: // drop item in room
                 $commands = explode(" ", $command);
