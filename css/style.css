@@ -54,3 +54,19 @@ body{
 #terminal #text p{
 	white-space: pre-wrap;
 }
+
+.items{
+	color: #0099ff;
+}
+
+.exits{
+	color: #cc6666;
+}
+
+.title{
+	color: orange;
+	font-style: bold;
+}
+.description{
+	color: #cc9966;
+}

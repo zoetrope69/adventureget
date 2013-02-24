@@ -20,18 +20,19 @@ class Area{
 	}
 
 	public function printDetails(){
-		echo "<p>" . $this->_title . "</p>";
-		echo "<p>" . $this->_description . "</p>";
+		echo "<p class='title'>" . $this->_title . "</p>";
+		echo "<p class='description'>" . $this->_description . "</p>";
+
 		if($this->_items != null){
-			echo "<p>Items in area:</p>";
+			echo "<p class='items'>Items in area:</p>";
 			foreach($this->_items as $item){
-				echo "<p>* " . $item . "</p>"; 
+				echo "<p class='items'>* " . $item . "</p>"; 
 			}
 		}
 		if($this->_exits != null){
-			echo "<p>Available Exits:</p>";
+			echo "<p class='exits'>Available Exits:</p>";
 			foreach($this->_exits as $exit){
-				echo "<p>* " . $exit . "</p>"; 
+				echo "<p class='exits'>* " . $exit . "</p>"; 
 			}
 		}
 		echo "<p> </p>";
