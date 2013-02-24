@@ -61,6 +61,10 @@ class Player {
     public function addItem($item){
         array_push($this->_items, $item);
     }
+    public function removeItem($item){
+        $this->_items = array_diff($this->_items, array($item));
+        $this->_items = array_values($this->_items);
+    }
 
     public function getItems(){
         return $this->_items;

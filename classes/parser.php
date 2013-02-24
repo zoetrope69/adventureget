@@ -121,6 +121,22 @@ class Parser{
             case 5: // describearea
                 echo "<p>" . $areas[$player->getLoc('x')][$player->getLoc('y')]->getDescription(). "</p>";
                 break;
+            case 6: // drop item in room
+                $commands = explode(" ", $command);
+                $items = $player->getItems();
+                $drop = false;
+                foreach($items as $item){
+                    if($commands[1] == $item){
+                        echo "<p>You drop the " . $item . "</p>";
+                        $areas[$player->getLoc('x')][$player->getLoc('y')]->addItem(trim($commands[1]));
+                        $player->removeItem($item);
+                        $drop = true;
+                    }
+                }
+                if($drop == false){
+                    echo "<p>You do not have a " . $commands[1] . " in your inventory</p>";
+                }
+                break;
             case 97: //setname
                 $commands = explode(" ", $command);  // Commands to array              
                 if(sizeof($commands) > 1){ // If there are more than one words (setname forename surname)

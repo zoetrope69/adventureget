@@ -15,7 +15,8 @@ class Area{
 		$this->_locX = $locX;
 		$this->_locY = $locY;
 		$this->_exits = array('north', 'south', 'east', 'west');
-		$this->_items = $items;
+		if ($items != null){$this->_items = $items;}
+		else{$this->_items = array();}
 	}
 
 	public function printDetails(){
@@ -41,6 +42,11 @@ class Area{
 	public function removeItem($item){
 		$this->_items = array_diff($this->_items, array($item));
 		$this->_items = array_values($this->_items);
+	}
+
+
+	public function addItem($item){
+		array_push($this->_items, $item);
 	}
 
 } 
