@@ -61,7 +61,7 @@ class Parser{
                 if($command == 'north' || $command == 'n')
                 {
                     foreach($exits as $exit){
-                        if($command == $exit){
+                        if($command == $exit || $command == $exit[0]){
                             $player->walkNorth();
                             $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
                             break;
@@ -76,7 +76,7 @@ class Parser{
                 elseif($command == 'south' || $command == 's')
                 {
                     foreach($exits as $exit){
-                        if($command == $exit){
+                        if($command == $exit || $command == $exit[0]){
                             $player->walkSouth();
                             $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
                             break;
@@ -90,7 +90,7 @@ class Parser{
                 elseif($command == 'east' || $command == 'e')
                 {
                     foreach($exits as $exit){
-                        if($command == $exit){
+                        if($command == $exit || $command == $exit[0]){
                             $player->walkEast();
                             $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
                             break;
@@ -104,7 +104,7 @@ class Parser{
                 elseif($command == 'west' || $command == 'w')
                 {
                     foreach($exits as $exit){
-                        if($command == $exit){
+                        if($command == $exit || $command == $exit[0]){
                             $player->walkWest();
                             $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
                             break;
