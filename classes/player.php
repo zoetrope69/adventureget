@@ -20,7 +20,7 @@ class Player {
     }
 
     public function getLoc($coord){ //specify which coord, if none return both with a space between
-        $coord = strtolower(trim($coord);
+        $coord = strtolower(trim($coord));
         if($coord == "x"){    
             return $this->_locX;
         }
@@ -38,7 +38,7 @@ class Player {
     }
 
     public function setLoc($coord, $value){ // specific coord and value it should be
-        $coord = strtolower(trim($coord);
+        $coord = strtolower(trim($coord));
         if($coord == "x"){    
             $this->_locX;
         }

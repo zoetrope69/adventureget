@@ -8,8 +8,9 @@ class Area{
 	private $_locY;
 	private $_exits;
 	private $_items;
+	private $_npcs;
 
-	function Area($title, $description, $locX, $locY, $exits, $items){
+	function Area($title, $description, $locX, $locY, $exits, $items, $npcs){
 		$this->_title = $title;
 		$this->_description = $description;
 		$this->_locX = $locX;
@@ -17,6 +18,8 @@ class Area{
 		$this->_exits = $exits;
 		if ($items != null){$this->_items = $items;}
 		else{$this->_items = array();}
+		if ($npcs != null){$this->_npcs = $npcs;}
+		else{$this->_npcs = array();}
 	}
 
 	public function printDetails(){
@@ -27,6 +30,12 @@ class Area{
 			echo "<p class='items'>Items in area:</p>";
 			foreach($this->_items as $item){
 				echo "<p class='items'>* " . $item . "</p>"; 
+			}
+		}
+		if($this->_npcs != null){
+			echo "<p class='npcs'>NPCs in area:</p>";
+			foreach($this->_npcs as $npc){
+				echo "<p class='npcs'>* " . $npc->getDetails()->getName() . "</p>"; 
 			}
 		}
 		if($this->_exits != null){
@@ -57,6 +66,10 @@ class Area{
 
 	public function getExits(){
 		return $this->_exits;
+	}
+
+	public function getNPCs(){
+		return $this->_npcs;
 	}
 
 } 

@@ -19,7 +19,11 @@ function loadMap(){
 			$exits = array('north', 'south', 'east', 'west');
 		}
 
-		$areas[$x][$y] = new Area($title, $description, 0, 0, $exits, $items);
+		$npcdetails = new Player("John", 0, 0);
+		$npc1 = new NPC(false, $npcdetails);
+		$npcs = array($npc1);
+
+		$areas[$x][$y] = new Area($title, $description, 0, 0, $exits, $items, $npcs);
 	}
 	return $areas;
 }

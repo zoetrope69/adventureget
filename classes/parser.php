@@ -181,6 +181,28 @@ class Parser{
                     echo "<p>You do not have a " . $commands[1] . " in your inventory</p>";
                 }
                 break;
+            case 7: // talk
+                $commands = explode(" ", $command);
+                $area = $areas[$player->getLoc('x')][$player->getLoc('y')];
+                $npcs = $area->getNPCs();
+                if (sizeof($commands) > 1){
+                    foreach($npcs as $npc){
+                        $npcName = strtolower($npc->getDetails()->getName());
+                        if($commands[1] == $npcName) // if second command is the name of a NPC you can talk
+                        { 
+                            echo "<p>" . $npcName . " is a person you can talk to!</p>";
+                        }
+                        else
+                        {
+                            echo "<p>" . $commands[1] . " doesn't exist.</p>";
+                        }
+                    }
+                }
+                else
+                {
+                    echo "<p>Talk to who?</p>";
+                }
+                break;
             case 97: //setname
                 $commands = explode(" ", $command);  // Commands to array              
                 if(sizeof($commands) > 1){ // If there are more than one words (setname forename surname)
