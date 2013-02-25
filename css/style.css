@@ -15,7 +15,7 @@ body{
 
 header{
 	padding: 0.1em;
-	border-bottom: 2px solid #98BD56;
+	border-bottom: 1px solid #98BD56;
 	background: #414141;
 
 	-webkit-animation: hueRotate 15s infinite linear;
