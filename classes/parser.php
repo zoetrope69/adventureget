@@ -190,17 +190,17 @@ class Parser{
                         $npcName = strtolower($npc->getDetails()->getName());
                         if($commands[1] == $npcName) // if second command is the name of a NPC you can talk
                         { 
-                            echo "<p>" . $npcName . " is a person you can talk to!</p>";
+                            echo "<p class='npcs'>" . $npcName . " is a person you can talk to!</p>";
                         }
                         else
                         {
-                            echo "<p>" . $commands[1] . " doesn't exist.</p>";
+                            echo "<p class='npcs'>" . $commands[1] . " doesn't exist.</p>";
                         }
                     }
                 }
                 else
                 {
-                    echo "<p>Talk to who?</p>";
+                    echo "<p class='npcs'>Talk to who?</p>";
                 }
                 break;
             case 97: //setname

@@ -55,17 +55,10 @@ body{
 	white-space: pre-wrap;
 }
 
-.items{
-	color: #0099ff;
-}
+/* terminal text colours */
 
-.exits{
-	color: #cc6666;
-}
-
-.title{
-	color: orange;
-}
-.description{
-	color: #cc9966;
-}
+.items{	color: #0099ff; }
+.exits{	color: #cc6666; }
+.title{	color: orange; }
+.description{ color: #cc9966; }
+.npcs{ color: #7BFF51; }
