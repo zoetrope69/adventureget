@@ -23,7 +23,8 @@ function loadMap(){
 		$npc1 = new NPC(false, $npcdetails);
 		$npcs = array($npc1);
 
-		$areas[$x][$y] = new Area($title, $description, 0, 0, $exits, $items, $npcs);
+		$areas[$x][$y] = new Area($title, $description, $x, $y, $exits, $items, $npcs);
+
 	}
 	return $areas;
 }
