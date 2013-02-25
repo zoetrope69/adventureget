@@ -20,10 +20,11 @@ class Player {
     }
 
     public function getLoc($coord){ //specify which coord, if none return both with a space between
-        if(strtolower(trim($coord)) == "x"){    
+        $coord = strtolower(trim($coord);
+        if($coord == "x"){    
             return $this->_locX;
         }
-        elseif(strtolower(trim($coord)) == "y"){
+        elseif($coord == "y"){
             return $this->_locY;
         }
         else
@@ -37,10 +38,11 @@ class Player {
     }
 
     public function setLoc($coord, $value){ // specific coord and value it should be
-        if(strtolower(trim($coord)) == "x"){    
+        $coord = strtolower(trim($coord);
+        if($coord == "x"){    
             $this->_locX;
         }
-        elseif (strtolower(trim($coord)) == "y"){
+        elseif ($coord == "y"){
             $this->_locY;
         }
     }
