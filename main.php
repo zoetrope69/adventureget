@@ -1,10 +1,15 @@
 <?php
+session_start();
 
-include "classes/parser.php";
+foreach (glob("classes/*.php") as $file)
+{
+    include $file;
+}
+include "functions.php";
 $parser = new Parser();
 
-if (isset($_POST['commands']))
-	{
+
+if (isset($_POST['commands'])){
 
 	$command = trim($_POST['commands']);
 
@@ -13,33 +18,23 @@ if (isset($_POST['commands']))
 		echo "<p>You entered nothing!</p>";
 	}
 	else
-	{
-		$id = $parser->parseCommands($command);
-		//echo "<p>the id returned is $id</p>";
-		runCommand($id);
+	{	$areas = unserialize($_SESSION['areas']);
+		$player = unserialize($_SESSION['player']);
+
+		$parser->parseCommands($command, $player, $areas);
+
 	}	
 }
 else
 {
-	echo '<p>ERROR: Didn\'t get anything posted. :¬(</p>';
-}
+	$areas = loadMap();
+	$player = new Player('', 0, 0); // Create a new player class
 
-function runCommand($id)
-{
-	if($id != null)
-	{
-		switch ($id) {
-	    case 0:
-	        echo "<p>you are walking</p>";
-	        break;
-	    case 1:
-	        echo "<p>you are picking something up</p>";
-	        break;
-	    case 2:
-	        echo "<p>you are climbing</p>";
-	        break;
-		}
-	}
+	$_SESSION['player'] = serialize($player);
+	$_SESSION['areas'] = serialize($areas);
+	echo "<p>adventureGet - super super awesome text adventure game</p>";
+	echo "<p>Set your name with 'setname'";
+	$areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
 }
 
 ?>

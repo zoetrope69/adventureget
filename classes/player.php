@@ -5,12 +5,14 @@ class Player {
     private $_name;
     private $_locX;
     private $_locY;
+    private $_items;
 
     function Player($name, $startX, $startY)
     {
         $this->_name = $name;
         $this->_locX = $startX;
         $this->_locY = $startY;
+        $this->_items = array();
     }
     
     public function getName(){ 
@@ -18,10 +20,11 @@ class Player {
     }
 
     public function getLoc($coord){ //specify which coord, if none return both with a space between
-        if(strtolower(trim($coord)) == "x"){    
+        $coord = strtolower(trim($coord));
+        if($coord == "x"){    
             return $this->_locX;
         }
-        elseif(strtolower(trim($coord)) == "y"){
+        elseif($coord == "y"){
             return $this->_locY;
         }
         else
@@ -35,17 +38,38 @@ class Player {
     }
 
     public function setLoc($coord, $value){ // specific coord and value it should be
-        if(strtolower(trim($coord)) == "x"){    
+        $coord = strtolower(trim($coord));
+        if($coord == "x"){    
             $this->_locX;
         }
-        elseif (strtolower(trim($coord)) == "y"){
+        elseif ($coord == "y"){
             $this->_locY;
         }
     }
 
-    public function printPlayerDetails(){ // print player details
-        echo "<p>Player's name: '". $this->getName() . "'.</p>";
-        echo "<p>Location: X " . $this->getLoc("x") . " | Y " . $this->getLoc("y") . "</p>";
+    public function walkNorth(){
+        $this->_locY++;
+    }
+    public function walkEast(){
+        $this->_locX++;
+    }
+    public function walkSouth(){
+        $this->_locY--;
+    }
+    public function walkWest(){
+        $this->_locX--;
+    }
+
+    public function addItem($item){
+        array_push($this->_items, $item);
+    }
+    public function removeItem($item){
+        $this->_items = array_diff($this->_items, array($item));
+        $this->_items = array_values($this->_items);
+    }
+
+    public function getItems(){
+        return $this->_items;
     }
 
 } 

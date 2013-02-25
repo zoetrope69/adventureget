@@ -1,6 +1,24 @@
-move:0
-walk:0
-pickup:1
-grab:1
-climb:2
-up:2
+move:0:move -d allows you to move
+walk:0:walk -d allows you to move
+north:0:moves the player north
+south:0:moves the player south
+east:0:moves the player east
+west:0:moves the player west
+n:0:moves the player north
+s:0:moves the player south
+e:0:moves the player east
+w:0:moves the player west
+pickup:1:pickup -i allows you to pickup items
+grab:1:grab -i allows you to pickup items
+get:1:get -i allows you to pickup items
+climb:2:allows the player to go up a level
+up:2:allows the player to go up a level
+help:3:Displays the help file
+i:4:Displays items in player inventory
+describearea:5:Describes the area you're in
+drop:6:drop -i allows you to drop an item in the room
+talk:7:talk [npc] allows you to start a conversation with a NPC
+setname:97
+getname:98
+clearscreen:99
+hello:100

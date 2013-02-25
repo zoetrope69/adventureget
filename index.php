@@ -1,22 +1,18 @@
 <?php
-include 'classes/player.php';
-$player = new Player('Player', 0, 0);
+	$title = "adventureGet - super super awesome text adventure game";
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>adventureGET</title>
+	<title><?php echo $title; ?></title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body>				
+<body>
+	<header><h1><?php echo $title; ?><a href="http://www.github.com/zaccolley/adventureget" target="_blank">come help!</a></h1></header>
 	<article id="terminal">		
-		<section id="text">
-			<p>Hello this is a text based RPG written in PHP and Javascript...</p>
-			<?php $player->printPlayerDetails(); ?>
-		</section>
-			<label>&gt;</label><input id="commands" autofocus autocomplete="off" spellcheck="false"/>
+		<section id="text"></section>
+		<label>&gt;</label><input id="commands" autofocus autocomplete="off" spellcheck="false"/>
 	</article>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <!-- jQuery -->
 	<script type="text/javascript" src="js/scripts.js"></script>
