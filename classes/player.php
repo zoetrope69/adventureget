@@ -64,7 +64,11 @@ class Player {
         array_push($this->_items, $item);
     }
     public function removeItem($item){
-        $this->_items = array_diff($this->_items, array($item));
+        foreach($this->_items as $i => $value){
+            if($value == $item){
+                unset($this->_items[$i]);
+            }
+        }
         $this->_items = array_values($this->_items);
     }
 

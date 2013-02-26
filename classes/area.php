@@ -29,7 +29,7 @@ class Area{
 		if($this->_items != null){
 			echo "<p class='items'>Items in area:</p>";
 			foreach($this->_items as $item){
-				echo "<p class='items'>* " . $item . "</p>"; 
+				echo "<p class='items'>* " . $item->getName() . "</p>"; 
 			}
 		}
 		if($this->_npcs != null){
@@ -60,7 +60,11 @@ class Area{
 	}
 
 	public function removeItem($item){
-		$this->_items = array_diff($this->_items, array($item));
+		foreach($this->_items as $i => $value){
+			if($value == $item){
+				unset($this->_items[$i]);
+			}
+		}
 		$this->_items = array_values($this->_items);
 	}
 

@@ -130,9 +130,9 @@ class Parser{
                 }
                 else{
                     foreach($items as $item){
-                        if($commands[1] == $item){
-                            echo "<p>You pick up the " . $item . "</p>";
-                            $player->addItem(trim($commands[1]));
+                        if($commands[1] == $item->getName()){
+                            echo "<p>You pick up the " . $item->getName() . "</p>";
+                            $player->addItem($item);
                             $areas[$player->getLoc('x')][$player->getLoc('y')]->removeItem($item);
                             $pickup = true;
                         }
@@ -154,7 +154,7 @@ class Parser{
                 if(sizeof($player->getItems()) > 0){
                     echo "<p>In your inventory you have:</p>";
                     foreach($player->getItems() as $item){
-                        echo "<p>* " . $item . "</p>";
+                        echo "<p>* " . $item->getName() . "</p>";
                     }
                 }
                 else
@@ -170,8 +170,8 @@ class Parser{
                 $items = $player->getItems();
                 $drop = false;
                 foreach($items as $item){
-                    if($commands[1] == $item){
-                        echo "<p>You drop the " . $item . "</p>";
+                    if($commands[1] == $item->getName()){
+                        echo "<p>You drop the " . $item->getName() . "</p>";
                         $areas[$player->getLoc('x')][$player->getLoc('y')]->addItem(trim($commands[1]));
                         $player->removeItem($item);
                         $drop = true;
@@ -201,6 +201,16 @@ class Parser{
                 else
                 {
                     echo "<p class='npcs'>Talk to who?</p>";
+                }
+                break;
+            case 8:
+                $commands = explode(" ", $command);
+                $items =  array_merge($player->getItems(), $areas[$player->getLoc('x')][$player->getLoc('y')]->getItems());
+                //print_r($items);
+                foreach($items as $item){
+                    if($commands[1] == $item->getName()){
+                        echo $item->getDescription();
+                    }
                 }
                 break;
             case 97: //setname
