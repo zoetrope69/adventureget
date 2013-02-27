@@ -113,4 +113,4 @@ header a:hover{ opacity: 0.9; }
 .title{	color: orange; }
 .description{ color: #cc9966; }
 .npcs{ color: #7BFF51; }
-.warning{ color: red; }
+.warn{ color: rgb(173, 0, 255); }

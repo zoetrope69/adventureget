@@ -15,7 +15,7 @@ if (isset($_POST['commands'])){
 
 	if($command == "")
 	{
-		echo "<p>You entered nothing!</p>";
+		echo "<p class='warn'>You entered nothing!</p>";
 	}
 	else
 	{	$areas = unserialize($_SESSION['areas']);
@@ -33,7 +33,7 @@ else
 	$_SESSION['player'] = serialize($player);
 	$_SESSION['areas'] = serialize($areas);
 	echo "<p>adventureGet - super awesome text adventure game</p>";
-	echo "<p>Set your name with 'setname'";
+	echo "<p>Set your name with 'setname' [yourname]</p>";
 	$areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
 }
 
