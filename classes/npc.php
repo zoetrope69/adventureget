@@ -1,19 +1,25 @@
 <?php
 //The NPC class
  
-class NPC { 
-    private $_hostile; // Is the NPC hostil or not? / boolean
-    private $_details; // Player details /
+class NPC extends Char{ 
+    private $_hostile; // Is the NPC hostile or not? / boolean
+    private $_description; // Player description /
 
-    function NPC($hostile, $details)
+    function NPC($name, $desc, $startX, $startY, $health, $exp, $hostile)
     {
-        $this->_hostile = $hostile;
-        $this->_details = $details;
+        $this->_name = $name;
+        $this->_description = $desc;
+        $this->_locX = $startX;
+        $this->_locY = $startY;
+        $this->_items = array();        
+        $this->_health = $health;
+        $this->_exp = $exp;
+        $this->_hostile = (bool)$hostile;
     }
     
     // Get back hostility of NPC
     public function getHostile(){
-        return $hostile;
+        return $this->_hostile;
     }
 
     // Set hostility of NPC
@@ -22,8 +28,8 @@ class NPC {
     }
 
     // get details of NPC
-    public function getDetails(){
-        return $this->_details;
+    public function getDescription(){
+        return $this->_description;
     }
 
 } 

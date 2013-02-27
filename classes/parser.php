@@ -43,7 +43,7 @@ class Parser{
             }
         }
         // if we get this far it isnt a valid input so return null
-        echo "<p>\"$command\" is not a valid input. :¬(</p>";
+        echo "<p class='warn'>\"$command\" is not a valid input. :¬(</p>";
     }
 
     public function runCommand($command, $id, $player, $areas)
@@ -69,7 +69,7 @@ class Parser{
                         }
                     }
                     if($walking == false){
-                        echo "<p>You cannot walk this way</p>";
+                        echo "<p class='warn'>You cannot walk this way</p>";
                     }
                     
                 }
@@ -84,7 +84,7 @@ class Parser{
                         }
                     }
                     if($walking == false){
-                        echo "<p>You cannot walk this way</p>";
+                        echo "<p class='warn'>You cannot walk this way</p>";
                     }
                 }
                 elseif($command == 'east' || $command == 'e')
@@ -98,7 +98,7 @@ class Parser{
                         }
                     }
                     if($walking == false){
-                        echo "<p>You cannot walk this way</p>";
+                        echo "<p class='warn'>You cannot walk this way</p>";
                     }
                 }
                 elseif($command == 'west' || $command == 'w')
@@ -112,7 +112,7 @@ class Parser{
                         }
                     }
                     if($walking == false){
-                        echo "<p>You cannot walk this way</p>";
+                        echo "<p class='warn'>You cannot walk this way</p>";
                     }
                 }
                 break;
@@ -139,7 +139,7 @@ class Parser{
                     }
                 }
                 if($pickup == false){
-                    echo "<p>There is no " . $commands[1] . " to pick up</p>";
+                    echo "<p class='warn'>There is no " . $commands[1] . " to pick up</p>";
                 }
                 break;
             case 2: // climb, up, dowm etc
@@ -159,7 +159,7 @@ class Parser{
                 }
                 else
                 {
-                    echo "<p>Your inventory is empty</p>";
+                    echo "<p class='warn'>Your inventory is empty</p>";
                 }
                 break;
             case 5: // describearea
@@ -178,7 +178,7 @@ class Parser{
                     }
                 }
                 if($drop == false){
-                    echo "<p>You do not have a " . $commands[1] . " in your inventory</p>";
+                    echo "<p class='warn'>You do not have a " . $commands[1] . " in your inventory</p>";
                 }
                 break;
             case 7: // talk
@@ -187,14 +187,10 @@ class Parser{
                 $npcs = $area->getNPCs();
                 if (sizeof($commands) > 1){
                     foreach($npcs as $npc){
-                        $npcName = strtolower($npc->getDetails()->getName());
-                        if($commands[1] == $npcName) // if second command is the name of a NPC you can talk
+                        $npcName = $npc->getName();
+                        if($commands[1] == strtolower($npcName)) // if second command is the name of a NPC you can talk
                         { 
                             echo "<p class='npcs'>" . $npcName . " is a person you can talk to!</p>";
-                        }
-                        else
-                        {
-                            echo "<p class='npcs'>" . $commands[1] . " doesn't exist.</p>";
                         }
                     }
                 }
@@ -203,15 +199,30 @@ class Parser{
                     echo "<p class='npcs'>Talk to who?</p>";
                 }
                 break;
-            case 8:
+            case 8: // examine, describe
                 $commands = explode(" ", $command);
-                $items =  array_merge($player->getItems(), $areas[$player->getLoc('x')][$player->getLoc('y')]->getItems());
-                //print_r($items);
+                $area = $areas[$player->getLoc('x')][$player->getLoc('y')];
+                $items =  array_merge($player->getItems(), $area->getItems());
+                $npcs = $area->getNPCs();
+                $found = false; // is what ever user is looking is found
+                
+                if($commands[1] == "area"){
+                    echo "<p class='description'>" . $area->getDescription() . "</p>";
+                    $found = true;
+                }
                 foreach($items as $item){
                     if($commands[1] == $item->getName()){
-                        echo $item->getDescription();
+                        echo "<p class='items'>" . $item->getDescription() . "</p>";
+                        $found = true;
                     }
                 }
+                foreach($npcs as $npc){
+                    if($commands[1] == strtolower($npc->getName())){
+                        echo "<p class='npcs'>" . $npc->getDescription() . "</p>";
+                        $found = true;                        
+                    }
+                }
+                if(!$found){ echo "<p class='warn'>No such thing!</p>"; }
                 break;
             case 97: //setname
                 $commands = explode(" ", $command);  // Commands to array              
@@ -221,13 +232,13 @@ class Parser{
                     echo "<p>Your name is now: ". $player->getName() . ".</p>";
                 }
                 else{
-                    echo "<p>Enter a valid name (one word)</p>";
+                    echo "<p class='warn'>Enter a valid name (setname [your name])</p>";
                 }
                 break;
             case 98: //getname
                 $name =  $player->getName();
                 if($name == ""){
-                    echo "<p>You don't have a name! :¬(</p>";
+                    echo "<p class='warn'>You don't have a name! :¬(</p>";
                 }else{
                     echo "<p>Your name is: ". $player->getName() . ".</p>";
                 }     

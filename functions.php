@@ -23,9 +23,16 @@ function loadMap(){
 			$exits = array('north', 'south', 'east', 'west');
 		}
 
-		$npcdetails = new Player("John", 0, 0);
-		$npc1 = new NPC(false, $npcdetails);
-		$npcs = array($npc1);
+		// npcs
+		$npcs = array();
+		foreach($area->npcs->npc as $npc){
+			$npcName = (string)$npc->name;
+			$npcDesc = (string)$npc->description;
+			$npcHealth = (int)$npc->health;
+			$npcExp = (int)$npc->exp;
+			$npcHostile = (int)$npc->hostile;
+			array_push($npcs, new NPC($npcName, $npcDesc, $x, $y, $npcHealth, $npcExp, $npcHostile));
+		}
 
 		$areas[$x][$y] = new Area($title, $description, $x, $y, $exits, $items, $npcs);
 

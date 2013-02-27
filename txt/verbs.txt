@@ -15,9 +15,9 @@ climb:2:allows the player to go up a level
 up:2:allows the player to go up a level
 help:3:Displays the help file
 i:4:Displays items in player inventory
-describearea:5:Describes the area you're in
 drop:6:drop -i allows you to drop an item in the room
 talk:7:talk [npc] allows you to start a conversation with a NPC
+describe:8:describe -i allows you to examine an item
 examine:8:examine -i allows you to examine an item
 setname:97
 getname:98

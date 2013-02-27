@@ -35,7 +35,8 @@ class Area{
 		if($this->_npcs != null){
 			echo "<p class='npcs'>NPCs in area:</p>";
 			foreach($this->_npcs as $npc){
-				echo "<p class='npcs'>* " . $npc->getDetails()->getName() . "</p>"; 
+				if($npc->getHostile()){ $hostile = "Hostile!"; }else{ $hostile = "Not hostile..."; }
+				echo "<p class='npcs'>* " . $npc->getName() . ". " . $hostile . "</p>"; 
 			}
 		}
 		if($this->_exits != null){
@@ -47,8 +48,12 @@ class Area{
 		echo "<p> </p>";
 	}
 
+	public function getTitle(){
+		return $this->_title;
+	}
+
 	public function getDescription(){
-		echo $this->_description;		
+		return $this->_description;		
 	}
 
 	public function getItems(){

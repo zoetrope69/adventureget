@@ -1,79 +1,16 @@
 <?php
 //The player class
  
-class Player { 
-    private $_name;
-    private $_locX;
-    private $_locY;
-    private $_items;
+class Player extends Char{
 
-    function Player($name, $startX, $startY)
+    function Player($name, $startX, $startY, $health, $exp)
     {
         $this->_name = $name;
         $this->_locX = $startX;
         $this->_locY = $startY;
         $this->_items = array();
-    }
-    
-    public function getName(){ 
-        return $this->_name;
-    }
-
-    public function getLoc($coord){ //specify which coord, if none return both with a space between
-        $coord = strtolower(trim($coord));
-        if($coord == "x"){    
-            return $this->_locX;
-        }
-        elseif($coord == "y"){
-            return $this->_locY;
-        }
-        else
-        {
-            return $this->_locX . " " . $this->_locY;
-        }
-    }
-
-    public function setName($name){
-        $this->_name = $name;
-    }
-
-    public function setLoc($coord, $value){ // specific coord and value it should be
-        $coord = strtolower(trim($coord));
-        if($coord == "x"){    
-            $this->_locX;
-        }
-        elseif ($coord == "y"){
-            $this->_locY;
-        }
-    }
-
-    public function walkNorth(){
-        $this->_locY++;
-    }
-    public function walkEast(){
-        $this->_locX++;
-    }
-    public function walkSouth(){
-        $this->_locY--;
-    }
-    public function walkWest(){
-        $this->_locX--;
-    }
-
-    public function addItem($item){
-        array_push($this->_items, $item);
-    }
-    public function removeItem($item){
-        foreach($this->_items as $i => $value){
-            if($value == $item){
-                unset($this->_items[$i]);
-            }
-        }
-        $this->_items = array_values($this->_items);
-    }
-
-    public function getItems(){
-        return $this->_items;
+        $this->_health = $health;
+        $this->_exp = $exp;
     }
 
 } 

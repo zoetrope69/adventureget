@@ -10,7 +10,7 @@
 		<exits>north</exits>
 		<items>
 			<item>
-				<name>knife</name>
+				<name>knife</name> 
 				<description>An ordinary knife, the type you might use to cut your food at the dinner table.</description>
 				<weight>1</weight>
 			</item>
@@ -18,13 +18,29 @@
 				<name>fork</name>
 				<description>An ordinary fork, the type you might use to stab your food at the dinner table.</description>
 				<weight>1</weight>
-			</item>
+		  	</item>
 			<item>
 				<name>spoon</name>
 				<description>An ordinary spoon, the type you might use to eat your pudding at the dinner table.</description>
 				<weight>1</weight>
 			</item>
 		</items>
+		<npcs>
+			<npc>
+				<name>John</name>
+				<description>A burly man with faint aroma of coconut.</description>
+				<health>100</health>
+				<exp>9001</exp>
+				<hostile>1</hostile>
+			</npc>
+			<npc>
+				<name>Jane</name>
+				<description>A dainty woman with a slight frame and bright smile.</description>
+				<health>98</health>
+				<exp>80085</exp>
+				<hostile>0</hostile>
+			</npc>
+		</npcs>
 	</area>
 	<area>
 		<title>Building entrance</title>
@@ -32,9 +48,18 @@
 		<loc>
 			<x>0</x>
 			<y>1</y>
-		</loc>
+		</loc> 
 		<exits>north south</exits>
 		<items></items>
+		<npcs>
+			<npc>
+				<name>Bill</name>
+				<description>A moustachioed gentleman with a fancy for scrambled eggs.</description>
+				<health>50</health>
+				<exp>1337</exp>
+				<hostile>0</hostile>
+			</npc>
+		</npcs>
 	</area>
 	
 	<area>

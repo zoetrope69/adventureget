@@ -1,5 +1,5 @@
 <?php
-	$title = "adventureGet - super super awesome text adventure game";
+	$title = "adventureGet - super awesome text adventure game";
 ?>
 <!DOCTYPE html>
 <html lang="en">
