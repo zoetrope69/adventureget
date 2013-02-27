@@ -19,7 +19,7 @@ drop:6:drop -i allows you to drop an item in the room
 talk:7:talk [npc] allows you to start a conversation with a NPC
 describe:8:describe -i allows you to examine an item
 examine:8:examine -i allows you to examine an item
-setname:97
-getname:98
-clearscreen:99
-hello:100
+setname:97:sets your name
+getname:98:gets your name
+clear:99:clears the screen
+hello:100:stupid command

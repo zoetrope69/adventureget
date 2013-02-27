@@ -52,83 +52,24 @@ class Parser{
         {
             switch ($id) {
             case 0: // walk, move etc
-                $commands = explode(" ", $command);
-                $exits = $areas[$player->getLoc('x')][$player->getLoc('y')]->getExits();
-                if(sizeof($commands) > 1)
-                {
-                    $command = $commands[1];
-                }
-                $defaultExits = array('north', 'south', 'east', 'west');
-                foreach($defaultExits as $defaultExit){
-                    if($command == $defaultExit || $command == $defaultExit[0]){
+                $commands = explode(" ", $command); // move input string into array of commands
+                $area = $areas[$player->getLoc('x')][$player->getLoc('y')]; // get the area
+                $openExits = $area->getExits(); // get open exits for this area
+                if(sizeof($commands) > 1){ $command = $commands[1]; } // if more than one command, take the second as the direction
+                $exits = array('north', 'south', 'east', 'west'); // array of the exits
+                foreach($exits as $exit){
+                    if($command == $exit || $command == $exit[0]){
                         $walking = false;
-                    foreach($exits as $exit){
-                        if($command == $exit || $command == $exit[0]){
-                            $player->walkNorth();
-                            $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
-                            $walking = true;
+                        foreach($openExits as $openExit){
+                            if($command == $openExit || $command == $openExit[0]){
+                                $player->walk($openExit[0]);
+                                $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
+                                $walking = true;
+                            }
                         }
-                    }
-                    if($walking == false){
-                        echo "<p class='warn'>You cannot walk this way</p>";
-                    }
-                    }
-                }
-                if($command == 'north' || $command == 'n')
-                {
-                    $walking = false;
-                    foreach($exits as $exit){
-                        if($command == $exit || $command == $exit[0]){
-                            $player->walkNorth();
-                            $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
-                            $walking = true;
+                        if($walking == false){
+                            echo "<p class='warn'>You cannot walk this way</p>";
                         }
-                    }
-                    if($walking == false){
-                        echo "<p class='warn'>You cannot walk this way</p>";
-                    }
-                    
-                }
-                elseif($command == 'south' || $command == 's')
-                {
-                    $walking = false;
-                    foreach($exits as $exit){
-                        if($command == $exit || $command == $exit[0]){
-                            $player->walkSouth();
-                            $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
-                            $walking = true;
-                        }
-                    }
-                    if($walking == false){
-                        echo "<p class='warn'>You cannot walk this way</p>";
-                    }
-                }
-                elseif($command == 'east' || $command == 'e')
-                {
-                    $walking = false;
-                    foreach($exits as $exit){
-                        if($command == $exit || $command == $exit[0]){
-                            $player->walkEast();
-                            $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
-                            $walking = true;
-                        }
-                    }
-                    if($walking == false){
-                        echo "<p class='warn'>You cannot walk this way</p>";
-                    }
-                }
-                elseif($command == 'west' || $command == 'w')
-                {
-                    $walking = false;
-                    foreach($exits as $exit){
-                        if($command == $exit || $command == $exit[0]){
-                            $player->walkWest();
-                            $areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
-                            $walking = true;
-                        }
-                    }
-                    if($walking == false){
-                        echo "<p class='warn'>You cannot walk this way</p>";
                     }
                 }
                 break;
@@ -220,10 +161,16 @@ class Parser{
                 $area = $areas[$player->getLoc('x')][$player->getLoc('y')];
                 $items =  array_merge($player->getItems(), $area->getItems());
                 $npcs = $area->getNPCs();
-                $found = false; // is what ever user is looking is found
-                
+                $found = false; // is what ever user is looking is found                
                 if($commands[1] == "area"){
                     echo "<p class='description'>" . $area->getDescription() . "</p>";
+                    $exits = $area->getExits();
+                    if($exits != null){
+                        echo "<p class='exits'>Available Exits:</p>";
+                        foreach($exits as $exit){
+                            echo "<p class='exits'>* " . $exit . "</p>"; 
+                        }
+                    }
                     $found = true;
                 }
                 foreach($items as $item){
@@ -259,7 +206,7 @@ class Parser{
                     echo "<p>Your name is: ". $player->getName() . ".</p>";
                 }     
                 break;
-            case 99: // clearscreen
+            case 99: // clear
                 echo 'clearthatshit'; // this isn't the best way of doing it i think...
                break;
             case 100: // hello
