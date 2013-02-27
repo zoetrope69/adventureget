@@ -3,25 +3,22 @@
 //The parser class
 
 class Parser{ 
-    
-    private $_verbs;
+
+    private $_commandList;
 
     function Parser()
     {
-        $this->_verbs = file('txt/verbs.txt');
+        $this->_commandList = simplexml_load_file('txt/commandlist.xml');
     }
-
-    public function printVerbs()
+    public function printCommandList()
     {
-        foreach($this->_verbs as $verb)
+        foreach($this->_commandList->command as $command)
         {
-            $commandParts = explode(":", $verb);
-            $verb = $commandParts[0];
-            if(sizeof($commandParts) > 2){
-                $desc = $commandParts[2];
-                echo "<p>* $verb :: $desc</p>";
-            }
-            else{echo "<p>* $verb</p>";}
+            $variants = (string)$command->variants;
+            $description = (string)$command->description;
+            echo "<p> </p>";
+            echo "<p>\"" . $variants . "\"</p>";
+            echo "<p>" . $description . "</p>";
         }
     }
 
@@ -32,17 +29,19 @@ class Parser{
         echo "<p>- $command</p>";
         foreach($commands as $c)
         {
-            foreach($this->_verbs as $verb)
+            foreach($this->_commandList->command as $commandListItem)
             {
-                $commandParts = explode(":", $verb);
-                if($c == trim($commandParts[0])){ //trim as there is a linebreak in text file
-                    $verbID = $commandParts[1];
-                    $this->runCommand($command, $verbID, $player, $areas);
-                    return;
+                $commandVariants = explode(" ", $commandListItem->variants);
+                foreach($commandVariants as $commandVariant){
+                    if($c == $commandVariant){ //trim as there is a linebreak in text file
+                        $commandID = $commandListItem->id;
+                        $this->runCommand($command, $commandID, $player, $areas);
+                        return;
+                    }
                 }
             }
         }
-        // if we get this far it isnt a valid input so return null
+        // if we get this far it isnt a valid input so return error
         echo "<p class='warn'>\"$command\" is not a valid input. :¬(</p>";
     }
 
@@ -105,7 +104,7 @@ class Parser{
              case 3: // help
                 echo "<p>Some helpful stuff printed here followed by a list of available commands</p>";
                 echo "<p>Available commands:</p>";
-                $this->printVerbs();
+                $this->printCommandList();
                 break;
             case 4: // inventory
                 if(sizeof($player->getItems()) > 0){
@@ -163,14 +162,7 @@ class Parser{
                 $npcs = $area->getNPCs();
                 $found = false; // is what ever user is looking is found                
                 if($commands[1] == "area"){
-                    echo "<p class='description'>" . $area->getDescription() . "</p>";
-                    $exits = $area->getExits();
-                    if($exits != null){
-                        echo "<p class='exits'>Available Exits:</p>";
-                        foreach($exits as $exit){
-                            echo "<p class='exits'>* " . $exit . "</p>"; 
-                        }
-                    }
+                    $area->printDetails();
                     $found = true;
                 }
                 foreach($items as $item){
@@ -198,7 +190,7 @@ class Parser{
                     echo "<p class='warn'>Enter a valid name (setname [your name])</p>";
                 }
                 break;
-            case 98: //getname
+            case 98: // getname
                 $name =  $player->getName();
                 if($name == ""){
                     echo "<p class='warn'>You don't have a name! :¬(</p>";
@@ -209,7 +201,7 @@ class Parser{
             case 99: // clear
                 echo 'clearthatshit'; // this isn't the best way of doing it i think...
                break;
-            case 100: // hello
+            case 100: // zacisadick
                 echo "<p>Hi there! Here is a house for you:</p>";
                 echo "<p>    __________________________</p><p>   /                          \</p><p>  /____________________________\</p>  <p>  ''|''''''''''''''''''''''''|''</p><p>    |  ___              ___  |</p>  <p>    | |_|_|            |_|_| |</p><p>    | |_|_|   _____    |_|_| |</p><p>    |         | 7 |          |</p><p> mmmmm        |  '|         mmmmm</p><p> |||||________|___|_________|||||</p><p>, , , , , , , ,\   \, , , , , , , ,</p><p> , , , , , , , |   | , , , , , , , </p><p>, , , , , , , /   /, , , , , , , </p>";
                 break;

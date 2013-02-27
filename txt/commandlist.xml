@@ -1,0 +1,63 @@
+<?xml version='1.0' standalone='yes'?>
+<commands>
+	<command>
+		<id>0</id>
+		<variants>move walk go north east south west n e s w</variants>
+		<description>allows you to move</description>
+	</command>
+	<command>
+		<id>1</id>
+		<variants>pickup get grab</variants>
+		<description>allows you to pickup items</description>
+	</command>
+	<command>
+		<id>2</id>
+		<variants>climb</variants>
+		<description>climbs things</description>
+	</command>
+	<command>
+		<id>3</id>
+		<variants>h help</variants>
+		<description>displays help</description>
+	</command>
+	<command>
+		<id>4</id>
+		<variants>i inv inventory</variants>
+		<description>displays inventory</description>
+	</command>
+	<command>
+		<id>6</id>
+		<variants>drop</variants>
+		<description>drops items in current area</description>
+	</command>
+	<command>
+		<id>7</id>
+		<variants>talk chat speak</variants>
+		<description>talk [npc] allows you to start a conversation with a NPC</description>
+	</command>
+	<command>
+		<id>8</id>
+		<variants>describe examine whatis</variants>
+		<description>allows you to get more info on areas, items and npcs</description>
+	</command>
+	<command>
+		<id>97</id>
+		<variants>setname</variants>
+		<description>allows you to set your name</description>
+	</command>
+	<command>
+		<id>98</id>
+		<variants>getname myname</variants>
+		<description>displays your name</description>
+	</command>
+	<command>
+		<id>99</id>
+		<variants>clr clear clearscreen clearterminal</variants>
+		<description>clears the terminal window</description>
+	</command>
+	<command>
+		<id>100</id>
+		<variants>zacisadick</variants>
+		<description>magical command</description>
+	</command>
+</commands>
