@@ -71,6 +71,7 @@
 		</loc>
 		<exits>north south</exits>
 		<items></items>
+		<npcs></npcs>
 	</area>
 	
 	<area>
@@ -82,5 +83,6 @@
 		</loc>
 		<exits>south</exits>
 		<items></items>
+		<npcs></npcs>
 	</area>
 </map>
