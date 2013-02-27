@@ -14,9 +14,9 @@ body{
 }
 
 header{
-	padding: 0.1em;
+	padding: 0.25em;
 	border-bottom: 1px solid #98BD56;
-	background: #414141;
+	background: #f5f5f5;
 
 	-webkit-animation: hueRotate 15s infinite linear;
 	   -moz-animation: hueRotate 15s infinite linear;
@@ -51,7 +51,8 @@ header h1{
 	margin: 0 auto;
 	font-size: 1em;
 	font-family: monospace;
-	color: #f5f5f5;
+	font-weight: 100;
+	color: #414141;
 }
 
 header a{
