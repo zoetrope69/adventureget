@@ -128,7 +128,7 @@ class Parser{
                 foreach($items as $item){
                     if($commands[1] == $item->getName()){
                         echo "<p>You drop the " . $item->getName() . "</p>";
-                        $areas[$player->getLoc('x')][$player->getLoc('y')]->addItem(trim($commands[1]));
+                        $areas[$player->getLoc('x')][$player->getLoc('y')]->addItem($item);
                         $player->removeItem($item);
                         $drop = true;
                     }
