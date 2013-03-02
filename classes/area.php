@@ -60,6 +60,20 @@ class Area{
 		return $this->_items;
 	}
 
+	public function getLoc($coord){ //specify which coord, if none return both with a space between
+        $coord = strtolower(trim($coord));
+        if($coord == "x"){    
+            return $this->_locX;
+        }
+        elseif($coord == "y"){
+            return $this->_locY;
+        }
+        else
+        {
+            return $this->_locX . " " . $this->_locY;
+        }
+    }
+
 	public function addItem($item){
 		array_push($this->_items, $item);
 	}
