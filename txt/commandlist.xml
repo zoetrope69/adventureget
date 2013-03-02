@@ -41,6 +41,11 @@
 		<description>allows you to get more info on areas, items and npcs</description>
 	</command>
 	<command>
+		<id>96</id>
+		<variants>map</variants>
+		<description>allows you to see the map</description>
+	</command>
+	<command>
 		<id>97</id>
 		<variants>setname</variants>
 		<description>allows you to set your name</description>

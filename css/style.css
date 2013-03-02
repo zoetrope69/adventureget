@@ -107,6 +107,10 @@ header a:hover{ opacity: 0.9; }
 	white-space: pre-wrap;
 }
 
+.map{
+	line-height: 1.1em;
+}
+
 /* terminal text colours */
 
 .items{	color: #0099ff; }

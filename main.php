@@ -29,11 +29,12 @@ else
 {
 	$areas = loadMap();
 	$player = new Player('', 0, 0, 100, 0); // Create a new player class
-
+	
 	$_SESSION['player'] = serialize($player);
 	$_SESSION['areas'] = serialize($areas);
 	echo "<p>adventureGet - super awesome text adventure game</p>";
 	echo "<p>Set your name with 'setname' [yourname]</p>";
+    
 	$areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
 }
 

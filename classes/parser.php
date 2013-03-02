@@ -179,6 +179,10 @@ class Parser{
                 }
                 if(!$found){ echo "<p class='warn'>No such thing!</p>"; }
                 break;
+            case 96: //map
+                $map = new GraphicalMap($areas, $player);
+                $map->printMap();
+                break;
             case 97: //setname
                 $commands = explode(" ", $command);  // Commands to array              
                 if(sizeof($commands) > 1){ // If there are more than one words (setname forename surname)
