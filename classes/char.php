@@ -52,9 +52,9 @@ class Char {
     }
 
     public function walk($direction){
-            if($direction == "n"){ $this->_locY++; } // north
+            if($direction == "n"){ $this->_locY--; } // north
         elseif($direction == "e"){ $this->_locX++; } // east
-        elseif($direction == "s"){ $this->_locY--; } // south
+        elseif($direction == "s"){ $this->_locY++; } // south
         elseif($direction == "w"){ $this->_locX--; } // west
     }
 

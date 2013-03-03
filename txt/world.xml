@@ -7,7 +7,7 @@
 			<x>0</x>
 			<y>0</y>
 		</loc>
-		<exits>north</exits>
+		<exits>east south</exits>
 		<items>
 			<item>
 				<name>knife</name> 
@@ -81,8 +81,57 @@
 			<x>0</x>
 			<y>3</y>
 		</loc>
-		<exits>south</exits>
+		<exits>north</exits>
 		<items></items>
+		<npcs></npcs>
+	</area>
+	<area>
+		<title>Zac's Palace</title>
+		<description>You find yourself inside Zac's palace, the greatest palace in Stourport.</description>
+		<loc>
+			<x>1</x>
+			<y>0</y>
+		</loc> 
+		<exits>west east</exits>
+		<items></items>
+		<npcs>
+			<npc>
+				<name>Zac</name>
+				<description>Super cool guy.</description>
+				<health>78</health>
+				<exp>19</exp>
+				<hostile>0</hostile>
+			</npc>
+		</npcs>
+	</area>
+	<area>
+		<title>McDonalds</title>
+		<description>This place is of horrible nature. You can hardly contain your vomit.</description>
+		<loc>
+			<x>2</x>
+			<y>0</y>
+		</loc> 
+		<exits>west south</exits>
+		<items>vomit happy-meal</items>
+		<npcs>
+			<npc>
+				<name>Workerc</name>
+				<description>Smells a bit.</description>
+				<health>78</health>
+				<exp>19</exp>
+				<hostile>1</hostile>
+			</npc>
+		</npcs>
+	</area>
+	<area>
+		<title>Outside McDonald's</title>
+		<description>It's surprising that the back alley is nicer than the actual restaurant...</description>
+		<loc>
+			<x>2</x>
+			<y>1</y>
+		</loc> 
+		<exits>north</exits>
+		<items>rubbish</items>
 		<npcs></npcs>
 	</area>
 </map>
