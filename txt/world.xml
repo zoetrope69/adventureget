@@ -105,7 +105,7 @@
 		</npcs>
 	</area>
 	<area>
-		<title>McDonalds</title>
+		<title>McDonald's</title>
 		<description>This place is of horrible nature. You can hardly contain your vomit.</description>
 		<loc>
 			<x>2</x>
@@ -115,7 +115,7 @@
 		<items>vomit happy-meal</items>
 		<npcs>
 			<npc>
-				<name>Workerc</name>
+				<name>Worker</name>
 				<description>Smells a bit.</description>
 				<health>78</health>
 				<exp>19</exp>

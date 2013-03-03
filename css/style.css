@@ -108,9 +108,14 @@ header a:hover{ opacity: 0.9; }
 }
 
 .map{
-	color: #D0D63A;
+	color: #226997;
 	line-height: 1.1em;
 }
+.map .player{ color: #FFFF8E; }
+.map .locked{ color: #B64242;}
+.map .unlocked{ color: #4CA34C; }
+.map .present{ color: orange; }
+.map .notpresen{ color: #999; }
 
 /* terminal text colours */
 
