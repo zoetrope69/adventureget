@@ -6,9 +6,9 @@ foreach (glob("classes/*.php") as $file)
     include $file;
 }
 include "functions.php";
-//include "parser2.php";
+include "parser2.php";
 $parser = new Parser();
-$parser = new Parser2();
+//$parser = new Parser2();
 
 
 if (isset($_POST['commands'])){
