@@ -107,16 +107,6 @@ header a:hover{ opacity: 0.9; }
 	white-space: pre-wrap;
 }
 
-.map{
-	color: #226997;
-	line-height: 1.1em;
-}
-.map .player{ color: #FFFF8E; text-shadow: 0 0 5px #FF0; }
-.map .locked{ color: #B64242; }
-.map .fog{ color: #ddd; -webkit-filter: blur(0.8em); }
-.map .unlocked{ color: #4CA34C; }
-.map .present{ color: orange; }
-
 /* terminal text colours */
 
 .items{	color: #0099ff; }
@@ -125,3 +115,15 @@ header a:hover{ opacity: 0.9; }
 .description{ color: #cc9966; }
 .npcs{ color: #7BFF51; }
 .warn{ color: rgb(173, 0, 255); }
+
+/* map and it's icons */
+
+.map{
+	color: #226997;
+	line-height: 1.1em;
+}
+.player{ color: #FFFF8E; text-shadow: 0 0 5px #FF0; }
+.locked{ color: #B64242; }
+.fog{ color: #ddd; -webkit-filter: blur(0.8em); }
+.unlocked{ color: #4CA34C; }
+.mapicon{ color: orange; }

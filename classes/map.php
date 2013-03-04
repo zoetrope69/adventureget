@@ -77,10 +77,10 @@ class GraphicalMap{
                 // 2nd and 3rd lines on row
                 // ------------------------
 
-                if($itemsPresent){ $itemIcon = "<span class='present'>i</span>"; }
+                if($itemsPresent){ $itemIcon = "<span class='mapicon'>i</span>"; }
                 else{ $itemIcon = " "; }
 
-                if($NPCsPresent){ $NPCIcon = "<span class='present'>☻</span>"; }
+                if($NPCsPresent){ $NPCIcon = "<span class='mapicon'>☻</span>"; }
                 else{ $NPCIcon = " "; }
 
                 if($area != null) // this is an area

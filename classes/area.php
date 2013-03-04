@@ -27,13 +27,13 @@ class Area{
 		echo "<p class='description'>" . $this->_description . "</p>";
 
 		if($this->_items != null){
-			echo "<p class='items'>Items in area:</p>";
+			echo "<p class='items'>Items (<span class='mapicon'>i</span>) in area:</p>";
 			foreach($this->_items as $item){
 				echo "<p class='items'>* " . $item->getName() . "</p>"; 
 			}
 		}
 		if($this->_npcs != null){
-			echo "<p class='npcs'>NPCs in area:</p>";
+			echo "<p class='npcs'>NPCs (<span class='mapicon'>☻</span>) in area:</p>";
 			foreach($this->_npcs as $npc){
 				if($npc->getHostile()){ $hostile = "Hostile!"; }else{ $hostile = "Not hostile..."; }
 				echo "<p class='npcs'>* " . $npc->getName() . ". " . $hostile . "</p>"; 
