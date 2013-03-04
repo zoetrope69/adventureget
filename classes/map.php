@@ -39,9 +39,10 @@ class GraphicalMap{
                 $playerLocX = $this->_player->getLoc('x');
                 $playerLocY = $this->_player->getLoc('y');
                 $area = $this->_areas[$x][$y];
-                //check to see if there are items or npcs
+
                 $itemsPresent = 1;
                 $NPCsPresent = 0;
+
 
                 // first line on the row
                 // --------------------
@@ -74,11 +75,11 @@ class GraphicalMap{
                 if($NPCsPresent){ $NPCIcon = "<span class='present'>☻</span>"; }
                 else{ $NPCIcon = " "; }
 
-                if($area != "") // this is an area
+                if($area != null) // this is an area
                 { 
                     if($x == $playerLocX and $y == $playerLocY) // if player is in the area
                     { 
-                        $mapRow[1] .= "<span class='player'>.☺.</span> ".$itemIcon;
+                        $mapRow[1] .= "<span class='player'>.⚇̟</span> ".$itemIcon;
                         $mapRow[2] .= " <span class='player'>^</span>  ".$NPCIcon;
                     }
                     else // player isn't in area 
