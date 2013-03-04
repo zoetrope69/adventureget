@@ -23,7 +23,6 @@ class Area{
 	}
 
 	public function printDetails(){
-		echo "<p>-----------</p>";
 		echo "<p class='title'>" . $this->_title . "</p>";
 		echo "<p class='description'>" . $this->_description . "</p>";
 
@@ -47,7 +46,6 @@ class Area{
 			}
 		}
 		echo "<p class='map'>You can display the map with: \"map\".</p>";
-		echo "<p>-----------</p>";
 	}
 
 	public function getTitle(){
