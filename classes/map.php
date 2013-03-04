@@ -87,7 +87,7 @@ class GraphicalMap{
                 { 
                     if($x == $playerLocX and $y == $playerLocY) // if player is in the area
                     { 
-                        $mapRow[1] .= "<span class='player'>.⚇̟</span> ".$itemIcon;
+                        $mapRow[1] .= "<span class='player'>.⚇.</span> ".$itemIcon;
                         $mapRow[2] .= " <span class='player'>^</span>  ".$NPCIcon;
                     }
                     else // player isn't in area 

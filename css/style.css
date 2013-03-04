@@ -122,7 +122,7 @@ header a:hover{ opacity: 0.9; }
 	color: #226997;
 	line-height: 1.1em;
 }
-.player{ color: #FFFF8E; text-shadow: 0 0 5px #FF0; }
+.player{ color: #FFFF8E; }
 .locked{ color: #B64242; }
 .fog{ color: #ddd; -webkit-filter: blur(0.8em); }
 .unlocked{ color: #4CA34C; }
