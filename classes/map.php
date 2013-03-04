@@ -26,8 +26,11 @@ class GraphicalMap{
         $yLimit = 0;
 
         for($x = 0; $x < $xLimit + 1; $x++){ // max value of y, comparing each branch of array to find biggest
-            $yLength = max(array_keys($this->_areas[$x]));
-            if($yLength > $yLimit){ $yLimit = $yLength;}            
+            if($this->_areas[$x] != null)
+            {
+                $yLength = max(array_keys($this->_areas[$x]));
+                if($yLength > $yLimit){ $yLimit = $yLength;}   
+            }         
         }
 
         for($y = 0; $y < $yLimit + 1; $y++)
@@ -40,9 +43,14 @@ class GraphicalMap{
                 $playerLocY = $this->_player->getLoc('y');
                 $area = $this->_areas[$x][$y];
 
-                $itemsPresent = 1;
+                // are the items/npcs in the tile
+                $itemsPresent = 0;
                 $NPCsPresent = 0;
-
+                if($area != null)
+                {
+                    $itemsPresent = sizeof($area->getItems());
+                    $NPCsPresent = sizeof($area->getNPCs());
+                }
 
                 // first line on the row
                 // --------------------
