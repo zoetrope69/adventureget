@@ -22,7 +22,7 @@ class Parser2{
 
     public function parseCommands($command, $player, $areas){
 
-        $verbs = array("pick","walk", "examine", "describe", "put", "open", "kick", "attack", "talk");
+        $verbs = array("pick","walk", "examine", "describe", "put", "open", "kick", "attack", "talk", "fuck");
         $nouns = array("hat", "sword", "key", "knife", "fork", "spoon", "chest", "door", "table", "dragon", "john", "betty");
         $adjectives = array("rusty", "heavy", "bronze");
         $preposition = array("on", "under", "inside");

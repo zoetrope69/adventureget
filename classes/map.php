@@ -23,6 +23,7 @@ class GraphicalMap{
     	$mapArray = array();
 
         $xLimit = max(array_keys($this->_areas)); // max value of x
+        $yLimit = 0;
 
         for($x = 0; $x < $xLimit + 1; $x++){ // max value of y, comparing each branch of array to find biggest
             $yLength = max(array_keys($this->_areas[$x]));
@@ -68,10 +69,10 @@ class GraphicalMap{
                 // ------------------------
 
                 if($itemsPresent){ $itemIcon = "<span class='present'>i</span>"; }
-                else{ $itemIcon = "<span class='notpresen'>i</span>"; }
+                else{ $itemIcon = " "; }
 
                 if($NPCsPresent){ $NPCIcon = "<span class='present'>☻</span>"; }
-                else{ $NPCIcon = "<span class='notpresen'>☻</span>"; }
+                else{ $NPCIcon = " "; }
 
                 if($area != "") // this is an area
                 { 
@@ -88,8 +89,8 @@ class GraphicalMap{
                 }
                 else // if it isn't an area /grey/ it out
                 { 
-                    $mapRow[1] .= "<span class='locked'>╳╳╳╳╳</span>";
-                    $mapRow[2] .= "<span class='locked'>╳╳╳╳╳</span>";
+                    $mapRow[1] .= "<span class='locked fog'>╳╳╳╳╳</span>";
+                    $mapRow[2] .= "<span class='locked fog'>╳╳╳╳╳</span>";
                 }
 
                 $mapRow[1] .= "│";
@@ -98,12 +99,12 @@ class GraphicalMap{
                 }
                 else
                 {
-                    $wall = "<span class='locked'>║</span>";
+                    $wall = "<span class='locked'>┃</span>";
                     if($area != ""){
                         foreach($area->getExits() as $exit)
                         {
                             if($exit == "east"){
-                                $wall = "<span class='unlocked'>║</span>";                        
+                                $wall = "<span class='unlocked'>┃</span>";                        
                             }
                         }                        
                     }
@@ -138,12 +139,12 @@ class GraphicalMap{
                     {
                         $mapRow[3] .= "├";
                     } 
-                        $wall = "──<span class='locked'>══</span>─";
+                        $wall = "──<span class='locked'>━━</span>─";
                         if($area != ""){
                             foreach($area->getExits() as $exit)
                             {
                                 if($exit == "south"){
-                                    $wall = "──<span class='unlocked'>══</span>─";                        
+                                    $wall = "──<span class='unlocked'>━━</span>─";                        
                                 }
                             }                        
                     }

@@ -111,11 +111,11 @@ header a:hover{ opacity: 0.9; }
 	color: #226997;
 	line-height: 1.1em;
 }
-.map .player{ color: #FFFF8E; }
-.map .locked{ color: #B64242;}
+.map .player{ color: #FFFF8E; text-shadow: 0 0 5px #FF0; }
+.map .locked{ color: #B64242; }
+.map .fog{ color: #ddd; -webkit-filter: blur(0.8em); }
 .map .unlocked{ color: #4CA34C; }
 .map .present{ color: orange; }
-.map .notpresen{ color: #999; }
 
 /* terminal text colours */
 
