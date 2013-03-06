@@ -24,27 +24,10 @@ header{
 	     	animation: hueRotate 15s infinite linear;
 
 }
-
-	@-webkit-keyframes hueRotate {
-	  from {  -webkit-filter: hue-rotate(0deg);   } 
-	  to {    -webkit-filter: hue-rotate(360deg); }
-	}
-
-	@-moz-keyframes hueRotate {
-	  from {  -moz-filter: hue-rotate(0deg);   } 
-	  to {    -moz-filter: hue-rotate(360deg); }
-	}
-
-	@-o-keyframes hueRotate {
-	  from {  -o-filter: hue-rotate(0deg);   } 
-	  to {    -o-filter: hue-rotate(360deg); }
-	}
-
-	@keyframes hueRotate {
-	  from {  filter: hue-rotate(0deg);   } 
-	  to {    filter: hue-rotate(360deg); }
-	}
-
+	@-webkit-keyframes hueRotate { to { -webkit-filter: hue-rotate(360deg); } }
+	   @-moz-keyframes hueRotate { to {    -moz-filter: hue-rotate(360deg); } }
+		 @-o-keyframes hueRotate { to {      -o-filter: hue-rotate(360deg); } }
+			@keyframes hueRotate { to {    	 	filter: hue-rotate(360deg); } }
 
 header h1{
 	width: 70%;
@@ -77,6 +60,7 @@ header a:hover{ opacity: 0.9; }
     -webkit-user-select: none; 
 	   -moz-user-select: none;
   		-ms-user-select: none;
+  			user-select: none;
 }
 
 #terminal, #terminal input#commands{
@@ -126,4 +110,15 @@ header a:hover{ opacity: 0.9; }
 .locked{ color: #B64242; }
 .fog{ color: #ddd; -webkit-filter: blur(0.8em); }
 .unlocked{ color: #4CA34C; }
-.mapicon{ color: orange; }
+.mapicon{ display: inline-block; color: orange; 
+
+	-webkit-animation: iconSpin 2s infinite ease-in;
+	   -moz-animation: iconSpin 2s infinite ease-in;
+	     -o-animation: iconSpin 2s infinite ease-in;
+	     	animation: iconSpin 2s infinite ease-in;
+}
+	@-webkit-keyframes iconSpin { to { -webkit-transform: rotateY(360deg); } }
+	   @-moz-keyframes iconSpin { to {    -moz-transform: rotateY(360deg); } }
+		 @-o-keyframes iconSpin { to {      -o-transform: rotateY(360deg); } }
+			@keyframes iconSpin { to {    	   transform: rotateY(360deg); } }
+
