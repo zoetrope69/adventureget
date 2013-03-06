@@ -14,7 +14,7 @@ $commands = $_POST['commands']; // Gets the input
 
 if (isset($commands)) // If anything was posted
 {
-    $game->prepareCommands($commands); // Prepare for parsing
+    $game->chew($commands); // Prepare for parsing
 }
 else
 {

@@ -57,7 +57,7 @@ class Game{
 		return $areas;
 	}
 
-    public function prepareCommands($command){
+    public function chew($command){
     	$command = trim($command); // Take the spaces off the ends
     	if($command == "")
 		{
