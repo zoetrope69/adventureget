@@ -11,12 +11,17 @@ function updateTerminal(commandsInput){
 	.done(function(data) {		
 	 	$('#text').append(data); // Append on to the end of existing content
 		$('#commands').val("");	// Clear input box
-		$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom
+		$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal
 		if(data.indexOf("clearthatshit") !== -1){ // If returned output has clearscreen in it
 			$('#text').html(""); // Clear screen
 		}
 	});
 }
+
+// When the window is resized
+$(window).resize(function(){ 
+	$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal
+});
 
 // When clicking the main terminal
 $('#terminal').click(function(){ 

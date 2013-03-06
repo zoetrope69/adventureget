@@ -127,7 +127,7 @@ header a:hover{ opacity: 0.9; }
 
 @media (max-width: 640px) {
 	header h1{ font-size: 0.85em; }
-	header a{ font-size: 0.85em; }
+	header a{ display: none; }
 	#terminal, #terminal input#commands{
 		font-size: 1em;
 		line-height: 1em;
