@@ -95,9 +95,12 @@ header a:hover{ opacity: 0.9; }
 
 .items{	color: #0099ff; }
 .exits{	color: #cc6666; }
-.title{	color: orange; }
+.title{	color: #EB9D0D; }
 .description{ color: #cc9966; }
 .npcs{ color: #7BFF51; }
+.npcs .hostile, .npcs .nothostile{ margin-top: 0.1em; font-size: 1.25em; vertical-align: -0.1em; }
+.npcs .hostile{ color: #F82727; }
+.npcs .nothostile{ color: #88DA20; }
 .warn{ color: rgb(173, 0, 255); }
 
 /* map and it's icons */
@@ -110,7 +113,7 @@ header a:hover{ opacity: 0.9; }
 .locked{ color: #B64242; }
 .fog{ color: #ddd; -webkit-filter: blur(0.8em); }
 .unlocked{ color: #4CA34C; }
-.mapicon{ display: inline-block; color: orange; 
+.mapicon{ display: inline-block; color: #EB9D0D; 
 
 	-webkit-animation: iconSpin 2s infinite ease-in;
 	   -moz-animation: iconSpin 2s infinite ease-in;
