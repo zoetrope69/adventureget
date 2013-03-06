@@ -15,7 +15,7 @@ body{
 
 header{
 	padding: 0.25em;
-	border-bottom: 1px solid #98BD56;
+	border-bottom: 1px solid #7BFF51;
 	background: #f5f5f5;
 
 	-webkit-animation: hueRotate 15s infinite linear;
@@ -30,7 +30,7 @@ header{
 			@keyframes hueRotate { to {    	 	filter: hue-rotate(360deg); } }
 
 header h1{
-	width: 70%;
+	width: 80vw;
 	margin: 0 auto;
 	font-size: 1em;
 	font-family: monospace;
@@ -40,7 +40,7 @@ header h1{
 
 header a{
 	float: right;
-	color: #98BD56;
+	color: #7BFF51;
 	text-decoration: none;
 }
 
@@ -49,10 +49,10 @@ header a:hover{ opacity: 0.9; }
 #terminal{
     cursor: default;
 	overflow-y: scroll;
-	height: 35em;
 	padding: 0.5em 1em;
 	margin: 2.5% auto;
-	width: 80%;
+	height: 80vh;
+	width: 80vw;
 	border: 5px solid #F0F0F0;
 	outline: 1px solid #C0C0C0;
 	background: #181B33;
@@ -66,8 +66,8 @@ header a:hover{ opacity: 0.9; }
 #terminal, #terminal input#commands{
 	color: #C5FFA9;
 	font-family: monospace;
-	font-size: 1.2em;
-	line-height: 1.5em;
+	font-size: 1.15em;
+	line-height: 1.15em;
 }
 
 #terminal input#commands{
@@ -125,3 +125,19 @@ header a:hover{ opacity: 0.9; }
 		 @-o-keyframes iconSpin { to {      -o-transform: rotateY(360deg); } }
 			@keyframes iconSpin { to {    	   transform: rotateY(360deg); } }
 
+@media (max-width: 640px) {
+	header h1{ font-size: 0.85em; }
+	header a{ font-size: 0.85em; }
+	#terminal, #terminal input#commands{
+		font-size: 1em;
+		line-height: 1em;
+	}
+}
+
+@media (max-width: 480px) {
+	header h1{ font-size: 0.55em; }
+	#terminal, #terminal input#commands{
+		font-size: 0.8em;
+		line-height: 0.9em;
+	}
+}
