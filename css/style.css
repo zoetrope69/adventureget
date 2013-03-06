@@ -15,6 +15,7 @@ body{
 
 header{
 	padding: 0.25em;
+	height: 4vh;
 	border-bottom: 1px solid #7BFF51;
 	background: #f5f5f5;
 
@@ -51,8 +52,8 @@ header a:hover{ opacity: 0.9; }
 	overflow-y: scroll;
 	padding: 0.5em 1em;
 	margin: 2.5% auto;
+	width: 80%;
 	height: 80vh;
-	width: 80vw;
 	border: 5px solid #F0F0F0;
 	outline: 1px solid #C0C0C0;
 	background: #181B33;
@@ -61,6 +62,14 @@ header a:hover{ opacity: 0.9; }
 	   -moz-user-select: none;
   		-ms-user-select: none;
   			user-select: none;
+
+  	-webkit-transition: border .25s linear, outline .25s linear,
+  						margin .25s .25s ease-in-out, height .25s .25s ease-in-out,
+  						width .25s .75s ease-in-out;
+  	   -moz-transition: all 0.25s ease-in;
+  		-ms-transition: all 0.25s ease-in;
+  		 -o-transition: all 0.25s ease-in;
+  			transition: all 0.25s ease-in;
 }
 
 #terminal, #terminal input#commands{
@@ -92,11 +101,11 @@ header a:hover{ opacity: 0.9; }
 }
 
 .fullscreen{
-	width: 100% !important ; 
-	height: 100vh !important ;
-	margin: 0 !important ;
-	border: none !important ;
-	outline: none !important ;
+	width: 100% !important; 
+	height: 96vh !important;
+	margin: 0 auto !important;
+	border-width: 0 !important;
+	outline-width: 0 !important;
 }
 
 /* terminal text colours */

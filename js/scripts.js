@@ -11,14 +11,13 @@ function updateTerminal(commandsInput){
 	.done(function(data) {		
 	 	$('#text').append(data); // Append on to the end of existing content
 		$('#commands').val("");	// Clear input box
-		$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal
 		if(data.indexOf("clearthatshit") !== -1){ // If returned output has clearscreen in it
 			$('#text').html(""); // Clear screen
 		}
 		if(data.indexOf("fullscreen") !== -1){ // If returned output has fullscreen in it
-			$('header').slideToggle();
-			$('#terminal').toggleClass("fullscreen"); // Clear screen
+			$('#terminal').toggleClass("fullscreen") // Add full screen class
 		}
+		$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal
 	});
 }
 
