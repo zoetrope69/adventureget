@@ -65,12 +65,16 @@ class Area{
 	}
 
 	public function getLoc($coord){ //specify which coord, if none return both with a space between
-        $coord = strtolower(trim($coord)); // tidy coord
+        $coord = strtolower(trim($coord));
         if($coord == "x"){    
             return $this->_locX;
         }
         elseif($coord == "y"){
             return $this->_locY;
+        }
+        else
+        {
+            return $this->_locX . " " . $this->_locY;
         }
     }
 

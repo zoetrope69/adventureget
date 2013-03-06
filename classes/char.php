@@ -31,6 +31,10 @@ class Char {
         elseif($coord == "y"){
             return $this->_locY;
         }
+        else
+        {
+            return $this->_locX . " " . $this->_locY;
+        }
     }
 
     public function setName($name){

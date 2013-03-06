@@ -1,23 +1,43 @@
 <?php
 session_start();
 
-foreach (glob("classes/*.php") as $class) // Includes all the classes
+foreach (glob("classes/*.php") as $file)
 {
-    include $class;
+    include $file;
 }
-
-//include "parser2.php";  // Experimental parser
+include "functions.php";
+include "parser2.php";
+$parser = new Parser();
 //$parser = new Parser2();
 
-$game = new Game();
-$commands = $_POST['commands']; // Gets the input
 
-if (isset($commands)) // If anything was posted
-{
-    $game->chew($commands); // Prepare for parsing
+if (isset($_POST['commands'])){
+
+	$command = trim($_POST['commands']);
+
+	if($command == "")
+	{
+		echo "<p class='warn'>You entered nothing!</p>";
+	}
+	else
+	{	$areas = unserialize($_SESSION['areas']);
+		$player = unserialize($_SESSION['player']);
+
+		$parser->parseCommands($command, $player, $areas);
+
+	}	
 }
 else
 {
-	$game->launch(); // On document load
+	$areas = loadMap();
+	$player = new Player('', 0, 0, 100, 0); // Create a new player class
+	
+	$_SESSION['player'] = serialize($player);
+	$_SESSION['areas'] = serialize($areas);
+	echo "<p>adventureGet - super awesome text adventure game</p>";
+	echo "<p>Set your name with 'setname' [yourname]</p>";
+    
+	$areas[$player->getLoc('x')][$player->getLoc('y')]->printDetails();
 }
+
 ?>
