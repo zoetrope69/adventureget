@@ -91,6 +91,14 @@ header a:hover{ opacity: 0.9; }
 	white-space: pre-wrap;
 }
 
+.fullscreen{
+	width: 100% !important ; 
+	height: 100vh !important ;
+	margin: 0 !important ;
+	border: none !important ;
+	outline: none !important ;
+}
+
 /* terminal text colours */
 
 .items{	color: #0099ff; }

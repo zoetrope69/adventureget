@@ -15,6 +15,10 @@ function updateTerminal(commandsInput){
 		if(data.indexOf("clearthatshit") !== -1){ // If returned output has clearscreen in it
 			$('#text').html(""); // Clear screen
 		}
+		if(data.indexOf("fullscreen") !== -1){ // If returned output has fullscreen in it
+			$('header').slideToggle();
+			$('#terminal').toggleClass("fullscreen"); // Clear screen
+		}
 	});
 }
 

@@ -205,7 +205,15 @@ class Parser{
             case 99: // clear
                 echo 'clearthatshit'; // this isn't the best way of doing it i think...
                break;
-            case 100: // zacisadick
+            case 100; // fullscreen;
+                $commands = explode(" ", $command);
+                if($command[1] == "fuller"){ // if "fullscreen fuller"
+                    echo "fullscreen";
+                }else{
+                    echo "fullscreen";
+                }
+                break;
+            case 101: // zacisadick
                 echo "<p>Hi there! Here is a house for you:</p>";
                 echo "<p>    __________________________</p><p>   /                          \</p><p>  /____________________________\</p>  <p>  ''|''''''''''''''''''''''''|''</p><p>    |  ___              ___  |</p>  <p>    | |_|_|            |_|_| |</p><p>    | |_|_|   _____    |_|_| |</p><p>    |         | 7 |          |</p><p> mmmmm        |  '|         mmmmm</p><p> |||||________|___|_________|||||</p><p>, , , , , , , ,\   \, , , , , , , ,</p><p> , , , , , , , |   | , , , , , , , </p><p>, , , , , , , /   /, , , , , , , </p>";
                 break;

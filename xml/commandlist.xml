@@ -62,6 +62,11 @@
 	</command>
 	<command>
 		<id>100</id>
+		<variants>fullscreen flscrn fullscrn</variants>
+		<description>makes terminal fullscreen</description>
+	</command>
+	<command>
+		<id>101</id>
 		<variants>zacisadick</variants>
 		<description>magical command</description>
 	</command>
