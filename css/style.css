@@ -17,7 +17,7 @@ header{
 	padding: 0.25em;
 	height: 4vh;
 	border-bottom: 1px solid #7BFF51;
-	background: #f5f5f5;
+	background: #F0F0F0;
 
 	-webkit-animation: hueRotate 15s infinite linear;
 	   -moz-animation: hueRotate 15s infinite linear;
@@ -63,13 +63,11 @@ header a:hover{ opacity: 0.9; }
   		-ms-user-select: none;
   			user-select: none;
 
-  	-webkit-transition: border .25s linear, outline .25s linear,
-  						margin .25s .25s ease-in-out, height .25s .25s ease-in-out,
-  						width .25s .75s ease-in-out;
-  	   -moz-transition: all 0.25s ease-in;
-  		-ms-transition: all 0.25s ease-in;
-  		 -o-transition: all 0.25s ease-in;
-  			transition: all 0.25s ease-in;
+  	-webkit-transition: margin .25s ease-in-out, height .25s ease-in-out, width .25s .25s ease-in-out;
+  	   -moz-transition: margin .25s ease-in-out, height .25s ease-in-out, width .25s .25s ease-in-out;
+  		-ms-transition: margin .25s ease-in-out, height .25s ease-in-out, width .25s .25s ease-in-out;
+  		 -o-transition: margin .25s ease-in-out, height .25s ease-in-out, width .25s .25s ease-in-out;
+  			transition: margin .25s ease-in-out, height .25s ease-in-out, width .25s .25s ease-in-out;
 }
 
 #terminal, #terminal input#commands{
@@ -104,8 +102,6 @@ header a:hover{ opacity: 0.9; }
 	width: 100% !important; 
 	height: 96vh !important;
 	margin: 0 auto !important;
-	border-width: 0 !important;
-	outline-width: 0 !important;
 }
 
 /* terminal text colours */
