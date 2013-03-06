@@ -8,7 +8,7 @@ class Parser{
 
     function Parser()
     {
-        $this->_commandList = simplexml_load_file('txt/commandlist.xml');
+        $this->_commandList = simplexml_load_file('xml/commandlist.xml');
     }
     public function printCommandList()
     {
