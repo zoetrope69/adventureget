@@ -23,7 +23,9 @@ class Area{
 	}
 
 	public function printDetails(){
+		echo "<p> </p>";
 		echo "<p class='title'>" . $this->_title . "</p>";
+		echo "<p> </p>";
 		echo "<p class='description'>" . $this->_description . "</p>";
 		echo "<p> </p>";
 
