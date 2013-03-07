@@ -120,7 +120,6 @@ header a:hover{ opacity: 0.9; }
 
 .map{ color: #226997; line-height: 1em; }
 .player{ color: #FFFF8E; }
-.player:last-of-type{ color: red; }
 .locked{ color: #B64242; }
 .fog{ color: #ddd; -webkit-filter: blur(0.8em); }
 .unlocked{ color: #4CA34C; }

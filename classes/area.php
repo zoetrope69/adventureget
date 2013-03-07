@@ -37,7 +37,7 @@ class Area{
 		}
 		echo "<p> </p>";
 		if($this->_npcs != null){
-			echo "<p class='npcs'>NPCs (<span class='mapicon'>☻</span>) in area:</p>";
+			echo "<p class='npcs'>NPCs (<span class='mapicon'>☺</span>) in area:</p>";
 			foreach($this->_npcs as $npc){
 				if($npc->getHostile()){ $hostile = "<span class='hostile'>☹</span>"; }else{ $hostile = "<span class='nothostile'>☺</span>"; }
 				echo "<p class='npcs'>  " . $hostile . " " . $npc->getName() . "</p>"; 

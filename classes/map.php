@@ -80,7 +80,7 @@ class GraphicalMap{
                 if($itemsPresent){ $itemIcon = "<span class='mapicon'>i</span>"; }
                 else{ $itemIcon = " "; }
 
-                if($NPCsPresent){ $NPCIcon = "<span class='mapicon'>☻</span>"; }
+                if($NPCsPresent){ $NPCIcon = "<span class='mapicon'>☺</span>"; }
                 else{ $NPCIcon = " "; }
 
                 if($area != null) // this is an area
