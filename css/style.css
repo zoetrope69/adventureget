@@ -33,7 +33,7 @@ header{
 header h1{
 	width: 80vw;
 	margin: 0 auto;
-	font-size: 1.2em;
+	font-size: 1em;
 	font-family: "Courier New";
 	font-weight: 100;
 	color: #414141;
@@ -73,7 +73,7 @@ header a:hover{ opacity: 0.9; }
 #terminal, #terminal input#commands{
 	color: #C5FFA9;
 	font-family: "Courier New";
-	font-size: 1.2em;
+	font-size: 1em;
 	line-height: 1.15em;
 }
 
