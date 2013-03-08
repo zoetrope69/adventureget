@@ -34,7 +34,7 @@ class Area{
 		if($this->_items != null){
 			echo "<p class='items'>Items (<span class='mapicon'>i</span>) in area:</p>";
 			foreach($this->_items as $item){
-				echo "<p class='items'>  ❌ " . $item->getName() . "</p>"; 
+				echo "<p class='items'>  ❖ " . $item->getName() . "</p>"; 
 			}
 		}
 		echo "<p> </p>";
@@ -42,7 +42,7 @@ class Area{
 			echo "<p class='npcs'>NPCs (<span class='mapicon'>☺</span>) in area:</p>";
 			foreach($this->_npcs as $npc){
 				if($npc->getHostile()){ $hostile = "<span class='hostile'>☹</span>"; }else{ $hostile = "<span class='nothostile'>☺</span>"; }
-				echo "<p class='npcs'>  " . $hostile . " " . $npc->getName() . "</p>"; 
+				echo "<p class='npcs'>  ❖ " . $npc->getName() . "</p>"; 
 			}
 		}
 		echo "<p> </p>";

@@ -111,9 +111,6 @@ header a:hover{ opacity: 0.9; }
 .title{	color: #EB9D0D; }
 .description{ color: #cc9966; }
 .npcs{ color: #7BFF51; }
-.npcs .hostile, .npcs .nothostile{ font-size: 1.25em; vertical-align: -0.1em; }
-.npcs .hostile{ color: #F82727; }
-.npcs .nothostile{ color: #88DA20; }
 .warn{ color: rgb(173, 0, 255); }
 
 /* map and it's icons */
