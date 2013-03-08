@@ -63,7 +63,7 @@ header a:hover{ opacity: 0.9; }
   		-ms-user-select: none;
   			user-select: none;
 
-  	-webkit-transition: margin .25s ease-in-out, height .25s ease-in-out, width .25s .25s ease-in-out;
+	-webkit-transition: margin .25s ease-in-out, height .25s ease-in-out, width .25s .25s ease-in-out;
   	   -moz-transition: margin .25s ease-in-out, height .25s ease-in-out, width .25s .25s ease-in-out;
   		-ms-transition: margin .25s ease-in-out, height .25s ease-in-out, width .25s .25s ease-in-out;
   		 -o-transition: margin .25s ease-in-out, height .25s ease-in-out, width .25s .25s ease-in-out;
@@ -122,10 +122,10 @@ header a:hover{ opacity: 0.9; }
 .unlocked{ color: #4CA34C; }
 .mapicon{ display: inline-block; color: #EB9D0D; 
 
-	-webkit-animation: iconSpin 2s infinite ease-in;
-	   -moz-animation: iconSpin 2s infinite ease-in;
-	     -o-animation: iconSpin 2s infinite ease-in;
-	     	animation: iconSpin 2s infinite ease-in;
+	-webkit-animation: iconSpin 2s infinite linear;
+	   -moz-animation: iconSpin 2s infinite linear;
+	     -o-animation: iconSpin 2s infinite linear;
+	     	animation: iconSpin 2s infinite linear;
 }
 	@-webkit-keyframes iconSpin { to { -webkit-transform: rotateY(360deg); } }
 	   @-moz-keyframes iconSpin { to {    -moz-transform: rotateY(360deg); } }
