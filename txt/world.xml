@@ -25,6 +25,11 @@
 				<description>An ordinary spoon, the type you might use to eat your pudding at the dinner table.</description>
 				<weight>1</weight>
 			</item>
+			<item>
+				<name>spork</name>
+				<description>An ordinary spork, you could eat ANYTHING with this</description>
+				<weight>1</weight>
+			</item>
 		</items>
 		<npcs>
 			<npc>

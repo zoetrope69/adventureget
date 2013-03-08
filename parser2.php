@@ -23,7 +23,9 @@ class Parser2{
     public function parseCommands($command, $player, $areas){
 
         $verbs = array("pick","walk", "examine", "describe", "put", "open", "kick", "attack", "talk", "fuck");
-        $nouns = array("hat", "sword", "key", "knife", "fork", "spoon", "chest", "door", "table", "dragon", "john", "betty");
+
+        $nouns = array("hat", "sword", "key", "knife", "fork", "spoon", "chest", "door", "table", "dragon", "john", "betty", "spork", "north", "south", "east", "west");
+
         $adjectives = array("rusty", "heavy", "bronze");
         $preposition = array("on", "under", "inside");
         $articles = array("the", "to");
@@ -71,6 +73,20 @@ class Parser2{
         else{
             echo "<p>" . $action["subject"] . " "  . $action["verb"] . " " . $action["article"] . " " . $action["noun"] . "</p>";
         }
+
+        $verb = $action['verb'];
+        if(method_exists($player, $verb)){
+            $noun = $action['noun'];
+            $area = $areas[$player->getLoc('x')][$player->getLoc('y')];
+            $player->$verb($noun, $area, 'chew');
+        }
+        else{
+            echo "this function does not exist";
+        }
+
+        $_SESSION['player'] = serialize($player); // puts player back into the session
+        $_SESSION['areas'] = serialize($areas); // puts areas back into the session
+
 
     }
 }
