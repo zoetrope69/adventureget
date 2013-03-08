@@ -2,10 +2,13 @@
 function loadMap(){
 	$xmlAreas = simplexml_load_file('txt/world.xml');
 	$areas = array();
+	$xAreaLimit = 0;
+	$yAreaLimit = 0;
 
 	foreach($xmlAreas->area as $area){
 		$title = (string)$area->title;
 		$description = (string)$area->description;
+		$locked = (int)$area->locked;
 		$x = intval($area->loc->x);
 		$y = intval($area->loc->y);
 		//$items = explode(" ", $area->items);
@@ -34,9 +37,23 @@ function loadMap(){
 			array_push($npcs, new NPC($npcName, $npcDesc, $x, $y, $npcHealth, $npcExp, $npcHostile));
 		}
 
-		$areas[$x][$y] = new Area($title, $description, $x, $y, $exits, $items, $npcs);
+		$areas[$x][$y] = new Area($title, $description, $locked, $x, $y, $exits, $items, $npcs);
+
+		if($x > $xAreaLimit){ $xAreaLimit = $x; }
+		if($y > $yAreaLimit){ $yAreaLimit = $y; }
 
 	}
+
+	$exits = array();
+
+	for($i = 0; $i < $xAreaLimit + 1; $i++){
+		for($j = 0; $j < $yAreaLimit + 1; $j++){
+			if(empty($areas[$i][$j])){
+				$areas[$i][$j] = new Area("", "", 1, $i, $j, $exits, null, null);
+			}
+		}
+	}
+
 	return $areas;
 }
 ?>

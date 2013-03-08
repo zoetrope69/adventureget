@@ -3,6 +3,7 @@
 	<area>
 		<title>Large open field</title>
 		<description>You are standing in a large open field, the grass is long and brushes your ankles. You can just about see the tips of small yellow flowers sticking out where they have been swamped by the unkept grass. To the north you can see a large building.</description>
+		<locked>0</locked>
 		<loc>
 			<x>0</x>
 			<y>0</y>
@@ -45,6 +46,7 @@
 	<area>
 		<title>Building entrance</title>
 		<description>You are standing at the enterance of a large university building. Above the door is a large sign that reads 'The University of Portsmouth'. It appears the door is open.</description>
+		<locked>0</locked>
 		<loc>
 			<x>0</x>
 			<y>1</y>
@@ -65,6 +67,7 @@
 	<area>
 		<title>Inside the University</title>
 		<description>Standing inside the university building you can see why this environment might be a good place for people to learn things.</description>
+		<locked>0</locked>
 		<loc>
 			<x>0</x>
 			<y>2</y>
@@ -77,6 +80,7 @@
 	<area>
 		<title>this is a lecture theatre</title>
 		<description>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate quia recusandae aliquid vitae atque neque odit sequi rem eius qui vel amet praesentium quasi est perspiciatis ducimus eligendi corrupti dicta?</description>
+		<locked>0</locked>
 		<loc>
 			<x>0</x>
 			<y>3</y>
@@ -88,6 +92,7 @@
 	<area>
 		<title>Zac's Palace</title>
 		<description>You find yourself inside Zac's palace, the greatest palace in Stourport.</description>
+		<locked>0</locked>
 		<loc>
 			<x>1</x>
 			<y>0</y>
@@ -107,6 +112,7 @@
 	<area>
 		<title>McDonald's</title>
 		<description>This place is of horrible nature. You can hardly contain your vomit.</description>
+		<locked>0</locked>
 		<loc>
 			<x>2</x>
 			<y>0</y>
@@ -126,6 +132,7 @@
 	<area>
 		<title>Outside McDonald's</title>
 		<description>It's surprising that the back alley is nicer than the actual restaurant...</description>
+		<locked>0</locked>
 		<loc>
 			<x>2</x>
 			<y>1</y>

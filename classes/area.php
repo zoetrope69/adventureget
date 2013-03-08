@@ -4,15 +4,17 @@
 class Area{
 	private $_title;
 	private $_description;
+	private $_locked;
 	private $_locX;
 	private $_locY;
 	private $_exits;
 	private $_items;
 	private $_npcs;
 
-	function Area($title, $description, $locX, $locY, $exits, $items, $npcs){
+	function Area($title, $description, $locked, $locX, $locY, $exits, $items, $npcs){
 		$this->_title = $title;
 		$this->_description = $description;
+		$this->_locked = (bool)$locked;
 		$this->_locX = $locX;
 		$this->_locY = $locY;
 		$this->_exits = $exits;
@@ -60,6 +62,10 @@ class Area{
 
 	public function getDescription(){
 		return $this->_description;		
+	}
+
+	public function getLocked(){
+		return $this->_locked;
 	}
 
 	public function getItems(){

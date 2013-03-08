@@ -25,12 +25,9 @@ class GraphicalMap{
         $xLimit = max(array_keys($this->_areas)); // max value of x
         $yLimit = 0;
 
-        for($x = 0; $x < $xLimit + 1; $x++){ // max value of y, comparing each branch of array to find biggest
-            if($this->_areas[$x] != null)
-            {
-                $yLength = max(array_keys($this->_areas[$x]));
-                if($yLength > $yLimit){ $yLimit = $yLength;}   
-            }         
+        for($x = 0; $x < $xLimit + 2; $x++){ // max value of y, comparing each branch of array to find biggest
+            $yLength = max(array_keys($this->_areas[$x]));
+            if($yLength > $yLimit){ $yLimit = $yLength; }          
         }
 
         for($y = 0; $y < $yLimit + 1; $y++)
@@ -46,11 +43,9 @@ class GraphicalMap{
                 // are the items/npcs in the tile
                 $itemsPresent = 0;
                 $NPCsPresent = 0;
-                if($area != null)
-                {
-                    $itemsPresent = sizeof($area->getItems());
-                    $NPCsPresent = sizeof($area->getNPCs());
-                }
+
+                $itemsPresent = sizeof($area->getItems());
+                $NPCsPresent = sizeof($area->getNPCs());             
 
                 // first line on the row
                 // --------------------
@@ -83,7 +78,12 @@ class GraphicalMap{
                 if($NPCsPresent){ $NPCIcon = "<span class='mapicon'>☺</span>"; }
                 else{ $NPCIcon = " "; }
 
-                if($area != null) // this is an area
+                if($area->getLocked()) // if it isn't an area /grey/ it out
+                { 
+                    $mapRow[1] .= "<span class='locked'>▒▒▒▒▒</span>";
+                    $mapRow[2] .= "<span class='locked'>▒▒▒▒▒</span>";
+                }
+                else
                 { 
                     if($x == $playerLocX and $y == $playerLocY) // if player is in the area
                     { 
@@ -95,12 +95,7 @@ class GraphicalMap{
                         $mapRow[2] .= "    ".$NPCIcon;
                         $mapRow[1] .= "    ".$itemIcon;
                     }
-                }
-                else // if it isn't an area /grey/ it out
-                { 
-                    $mapRow[1] .= "<span class='locked fog'>▒▒▒▒▒</span>";
-                    $mapRow[2] .= "<span class='locked fog'>▒▒▒▒▒</span>";
-                }
+                }                
 
                 $mapRow[1] .= "│";
                 if($x == $xLimit){
@@ -109,14 +104,13 @@ class GraphicalMap{
                 else
                 {
                     $wall = "<span class='locked'>║</span>";
-                    if($area != ""){
-                        foreach($area->getExits() as $exit)
-                        {
-                            if($exit == "east"){
-                                $wall = "<span class='unlocked'>║</span>";                        
-                            }
-                        }                        
-                    }
+                    foreach($area->getExits() as $exit)
+                    {
+                        if($exit == "east"){
+                            $wall = "<span class='unlocked'>║</span>";                        
+                        }
+                    }                       
+                    
                     $mapRow[2] .= $wall;
                 }
 
@@ -148,16 +142,17 @@ class GraphicalMap{
                     {
                         $mapRow[3] .= "├";
                     } 
-                        $wall = "──<span class='locked'>══</span>─";
-                        if($area != ""){
-                            foreach($area->getExits() as $exit)
-                            {
-                                if($exit == "south"){
-                                    $wall = "──<span class='unlocked'>══</span>─";                        
-                                }
-                            }                        
-                    }
-                        $mapRow[3] .= $wall;
+
+                    $wall = "──<span class='locked'>══</span>─";
+                    foreach($area->getExits() as $exit)
+                    {
+                        if($exit == "south"){
+                            $wall = "──<span class='unlocked'>══</span>─";                        
+                        }
+                    }                        
+                    
+                    $mapRow[3] .= $wall;
+
                     if($x == $xLimit) // if last col
                     {
                         $mapRow[3] .= "┤";
