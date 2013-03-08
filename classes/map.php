@@ -80,8 +80,8 @@ class GraphicalMap{
 
                 if($area->getLocked()) // if it isn't an area /grey/ it out
                 { 
-                    $mapRow[1] .= "<span class='locked'>▒▒▒▒▒</span>";
-                    $mapRow[2] .= "<span class='locked'>▒▒▒▒▒</span>";
+                    $mapRow[1] .= "<span class='locked'>xxxxx</span>";
+                    $mapRow[2] .= "<span class='locked'>xxxxx</span>";
                 }
                 else
                 { 
