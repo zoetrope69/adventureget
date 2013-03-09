@@ -15,9 +15,16 @@ function updateTerminal(commandsInput){
 			$('#text').html(""); // Clear screen
 		}
 		if(data.indexOf("fullscreen") !== -1){ // If returned output has fullscreen in it
-			$('#terminal').toggleClass("fullscreen") // Add full screen class
+			if($('#terminal').is('.fullscreen')){
+				$('#terminal').removeClass("fullscreen") // Add/remove .fullscreen
+				$('header').delay(100).slideDown('fast');
+			}else{
+				$('header').slideUp('fast', function(){
+					$('#terminal').addClass("fullscreen") // Add/remove .fullscreen
+				});
+			}
+			$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal
 		}
-		$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal
 	});
 }
 
