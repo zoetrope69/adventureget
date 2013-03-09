@@ -71,10 +71,10 @@ Array.prototype.remove = function(from, to) {
 
 
 
-// char class
-// ----------
+// character class
+// ---------------
 
-function Char(name, locX, locY, health, exp){
+function Character(name, locX, locY, health, exp){
 	this.chname = name;
 	this.locX = locX;
 	this.locY = locY;
@@ -126,58 +126,45 @@ function Char(name, locX, locY, health, exp){
 // player class (extends char)
 // ---------------------------
 
+function Player(){
 
+	this.character = new Character();
 
-/*public function walk($direction){
-    	$direction = $direction[0];
+	this.walk = function(direction){
+		direction = direction[0];
 
-        if($direction == "n"){ $this->_locY--; } // north
-        elseif($direction == "e"){ $this->_locX++; } // east
-        elseif($direction == "s"){ $this->_locY++; } // south
-        elseif($direction == "w"){ $this->_locX--; } // west
-        echo 'X: ' . $this->_locX . ' Y: ' . $this->_locY;
-    }
+             if(direction == "n"){ this.character.locY--; } // north
+        else if(direction == "e"){ this.character.locX++; } // east
+        else if(direction == "s"){ this.character.locY++; } // south
+        else if(direction == "w"){ this.character.locX--; } // west
+	};
 
-    public function addItem($item){
-        array_push($this->_items, $item);
-    }
-    public function removeItem($item){
-        foreach($this->_items as $i => $value){
-            if($value == $item){
-                unset($this->_items[$i]);
+	this.kick = function(noun){
+		return "You kick the " + noun + " so hard you break your big toe!";
+	};
+
+	this.describe = function(noun, area){
+		return "The " + noun + " looks beautiful";
+
+		var items = this.character.items;
+        items =  jQuery.merge(items, area.getItems());
+        found = false; // is what ever user is looking is found                
+        for(var i = 0; i < items.length; i++){
+            if(noun == items[i].getName()){
+                return "<p class='items'>" + items[i].getDescription() + "</p>";
+                found = true;
             }
         }
-        $this->_items = array_values($this->_items);
-    }
+	};
 
-    public function getItems(){
-        return $this->_items;
-    }
+};
 
-    public function setExp($value){
-        $this->_exp = $value;
-    }
+// npc class
+// ---------
 
-    public function getExp(){
-        return $this->_exp;
-    }
 
-    public function kick($item){
-    	echo "You kick the " . $item . " so hard you break your big toe!";
-    }
-
-    public function describe($item, $area){
-    	echo "The " . $item . " looks beautiful";
-
-        $items =  array_merge($this->_items, $area->getItems());
-        $found = false; // is what ever user is looking is found                
-        foreach($items as $i){
-            if($item == $i->getName()){
-                echo "<p class='items'>" . $i->getDescription() . "</p>";
-                $found = true;
-            }
-        }
-    }*/
+// area class
+// ----------
 
 
 // parser class
