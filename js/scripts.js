@@ -49,6 +49,8 @@ $('#commands').keydown(function(event) { // When keys are pressed in the input #
 
 function updateTerminal(commandsInput){
 	$commands = commandsInput.value;
+	$data = areaaa.printDetails();
+ 	$('#text').append($data); // Append on to the end of existing content
 	$data = parser.parseCommands($commands);
  	$('#text').append($data); // Append on to the end of existing content
 	$('#commands').val("");	// Clear input box
@@ -75,48 +77,48 @@ Array.prototype.remove = function(from, to) {
 // ---------------
 
 function Character(name, locX, locY, health, exp){
-	this.chname = name;
-	this.locX = locX;
-	this.locY = locY;
-	this.health = health;
-	this.exp = exp;
-    this.items = new Array();
+	this._name = name;
+	this._locX = locX;
+	this._locY = locY;
+	this._health = health;
+	this._exp = exp;
+    this._items = new Array();
 
 
 	// accessors
 	 
-	this.getName = function(){ return this.chname; };
+	this.getName = function(){ return this._name; };
 
 	this.getLoc = function(value){
-			 if(value == "x"){ return this.locX; }
-		else if(value == "y"){ return this.locY; }
+			 if(value == "x"){ return this._locX; }
+		else if(value == "y"){ return this._locY; }
 	};
 
-	this.getHealth = function(){ return this.health; };
+	this.getHealth = function(){ return this._health; };
 
-	this.getExp = function(){ return this.exp; }
+	this.getExp = function(){ return this._exp; }
 
-	this.getItems = function(){ return this.items; }
+	this.getItems = function(){ return this._items; }
 
 	// mutators
 
-	this.setName = function(value){ this.chname = value; }
+	this.setName = function(value){ this._name = value; }
 
 	this.setLoc = function(coord, value){
-			 if(coord == 'x'){ this.locX = value; }
-		else if(coord == 'y'){ this.locY = value; }
+			 if(coord == 'x'){ this._locX = value; }
+		else if(coord == 'y'){ this._locY = value; }
 	};
 
-	this.setHealth = function(value){ this.health = value; }
+	this.setHealth = function(value){ this._health = value; }
 
-	this.setExp = function(value){ this.exp = value; }
+	this.setExp = function(value){ this._exp = value; }
 
 	this.addItem = function(item){
-		this.items.push(item);
+		this._items.push(item);
 	}
 
 	this.removeItem = function(item){
-		this.items = jQuery.grep(this.items, function(value) {
+		this._items = jQuery.grep(this._items, function(value) {
 	  		return value != item;
 		});
 	}
@@ -126,17 +128,17 @@ function Character(name, locX, locY, health, exp){
 // player class (extends char)
 // ---------------------------
 
-function Player(){
+function Player(name, locX, locY, health, exp){
 
-	this.character = new Character();
+	this.character = new Character(name, locX, locY, health, exp);
 
 	this.walk = function(direction){
 		direction = direction[0];
 
-             if(direction == "n"){ this.character.locY--; } // north
-        else if(direction == "e"){ this.character.locX++; } // east
-        else if(direction == "s"){ this.character.locY++; } // south
-        else if(direction == "w"){ this.character.locX--; } // west
+             if(direction == "n"){ this.character._locY--; } // north
+        else if(direction == "e"){ this.character._locX++; } // east
+        else if(direction == "s"){ this.character._locY++; } // south
+        else if(direction == "w"){ this.character._locX--; } // west
 	};
 
 	this.kick = function(noun){
@@ -146,7 +148,7 @@ function Player(){
 	this.describe = function(noun, area){
 		return "The " + noun + " looks beautiful";
 
-		var items = this.character.items;
+		var items = this.character._items;
         items =  jQuery.merge(items, area.getItems());
         found = false; // is what ever user is looking is found                
         for(var i = 0; i < items.length; i++){
@@ -165,6 +167,93 @@ function Player(){
 
 // area class
 // ----------
+
+function Area(title, description, locked, locX, locY, exits, items, npcs){
+	this._title = title;
+	this._description = description;
+	this._locked = locked; // make sure this is bool
+	this._locX = locX;
+	this._locY = locY;
+	if(exits != null){ this._exits = exits; } else{ this._exits = new Array(); }
+	if(items != null){ this._items = items; } else{ this._items = new Array(); }
+	if(npcs != null){ this._npcs = npcs; } else{ this._npcs = new Array(); }
+	
+	// accessors
+
+	this.getTitle = function(){ return this._title;	}
+
+	this.getDescription = function(){ return this._description; }
+
+	this.getLocked = function(){ return this._locked; }
+
+	this.getItems = function(){ return this._items; }
+
+	this.getLoc = function(coord){ //specify which coord, if none return both with a space between
+        coord = coord.trim().toLowerCase();
+        if(coord == "x"){ return this._locX; }
+        else if(coord == "y"){ return this._locY; }
+    };
+
+    this.getExits = function(){ return this._exits; };
+
+	this.getNPCs = function(){ return this._npcs; };
+
+	// mutators
+
+	this.addItem = function(item){
+		this._items.push(item);
+	}
+
+	this.removeItem = function(item){
+		this._items = jQuery.grep(this._items, function(value) {
+	  		return value != item;
+		});
+	}
+
+	// print them details
+
+	this.printDetails = function(){
+		var output = "";
+		output = output + "<p class='title'>" + this._title + "</p>";
+		output = output + "<p> </p>";
+		output = output + "<p class='description'>" + this._description + "</p>";
+		output = output + "<p> </p>";		
+
+		if(this._items.length > 0){ // if there are items
+			output = output + "<p class='items'>Items (<span class='mapicon'>i</span>) in area:</p>";
+			for(var i = 0; i < this._items.length; i++){
+				output = output + "<p class='items'>  ❖ " + this._items[i].getName() + "</p>"; 
+			}
+
+		output = output + "<p> </p>";		
+		}
+
+
+		if(this._npcs.length > 0){ // if there are npcs
+			output = output + "<p class='npcs'>NPCs (<span class='mapicon'>☺</span>) in area:</p>";
+			for(var i = 0; this._npcs.length; i++){
+				output = output + "<p class='npcs'>  ❖ " + this._npcs[i].getName() + "</p>"; 
+			}
+
+		output = output + "<p> </p>";		
+		}
+
+		if(this._exits.length > 0){ // if there are exits
+			output = output + "<p class='exits'>Available Exits:</p>";
+			for(var i = 0; i < this._exits.length; i++){
+				output = output + "<p class='exits'>  ❖ " + this._exits[i] + "</p>"; 
+			}
+		
+		output = output + "<p> </p>";
+		}
+
+		output = output + "<p class='map'>You can display the map with: \"map\".</p>";
+		output = output + "<p> </p>";
+
+		return output;
+	};
+	
+};	 
 
 
 // parser class
@@ -279,5 +368,4 @@ var commandsJSONObject = {'commands':[
 };
 
 var parser = new Parser(commandsJSONObject);
-
-
+var areaaa = new Area("Big house!", "This is the description", 0, 1, 0, null, null, null);
