@@ -81,136 +81,196 @@ function Char(name, locX, locY, health, exp){
 	this.health = health;
 	this.exp = exp;
     this.items = new Array();
+
+
+	// accessors
+	 
+	this.getName = function(){ return this.chname; };
+
+	this.getLoc = function(value){
+			 if(value == "x"){ return this.locX; }
+		else if(value == "y"){ return this.locY; }
+	};
+
+	this.getHealth = function(){ return this.health; };
+
+	this.getExp = function(){ return this.exp; }
+
+	this.getItems = function(){ return this.items; }
+
+	// mutators
+
+	this.setName = function(value){ this.chname = value; }
+
+	this.setLoc = function(coord, value){
+			 if(coord == 'x'){ this.locX = value; }
+		else if(coord == 'y'){ this.locY = value; }
+	};
+
+	this.setHealth = function(value){ this.health = value; }
+
+	this.setExp = function(value){ this.exp = value; }
+
+	this.addItem = function(item){
+		this.items.push(item);
+	}
+
+	this.removeItem = function(item){
+		this.items = jQuery.grep(this.items, function(value) {
+	  		return value != item;
+		});
+	}
+
 };
 
-// accessors
- 
-Char.prototype.getName = function(){ return this.chname; };
+// player class (extends char)
+// ---------------------------
 
-Char.prototype.getLoc = function(value){
-		 if(value == "x"){ return this.locX; }
-	else if(value == "y"){ return this.locY; }
-};
 
-Char.prototype.getHealth = function(){ return this.health; };
 
-Char.prototype.getExp = function(){ return this.exp; }
+/*public function walk($direction){
+    	$direction = $direction[0];
 
-Char.prototype.getItems = function(){ return this.items; }
+        if($direction == "n"){ $this->_locY--; } // north
+        elseif($direction == "e"){ $this->_locX++; } // east
+        elseif($direction == "s"){ $this->_locY++; } // south
+        elseif($direction == "w"){ $this->_locX--; } // west
+        echo 'X: ' . $this->_locX . ' Y: ' . $this->_locY;
+    }
 
-// mutators
+    public function addItem($item){
+        array_push($this->_items, $item);
+    }
+    public function removeItem($item){
+        foreach($this->_items as $i => $value){
+            if($value == $item){
+                unset($this->_items[$i]);
+            }
+        }
+        $this->_items = array_values($this->_items);
+    }
 
-Char.prototype.setName = function(value){ this.chname = value; }
+    public function getItems(){
+        return $this->_items;
+    }
 
-Char.prototype.setLoc = function(coord, value){
-		 if(coord == 'x'){ this.locX = value; }
-	else if(coord == 'y'){ this.locY = value; }
-};
+    public function setExp($value){
+        $this->_exp = $value;
+    }
 
-Char.prototype.setHealth = function(value){ this.health = value; }
+    public function getExp(){
+        return $this->_exp;
+    }
 
-Char.prototype.setExp = function(value){ this.exp = value; }
+    public function kick($item){
+    	echo "You kick the " . $item . " so hard you break your big toe!";
+    }
 
-Char.prototype.addItem = function(item){
-	this.items.push(item);
-}
+    public function describe($item, $area){
+    	echo "The " . $item . " looks beautiful";
 
-Char.prototype.removeItem = function(item){
-	this.items = jQuery.grep(this.items, function(value) {
-  		return value != item;
-	});
-}
+        $items =  array_merge($this->_items, $area->getItems());
+        $found = false; // is what ever user is looking is found                
+        foreach($items as $i){
+            if($item == $i->getName()){
+                echo "<p class='items'>" . $i->getDescription() . "</p>";
+                $found = true;
+            }
+        }
+    }*/
 
 
 // parser class
 // ------------
 function Parser(commandList){
 	this.commandList = commandList;
-};
 
-Parser.prototype.printCommands = function()
-{
-	/* print the commands yo */
-};
 
-Parser.prototype.parseCommands = function(commands){
-	var verbs = new Array("pick","walk", "examine", "describe", "put", "open", "kick", "attack", "talk", "fuck", "break");
-    var nouns = new Array("hat", "sword", "key", "knife", "fork", "spoon", "chest", "door", "table", "dragon", "john", "betty", "spork", "north", "south", "east", "west");
+	this.printCommands = function()
+	{
+		/* print the commands yo */
+	};
 
-    var adjectives = new Array("rusty", "heavy", "bronze");
-    var preposition = new Array("on", "under", "inside");
-    var articles = new Array("the", "to");
+	this.parseCommands = function(commands){
+		var verbs = new Array("pick","walk", "examine", "describe", "put", "open", "kick", "attack", "talk", "fuck", "break");
+	    var nouns = new Array("hat", "sword", "key", "knife", "fork", "spoon", "chest", "door", "table", "dragon", "john", "betty", "spork", "north", "south", "east", "west");
 
-    var command = commands.toLowerCase();
-    var commands = new Array();
-    commands = command.split(" ");
+	    var adjectives = new Array("rusty", "heavy", "bronze");
+	    var preposition = new Array("on", "under", "inside");
+	    var articles = new Array("the", "to");
 
-    var action = {};
-    action["subject"] = "you";
-    action["verb"] = null;
-    action["preps"] = null;
-    action["noun"] = null;
-    action["article"] = null;
+	    var command = commands.toLowerCase();
+	    var commands = new Array();
+	    commands = command.split(" ");
 
-    var commandPos = 0;
+	    var action = {};
+	    action["subject"] = "you";
+	    action["verb"] = null;
+	    action["preps"] = null;
+	    action["noun"] = null;
+	    action["article"] = null;
 
-	command = null;
-	for(var i = 0; i < commands.length; i++){
-		command = commands[i];
+	    var commandPos = 0;
 
-		verb = null;
-		for(var j = 0; j < verbs.length; j++){
-	  		verb = verbs[j];
-	  		if(verb == command){
-				action["verb"] = verb;
-	  		}
-		} // end of verb loop
+		command = null;
+		for(var i = 0; i < commands.length; i++){
+			command = commands[i];
 
-		noun = null;
-		for(var j = 0; j < verbs.length; j++){
-			noun = nouns[j];
-			if(noun == command){
-				action["noun"] = noun;
+			verb = null;
+			for(var j = 0; j < verbs.length; j++){
+		  		verb = verbs[j];
+		  		if(verb == command){
+					action["verb"] = verb;
+		  		}
+			} // end of verb loop
 
-				adjective = null;
-				for(var k = 0; k < adjectives.length; k++){
-					adjective = adjectives[k];
-					if(commands[commandPos - 1] == adjective){
-						action["noun"] = adjective + " " + action["noun"];
-					}
-				} // end of adjective loop
+			noun = null;
+			for(var j = 0; j < verbs.length; j++){
+				noun = nouns[j];
+				if(noun == command){
+					action["noun"] = noun;
 
-	  		}
-		} // end of noun loop
+					adjective = null;
+					for(var k = 0; k < adjectives.length; k++){
+						adjective = adjectives[k];
+						if(commands[commandPos - 1] == adjective){
+							action["noun"] = adjective + " " + action["noun"];
+						}
+					} // end of adjective loop
 
-		article = null;
-		for(var j = 0; j < verbs.length; j++){
-			article = articles[j];
-			if(article == command){
-				action["article"] = article;
-			}
-		} // end of article loop
+		  		}
+			} // end of noun loop
 
-		commandPos++;
+			article = null;
+			for(var j = 0; j < verbs.length; j++){
+				article = articles[j];
+				if(article == command){
+					action["article"] = article;
+				}
+			} // end of article loop
 
-	} // end of command loop
+			commandPos++;
 
-	if(action["article"] == null){
-        action["article"] = "the";
-    }
+		} // end of command loop
 
-    if(action["verb"] == null || action["noun"] == null){
-        return "<p>This is not a valid command</p>";
-    }else{
-        return "<p>" + action["subject"] + " "  + action["verb"] + " " + action["article"] + " " + action["noun"] + "</p>";
-    }
+		if(action["article"] == null){
+	        action["article"] = "the";
+	    }
 
-    verb = action["verb"];
-	// if method exists from verb
-	// do the method from player classs
-	// else
-	// this function doesn't exist
-    
+	    if(action["verb"] == null || action["noun"] == null){
+	        return "<p>This is not a valid command</p>";
+	    }else{
+	        return "<p>" + action["subject"] + " "  + action["verb"] + " " + action["article"] + " " + action["noun"] + "</p>";
+	    }
+
+	    verb = action["verb"];
+		// if method exists from verb
+		// do the method from player classs
+		// else
+		// this function doesn't exist
+	    
+	};
+
 };
 
 var commandsJSONObject = {'commands':[
