@@ -61,16 +61,65 @@ function updateTerminal(commandsInput){
 	$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal
 }
 
+// Array Remove - By John Resig (MIT Licensed)
+Array.prototype.remove = function(from, to) {
+  var rest = this.slice((to || from) + 1 || this.length);
+  this.length = from < 0 ? this.length + from : from;
+  return this.push.apply(this, rest);
+};
 
 
 
 
+// char class
+// ----------
 
+function Char(name, locX, locY, health, exp){
+	this.chname = name;
+	this.locX = locX;
+	this.locY = locY;
+	this.health = health;
+	this.exp = exp;
+    this.items = new Array();
+};
 
+// accessors
+ 
+Char.prototype.getName = function(){ return this.chname; };
 
+Char.prototype.getLoc = function(value){
+		 if(value == "x"){ return this.locX; }
+	else if(value == "y"){ return this.locY; }
+};
 
+Char.prototype.getHealth = function(){ return this.health; };
 
+Char.prototype.getExp = function(){ return this.exp; }
 
+Char.prototype.getItems = function(){ return this.items; }
+
+// mutators
+
+Char.prototype.setName = function(value){ this.chname = value; }
+
+Char.prototype.setLoc = function(coord, value){
+		 if(coord == 'x'){ this.locX = value; }
+	else if(coord == 'y'){ this.locY = value; }
+};
+
+Char.prototype.setHealth = function(value){ this.health = value; }
+
+Char.prototype.setExp = function(value){ this.exp = value; }
+
+Char.prototype.addItem = function(item){
+	this.items.push(item);
+}
+
+Char.prototype.removeItem = function(item){
+	this.items = jQuery.grep(this.items, function(value) {
+  		return value != item;
+	});
+}
 
 
 // parser class
@@ -81,13 +130,7 @@ function Parser(commandList){
 
 Parser.prototype.printCommands = function()
 {
-	/*foreach($this->_commandList->command as $command){
-            $variants = (string)$command->variants;
-            $description = (string)$command->description;
-            echo "<p> </p>";
-            echo "<p>\"" . $variants . "\"</p>";
-            echo "<p>" . $description . "</p>";
-        }*/
+	/* print the commands yo */
 };
 
 Parser.prototype.parseCommands = function(commands){
@@ -189,4 +232,5 @@ var commandsJSONObject = {'commands':[
 };
 
 var parser = new Parser(commandsJSONObject);
+
 
