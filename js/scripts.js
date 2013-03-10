@@ -2,7 +2,7 @@ var prevCommands = new Array(); //list of entered commands
 var commandIndex = 0;
 
 (function(){ // When document is done loading, load main.php
-	//$('#text').load("main.php");
+	// do some shit
 })();
 
 // When the window is resized
@@ -71,7 +71,16 @@ Array.prototype.remove = function(from, to) {
 };
 
 
+// game class
+// ----------
 
+function Game(){
+	// import map
+	var player = new Player("", 0, 0, 100, 0);
+};
+
+// map class
+// ---------
 
 // character class
 // ---------------
@@ -96,32 +105,32 @@ function Character(name, locX, locY, health, exp){
 
 	this.getHealth = function(){ return this._health; };
 
-	this.getExp = function(){ return this._exp; }
+	this.getExp = function(){ return this._exp; };
 
-	this.getItems = function(){ return this._items; }
+	this.getItems = function(){ return this._items; };
 
 	// mutators
 
-	this.setName = function(value){ this._name = value; }
+	this.setName = function(value){ this._name = value; };
 
 	this.setLoc = function(coord, value){
 			 if(coord == 'x'){ this._locX = value; }
 		else if(coord == 'y'){ this._locY = value; }
 	};
 
-	this.setHealth = function(value){ this._health = value; }
+	this.setHealth = function(value){ this._health = value; };
 
-	this.setExp = function(value){ this._exp = value; }
+	this.setExp = function(value){ this._exp = value; };
 
 	this.addItem = function(item){
 		this._items.push(item);
-	}
+	};
 
 	this.removeItem = function(item){
 		this._items = jQuery.grep(this._items, function(value) {
 	  		return value != item;
 		});
-	}
+	};
 
 };
 
@@ -164,6 +173,24 @@ function Player(name, locX, locY, health, exp){
 // npc class
 // ---------
 
+function Npc(name, locX, locY, health, exp, hostile, description){
+	this.character = new Character(name, locX, locY, health, exp);
+	this._hostile = hostile;
+	this._description = description;
+
+	// accessors
+
+	this.getHostile = function(){ return this._hostile; };
+
+	this.getDescription = function(){ return this._description; };
+
+	// mutators
+
+	this.setHostile = function(value){ this._hostile = value; };
+
+	this.setDescription = function(value){ this._description = value; };
+
+};
 
 // area class
 // ----------
@@ -186,8 +213,6 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
 
 	this.getLocked = function(){ return this._locked; }
 
-	this.getItems = function(){ return this._items; }
-
 	this.getLoc = function(coord){ //specify which coord, if none return both with a space between
         coord = coord.trim().toLowerCase();
         if(coord == "x"){ return this._locX; }
@@ -195,20 +220,53 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
     };
 
     this.getExits = function(){ return this._exits; };
+	
+	this.getItems = function(){ return this._items; }
 
 	this.getNPCs = function(){ return this._npcs; };
 
 	// mutators
 
+	this.setTitle = function(value){ this._title = value; };
+
+	this.setDescription = function(value){ this._description = value; };
+	
+	this.setLocked = function(value){ this._locked = value; };
+
+	this.setLoc = function(coord, value){
+			 if(coord == 'x'){ this._locX = value; }
+		else if(coord == 'y'){ this._locY = value; }
+	};
+
+	this.addExit = function(exit){
+		this._exits.push(exit);
+	};
+
+	this.removeExit = function(exit){
+		this._exits = jQuery.grep(this._exits, function(value) {
+	  		return value != exit;
+		});
+	};
+
 	this.addItem = function(item){
 		this._items.push(item);
-	}
+	};
 
 	this.removeItem = function(item){
 		this._items = jQuery.grep(this._items, function(value) {
 	  		return value != item;
 		});
-	}
+	};
+
+	this.addNpc = function(npc){
+		this._npcs.push(npc);
+	};
+
+	this.removeNpc = function(npc){
+		this._npcs = jQuery.grep(this._npcs, function(value) {
+	  		return value != npc;
+		});
+	};
 
 	// print them details
 
