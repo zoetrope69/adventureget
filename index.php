@@ -16,5 +16,8 @@
 	</article>
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
+	<script type="text/javascript" src="js/classes.js"></script>
+	<script type="text/javascript" src="js/mapjson.js"></script>
+	<script type="text/javascript" src="js/commandlistjson.js"></script>
 </body>
 </html>
