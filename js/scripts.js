@@ -48,10 +48,9 @@ $('#commands').keydown(function(event) { // When keys are pressed in the input #
 // THE GUBBINS
 
 function updateTerminal(commandsInput){
+	var game = new Game();
 	$commands = commandsInput.value;
-	$data = areaaa.printDetails();
- 	$('#text').append($data); // Append on to the end of existing content
-	$data = parser.parseCommands($commands);
+	$data = game._parser.printCommands(commandListJSON);
  	$('#text').append($data); // Append on to the end of existing content
 	$('#commands').val("");	// Clear input box
 	if($data.indexOf("clearthatshit") !== -1){ // If returned output has clearscreen in it
@@ -75,24 +74,30 @@ Array.prototype.remove = function(from, to) {
 // ----------
 
 function Game(){
-	this._map = new Map();
-	this._areas = this.map.loadMap();
-	// import map
+	/*this._map = new Map();
+	this._areas = this._map.loadMap();*/
+	this._parser = new Parser();
 	var player = new Player("", 0, 0, 100, 0);
+
+	// accessors
+
+	this.getAreas = function(){ return this._areas; };
+
 };
 
 // map class
 // ---------
 
-function Map(mapJSONObject){
-	this._map = jQuery.parseJSON(mapJSONObject);
+function Map(){
 
 	this.loadMap = function(){
-
+		
 		areas = new Array();
 		xMapLimit = 0;
 		yMapLimit = 0;
 
+		m = jQuery.parseJSON(mapJSON);
+      			
 		for(var i = 0; i < this._map.area.length; i++){
 			area = this._map.area[i];
 			title = area.title;
@@ -124,7 +129,7 @@ function Map(mapJSONObject){
 			if(x > xMapLimit){ xMapLimit = x; }
 			if(y > yMapLimit){ yMapLimit = y; }
 
-		}
+  		}
 
 		emptyExits = new Array(); // this code is messy :(
 
@@ -405,7 +410,14 @@ function Parser(commandList){
 
 	this.printCommands = function()
 	{
-		/* print the commands yo */
+		var output = ""
+		json = jQuery.parseJSON(commandListJSON);
+		for(var i = 0; i < 10; i++){
+			output = output + "<p> </p>";
+			output = output + "<p>\"" + json.commands[i].variants + "\"</p>";
+			output = output + "<p>" + json.commands[i].description + "</p>";
+		}
+		return output;
 	};
 
 	this.parseCommands = function(commands){
@@ -490,169 +502,49 @@ function Parser(commandList){
 
 };
 
-var commandsJSONObject = {'commands':[
-    { 'variants': 'move walk go north east south west n e s w', 'description': 'allows you to move' },
-    { 'variants': 'pickup get grab', 'description': 'allows you to pickup items' },
-    { 'variants': 'climb', 'description': 'climbs things' },
-    { 'variants': 'h help', 'description': 'displays help' },
-    { 'variants': 'i inv inventory', 'description': 'displays inventory' },
-    { 'variants': 'drop', 'description': 'drops items in current area' },
-    { 'variants': 'talk chat speak', 'description': 'talk [npc] allows you to start a conversation with a NPC' },
-    { 'variants': 'describe examine whatis', 'description': 'allows you to get more info on areas, items and npcs' },
-    { 'variants': 'map', 'description': 'allows you to see the map' },
-    { 'variants': 'setname', 'description': 'allows you to set your name' },
-    { 'variants': 'getname myname', 'description': 'displays your name' },
-    { 'variants': 'clr clear clearscreen clearterminal', 'description': 'clears the terminal window' },
-    { 'variants': 'fullscreen flscrn fullscrn', 'description': 'makes terminal fullscreen' },
-    { 'variants': 'zacisadick', 'description': 'magical command' }
-    ]
-};
+var commandListJSON = '{"commands": [{'
+				    + ' "variants": "move walk go north east south west n e s w",'
+				    + ' "description": "allows you to move"'
+    			+ '}, {'
+			        + '"variants": "pickup get grab",'
+			        + '"description": "allows you to pickup items"'
+			    + '}, {'
+			        + '"variants": "climb",'
+			        + '"description": "climbs things"'
+			    + '}, {'
+			        + '"variants": "h help",'
+			        + '"description": "displays help"'
+			    + '}, {'
+			        + '"variants": "i inv inventory",'
+			        + '"description": "displays inventory"'
+			    + '}, {'
+			        + '"variants": "drop",'
+			        + '"description": "drops items in current area"'
+			    + '}, {'
+			        + '"variants": "talk chat speak",'
+			        + '"description": "talk npc allows you to start a conversation with a NPC"'
+			    + '}, {'
+			        + '"variants": "describe examine whatis",'
+			        + '"description": "allows you to get more info on areas, items and npcs"'
+			    + '}, {'
+			        + '"variants": "map",'
+			        + '"description": "allows you to see the map"'
+			    + '}, {'
+			        + '"variants": "setname",'
+			        + '"description": "allows you to set your name"'
+			    + '}, {'
+			        + '"variants": "getname myname",'
+			        + '"description": "displays your name"'
+			    + '}, {'
+			        + '"variants": "clr clear clearscreen clearterminal",'
+			        + '"description": "clears the terminal window"'
+			    + '}, {'
+			        + '"variants": "fullscreen flscrn fullscrn",'
+			        + '"description": "makes terminal fullscreen"'
+			    + '}, {'
+			        + '"variants": "zacisadick",'
+			        + '"description": "magical command"'
+    			+ '}]}';
 
-var mapJSONObject = {
-    "area": [
-      {
-        "title": "Large open field",
-        "description": "You are standing in a large open field, the grass is long and brushes your ankles. You can just about see the tips of small yellow flowers sticking out where they have been swamped by the unkept grass. To the north you can see a large building.",
-        "locked": "0",
-        "loc": {
-          "x": "0",
-          "y": "0"
-        },
-        "exits": "east south",
-        "items": {
-          "item": [
-            {
-              "name": "knife",
-              "description": "An ordinary knife, the type you might use to cut your food at the dinner table.",
-              "weight": "1"
-            },
-            {
-              "name": "fork",
-              "description": "An ordinary fork, the type you might use to stab your food at the dinner table.",
-              "weight": "1"
-            },
-            {
-              "name": "spoon",
-              "description": "An ordinary spoon, the type you might use to eat your pudding at the dinner table.",
-              "weight": "1"
-            },
-            {
-              "name": "spork",
-              "description": "An ordinary spork, you could eat ANYTHING with this",
-              "weight": "1"
-            }
-          ]
-        },
-        "npcs": {
-          "npc": [
-            {
-              "name": "John",
-              "description": "A burly man with faint aroma of coconut.",
-              "health": "100",
-              "exp": "9001",
-              "hostile": "1"
-            },
-            {
-              "name": "Jane",
-              "description": "A dainty woman with a slight frame and bright smile.",
-              "health": "98",
-              "exp": "80085",
-              "hostile": "0"
-            }
-          ]
-        }
-      },
-      {
-        "title": "Building entrance",
-        "description": "You are standing at the enterance of a large university building. Above the door is a large sign that reads 'The University of Portsmouth'. It appears the door is open.",
-        "locked": "0",
-        "loc": {
-          "x": "0",
-          "y": "1"
-        },
-        "exits": "north south",
-        "npcs": {
-          "npc": {
-            "name": "Bill",
-            "description": "A moustachioed gentleman with a fancy for scrambled eggs.",
-            "health": "50",
-            "exp": "1337",
-            "hostile": "0"
-          }
-        }
-      },
-      {
-        "title": "Inside the University",
-        "description": "Standing inside the university building you can see why this environment might be a good place for people to learn things.",
-        "locked": "0",
-        "loc": {
-          "x": "0",
-          "y": "2"
-        },
-        "exits": "north south"
-      },
-      {
-        "title": "this is a lecture theatre",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate quia recusandae aliquid vitae atque neque odit sequi rem eius qui vel amet praesentium quasi est perspiciatis ducimus eligendi corrupti dicta?",
-        "locked": "0",
-        "loc": {
-          "x": "0",
-          "y": "3"
-        },
-        "exits": "north"
-      },
-      {
-        "title": "Zac's Palace",
-        "description": "You find yourself inside Zac's palace, the greatest palace in Stourport.",
-        "locked": "0",
-        "loc": {
-          "x": "1",
-          "y": "0"
-        },
-        "exits": "west east",
-        "npcs": {
-          "npc": {
-            "name": "Zac",
-            "description": "Super cool guy.",
-            "health": "78",
-            "exp": "19",
-            "hostile": "0"
-          }
-        }
-      },
-      {
-        "title": "McDonald's",
-        "description": "This place is of horrible nature. You can hardly contain your vomit.",
-        "locked": "0",
-        "loc": {
-          "x": "2",
-          "y": "0"
-        },
-        "exits": "west south",
-        "items": "vomit happy-meal",
-        "npcs": {
-          "npc": {
-            "name": "Worker",
-            "description": "Smells a bit.",
-            "health": "78",
-            "exp": "19",
-            "hostile": "1"
-          }
-        }
-      },
-      {
-        "title": "Outside McDonald's",
-        "description": "It's surprising that the back alley is nicer than the actual restaurant...",
-        "locked": "0",
-        "loc": {
-          "x": "2",
-          "y": "1"
-        },
-        "exits": "north",
-        "items": "rubbish"
-      }
-    ]
-}
 
-var parser = new Parser(commandsJSONObject);
-var areaaa = new Area("Big house!", "This is the description", 0, 1, 0, null, null, null);
+
