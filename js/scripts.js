@@ -1,10 +1,6 @@
 var prevCommands = new Array(); //list of entered commands
 var commandIndex = 0;
 
-(function(){ // When document is done loading, load main.php
-	// do some shit
-})();
-
 // When the window is resized
 $(window).resize(function(){ 
 	$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal
@@ -46,13 +42,16 @@ $('#commands').keydown(function(event) { // When keys are pressed in the input #
 });
 
 // THE GUBBINS
+var game = new Game(commandListJSON, mapJSON);
+$data = game._areas[0][1].printDetails();
+$('#text').append($data); // Append on to the end of existing content
+
+(function(){ // When document is done loading, load main.php
+})();
 
 function updateTerminal(commandsInput){
-	var game = new Game(mapJSON);
 	$commands = commandsInput.value;
-	$data = game._parser.printCommands(commandListJSON);
- 	$('#text').append($data); // Append on to the end of existing content
- 	$data = game._areas[0][1].printDetails();
+	$data = game._parser.parseCommands($commands);
  	$('#text').append($data); // Append on to the end of existing content
 	$('#commands').val("");	// Clear input box
 	/*if($data.indexOf("clearthatshit") !== -1){ // If returned output has clearscreen in it
