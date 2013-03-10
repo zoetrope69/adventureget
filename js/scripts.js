@@ -75,12 +75,84 @@ Array.prototype.remove = function(from, to) {
 // ----------
 
 function Game(){
+	this._map = new Map();
+	this._areas = this.map.loadMap();
 	// import map
 	var player = new Player("", 0, 0, 100, 0);
 };
 
 // map class
 // ---------
+
+function Map(){
+
+	this.loadMap = function(){
+	
+	$xmlAreas = simplexml_load_file('txt/world.xml');
+	$areas = array();
+	$xAreaLimit = 0;
+	$yAreaLimit = 0;
+
+	foreach($xmlAreas->area as $area){
+		$title = (string)$area->title;
+		$description = (string)$area->description;
+		$locked = (int)$area->locked;
+		$x = intval($area->loc->x);
+		$y = intval($area->loc->y);
+		//$items = explode(" ", $area->items);
+		$exits = explode(" ", $area->exits);
+		$items = array();
+		foreach($area->items->item as $item){
+			$itemName = (string)$item->name;
+			$itemDesc = (string)$item->description;
+			$itemWeight = (string)$item->weight;
+			array_push($items, new Item($itemName, $itemDesc, $itemWeight));
+		}
+
+		//dirty hack until I find a better fix
+		if ($exits[0] == ""){
+			$exits = array('north', 'south', 'east', 'west');
+		}
+
+		// npcs
+		$npcs = array();
+		foreach($area->npcs->npc as $npc){
+			$npcName = (string)$npc->name;
+			$npcDesc = (string)$npc->description;
+			$npcHealth = (int)$npc->health;
+			$npcExp = (int)$npc->exp;
+			$npcHostile = (int)$npc->hostile;
+			array_push($npcs, new NPC($npcName, $npcDesc, $x, $y, $npcHealth, $npcExp, $npcHostile));
+		}
+
+		$areas[$x][$y] = new Area($title, $description, $locked, $x, $y, $exits, $items, $npcs);
+
+		if($x > $xAreaLimit){ $xAreaLimit = $x; }
+		if($y > $yAreaLimit){ $yAreaLimit = $y; }
+
+	}
+
+	$exits = array();
+
+	for($i = 0; $i < $xAreaLimit + 1; $i++){
+		for($j = 0; $j < $yAreaLimit + 1; $j++){
+			if(empty($areas[$i][$j])){
+				$areas[$i][$j] = new Area("", "", 1, $i, $j, $exits, null, null);
+			}
+		}
+	}
+
+	return $areas;
+
+	};
+
+};
+
+/* sakdnlsa */
+
+
+
+/* snaldnsald */
 
 // character class
 // ---------------
@@ -424,6 +496,152 @@ var commandsJSONObject = {'commands':[
     { 'variants': 'zacisadick', 'description': 'magical command' }
     ]
 };
+
+var mapJSONObject = {
+    "area": [
+      {
+        "title": "Large open field",
+        "description": "You are standing in a large open field, the grass is long and brushes your ankles. You can just about see the tips of small yellow flowers sticking out where they have been swamped by the unkept grass. To the north you can see a large building.",
+        "locked": "0",
+        "loc": {
+          "x": "0",
+          "y": "0"
+        },
+        "exits": "east south",
+        "items": {
+          "item": [
+            {
+              "name": "knife",
+              "description": "An ordinary knife, the type you might use to cut your food at the dinner table.",
+              "weight": "1"
+            },
+            {
+              "name": "fork",
+              "description": "An ordinary fork, the type you might use to stab your food at the dinner table.",
+              "weight": "1"
+            },
+            {
+              "name": "spoon",
+              "description": "An ordinary spoon, the type you might use to eat your pudding at the dinner table.",
+              "weight": "1"
+            },
+            {
+              "name": "spork",
+              "description": "An ordinary spork, you could eat ANYTHING with this",
+              "weight": "1"
+            }
+          ]
+        },
+        "npcs": {
+          "npc": [
+            {
+              "name": "John",
+              "description": "A burly man with faint aroma of coconut.",
+              "health": "100",
+              "exp": "9001",
+              "hostile": "1"
+            },
+            {
+              "name": "Jane",
+              "description": "A dainty woman with a slight frame and bright smile.",
+              "health": "98",
+              "exp": "80085",
+              "hostile": "0"
+            }
+          ]
+        }
+      },
+      {
+        "title": "Building entrance",
+        "description": "You are standing at the enterance of a large university building. Above the door is a large sign that reads 'The University of Portsmouth'. It appears the door is open.",
+        "locked": "0",
+        "loc": {
+          "x": "0",
+          "y": "1"
+        },
+        "exits": "north south",
+        "npcs": {
+          "npc": {
+            "name": "Bill",
+            "description": "A moustachioed gentleman with a fancy for scrambled eggs.",
+            "health": "50",
+            "exp": "1337",
+            "hostile": "0"
+          }
+        }
+      },
+      {
+        "title": "Inside the University",
+        "description": "Standing inside the university building you can see why this environment might be a good place for people to learn things.",
+        "locked": "0",
+        "loc": {
+          "x": "0",
+          "y": "2"
+        },
+        "exits": "north south"
+      },
+      {
+        "title": "this is a lecture theatre",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate quia recusandae aliquid vitae atque neque odit sequi rem eius qui vel amet praesentium quasi est perspiciatis ducimus eligendi corrupti dicta?",
+        "locked": "0",
+        "loc": {
+          "x": "0",
+          "y": "3"
+        },
+        "exits": "north"
+      },
+      {
+        "title": "Zac's Palace",
+        "description": "You find yourself inside Zac's palace, the greatest palace in Stourport.",
+        "locked": "0",
+        "loc": {
+          "x": "1",
+          "y": "0"
+        },
+        "exits": "west east",
+        "npcs": {
+          "npc": {
+            "name": "Zac",
+            "description": "Super cool guy.",
+            "health": "78",
+            "exp": "19",
+            "hostile": "0"
+          }
+        }
+      },
+      {
+        "title": "McDonald's",
+        "description": "This place is of horrible nature. You can hardly contain your vomit.",
+        "locked": "0",
+        "loc": {
+          "x": "2",
+          "y": "0"
+        },
+        "exits": "west south",
+        "items": "vomit happy-meal",
+        "npcs": {
+          "npc": {
+            "name": "Worker",
+            "description": "Smells a bit.",
+            "health": "78",
+            "exp": "19",
+            "hostile": "1"
+          }
+        }
+      },
+      {
+        "title": "Outside McDonald's",
+        "description": "It's surprising that the back alley is nicer than the actual restaurant...",
+        "locked": "0",
+        "loc": {
+          "x": "2",
+          "y": "1"
+        },
+        "exits": "north",
+        "items": "rubbish"
+      }
+    ]
+}
 
 var parser = new Parser(commandsJSONObject);
 var areaaa = new Area("Big house!", "This is the description", 0, 1, 0, null, null, null);
