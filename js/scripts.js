@@ -84,75 +84,62 @@ function Game(){
 // map class
 // ---------
 
-function Map(){
+function Map(mapJSONObject){
+	this._map = jQuery.parseJSON(mapJSONObject);
 
 	this.loadMap = function(){
-	
-	$xmlAreas = simplexml_load_file('txt/world.xml');
-	$areas = array();
-	$xAreaLimit = 0;
-	$yAreaLimit = 0;
 
-	foreach($xmlAreas->area as $area){
-		$title = (string)$area->title;
-		$description = (string)$area->description;
-		$locked = (int)$area->locked;
-		$x = intval($area->loc->x);
-		$y = intval($area->loc->y);
-		//$items = explode(" ", $area->items);
-		$exits = explode(" ", $area->exits);
-		$items = array();
-		foreach($area->items->item as $item){
-			$itemName = (string)$item->name;
-			$itemDesc = (string)$item->description;
-			$itemWeight = (string)$item->weight;
-			array_push($items, new Item($itemName, $itemDesc, $itemWeight));
+		areas = new Array();
+		xMapLimit = 0;
+		yMapLimit = 0;
+
+		for(var i = 0; i < this._map.area.length; i++){
+			area = this._map.area[i];
+			title = area.title;
+			description = area.description;
+			locked = area.locked;
+			x = area.loc.x;
+			y = area.loc.y;
+			exits = area.exits.split(" ");
+
+			// pete: dirty hack until I find a better fix
+			if(exits[0] == ""){ exits = new Array('north', 'south', 'east', 'west'); }
+
+			items = new Array();
+			for(var j = 0; j < area.items.item.length; j++){
+				item = area.items.item[j];
+				itemObj = new Item(item.name, item.description, item.weight);
+				items.push(itemObj);
+			}			
+			
+			npcs = new Array();
+			for(var j = 0; area.npcs.npc.length; j++){
+				npc = area.npcs.npc[j];
+				npcObj = new Npc(npc.name, npc.loc.x, npc.loc.y, npc.health, npc.exp, npc.hostile, npc.description);
+				npcs.push(npcObj);
+			}
+
+			areas[x][y] = new Area(title, description, locked, x, y, exits, items, npcs);
+
+			if(x > xMapLimit){ xMapLimit = x; }
+			if(y > yMapLimit){ yMapLimit = y; }
+
 		}
 
-		//dirty hack until I find a better fix
-		if ($exits[0] == ""){
-			$exits = array('north', 'south', 'east', 'west');
-		}
+		emptyExits = new Array(); // this code is messy :(
 
-		// npcs
-		$npcs = array();
-		foreach($area->npcs->npc as $npc){
-			$npcName = (string)$npc->name;
-			$npcDesc = (string)$npc->description;
-			$npcHealth = (int)$npc->health;
-			$npcExp = (int)$npc->exp;
-			$npcHostile = (int)$npc->hostile;
-			array_push($npcs, new NPC($npcName, $npcDesc, $x, $y, $npcHealth, $npcExp, $npcHostile));
-		}
-
-		$areas[$x][$y] = new Area($title, $description, $locked, $x, $y, $exits, $items, $npcs);
-
-		if($x > $xAreaLimit){ $xAreaLimit = $x; }
-		if($y > $yAreaLimit){ $yAreaLimit = $y; }
-
-	}
-
-	$exits = array();
-
-	for($i = 0; $i < $xAreaLimit + 1; $i++){
-		for($j = 0; $j < $yAreaLimit + 1; $j++){
-			if(empty($areas[$i][$j])){
-				$areas[$i][$j] = new Area("", "", 1, $i, $j, $exits, null, null);
+		for(i = 0; i < xMapLimit + 1; i++){
+			for(j = 0; j < yMapLimit + 1; j++){
+				if(typeof areas[i][j] == 'undefined'){
+					areas[i][j] = new Area("", "", 1, i, j, emptyExits, null, null);
+				}
 			}
 		}
-	}
 
-	return $areas;
-
+		return areas;
 	};
 
 };
-
-/* sakdnlsa */
-
-
-
-/* snaldnsald */
 
 // character class
 // ---------------
