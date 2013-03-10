@@ -53,12 +53,12 @@ function updateTerminal(commandsInput){
 	$data = game._parser.printCommands(commandListJSON);
  	$('#text').append($data); // Append on to the end of existing content
 	$('#commands').val("");	// Clear input box
-	if($data.indexOf("clearthatshit") !== -1){ // If returned output has clearscreen in it
+	/*if($data.indexOf("clearthatshit") !== -1){ // If returned output has clearscreen in it
 		$('#text').html(""); // Clear screen
 	}
 	if($data.indexOf("fullscreen") !== -1){ // If returned output has fullscreen in it
 		$('#terminal').toggleClass("fullscreen"); // Add full screen class
-	}
+	}*/
 	$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal
 }
 
@@ -412,7 +412,7 @@ function Parser(commandList){
 	{
 		var output = ""
 		json = jQuery.parseJSON(commandListJSON);
-		for(var i = 0; i < 10; i++){
+		for(var i = 0; i < json.commands.length; i++){
 			output = output + "<p> </p>";
 			output = output + "<p>\"" + json.commands[i].variants + "\"</p>";
 			output = output + "<p>" + json.commands[i].description + "</p>";
