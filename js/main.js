@@ -41,13 +41,17 @@ $('#commands').keydown(function(event) { // When keys are pressed in the input #
 	
 });
 
+var game = "";
 // Intialisation of game
-var game = new Game(commandListJSON, mapJSON);
-var data = game.launch();
-$('#text').append(data); // Append on to the end of existing content
+jQuery.getJSON("js/map.json", function(mapJSON){
+	game = new Game(mapJSON);
+	var data = game.launch();
+	$('#text').append(data); // Append on to the end of existing content
+}).complete(function(game){
+}); // end of JSON getting
 
 function updateTerminal(input){
-	data = game._parser.parseCommands(input);
+	var data = game._parser.parseCommands(input);
  	$('#text').append(data); // Append on to the end of existing content
 	$('#commands').val("");	// Clear input box
 	$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal

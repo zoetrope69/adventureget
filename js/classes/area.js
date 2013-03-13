@@ -13,11 +13,11 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
 	
 	// accessors
 
-	this.getTitle = function(){ return this._title;	}
+	this.getTitle = function(){ return this._title;	};
 
-	this.getDescription = function(){ return this._description; }
+	this.getDescription = function(){ return this._description; };
 
-	this.getLocked = function(){ return this._locked; }
+	this.getLocked = function(){ return this._locked; };
 
 	this.getLoc = function(coord){ //specify which coord, if none return both with a space between
         coord = coord.trim().toLowerCase();
@@ -27,7 +27,7 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
 
     this.getExits = function(){ return this._exits; };
 	
-	this.getItems = function(){ return this._items; }
+	this.getItems = function(){ return this._items; };
 
 	this.getNPCs = function(){ return this._npcs; };
 
