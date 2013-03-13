@@ -51,13 +51,15 @@
             "locked": 0,
             "loc": { "x": 0, "y": 1 },
             "exits": "north south",
-            "npcs": {
+            "npcs": [
+                {
                 "name": "Bill",
                 "description": "A moustachioed gentleman with a fancy for scrambled eggs.",
                 "health": 50,
                 "exp": 1337,
                 "hostile": 0
-            }
+                }
+            ]
         },
         {
             "title": "Inside the University",
@@ -78,14 +80,16 @@
             "description": "You find yourself inside Zacs palace, the greatest palace in Stourport.",
             "locked": 0,
             "loc": { "x": 1, "y": 0 },
-            "exits": "west east",
-            "npcs": {
-                "name": "Zac",
-                "description": "Super cool guy.",
-                "health": 78,
-                "exp": 19,
-                "hostile": 0
-            }
+            "exits": "west",
+            "npcs": [
+                {
+                    "name": "Zac",
+                    "description": "Super cool guy.",
+                    "health": 78,
+                    "exp": 19,
+                    "hostile": 0
+                }
+            ]
         }
     ]
 }

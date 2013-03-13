@@ -83,14 +83,14 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
 		output = output + "<p class='description'>" + this._description + "</p>";
 		output = output + "<p> </p>";		
 
-		// if(this._items.length < 0){ // if there are items
+		if(this._items.length > 0){ // if there are items
 			output = output + "<p class='items'>Items (<span class='mapicon'>i</span>) in area:</p>";
 			for(var i = 0; i < this._items.length; i++){
 				output = output + "<p class='items'>  ❖ " + this._items[i].getName() + "</p>"; 
 			}
 
 		output = output + "<p> </p>";		
-		// }
+		}
 
 
 		if(this._npcs.length > 0){ // if there are npcs

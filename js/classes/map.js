@@ -4,7 +4,6 @@
 function Map(){
 
 	this.loadMap = function(json){	
-		console.log(json);
 
 		var xMapLimit = 0;
 		var yMapLimit = 0;
