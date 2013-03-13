@@ -1,11 +1,11 @@
 // game class
 // ----------
 
-function Game(mapJSON){
+function Game(commandListJSON, mapJSON){
 	this._map = new Map(mapJSON);
 	this._areas = this._map.loadMap();
 	this._player = new Player("", 0, 0, 100, 0);
-	this._parser = new Parser(this._areas, this._player);
+	this._parser = new Parser(commandListJSON, this._areas, this._player);
 
 	this.launch = function(){
 		playerLocX = this._player.character.getLoc('x');
@@ -341,18 +341,21 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
 
 // parser class
 // ------------
-function Parser(area, player){
+function Parser(commandList, area, player){
+	this._commandList = commandList;
 	this._areas = areas;
 	this._player = player;
 
-	this.printCommands = function(json) // fresh json must come in
+	this.printCommands = function()
 	{
-		var output = new Array();
-		for(var i = 0; i < json.command.length; i++){
-			output.push("<p>\'" + json.command[i].variants + "\'</p>\n");
-			output.push("<p>" + json.command[i].description + "</p>\n<p> </p>\n");
+		var output = ""
+		json = jQuery.parseJSON(this._commandList);
+		for(var i = 0; i < json.commands.length; i++){
+			output = output + "<p> </p>";
+			output = output + "<p>\"" + json.commands[i].variants + "\"</p>";
+			output = output + "<p>" + json.commands[i].description + "</p>";
 		}
-		return output.join("");
+		return output;
 	};
 
 	this.parseCommands = function(commands){

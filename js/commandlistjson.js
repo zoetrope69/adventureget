@@ -1,4 +1,4 @@
-/*var commandListJSON = '{"commands": [{'
+var commandListJSON = '{"commands": [{'
 				    + ' "variants": "move walk go north east south west n e s w",'
 				    + ' "description": "allows you to move"'
     			+ '}, {'
@@ -40,4 +40,4 @@
 			    + '}, {'
 			        + '"variants": "zacisadick",'
 			        + '"description": "magical command"'
-    			+ '}]}';*/
+    			+ '}]}';
