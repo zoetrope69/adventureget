@@ -9,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-	<header><h1><?php echo $title; ?><a href="http://www.github.com/zaccolley/adventureget" target="_blank">come help!</a></h1></header>
+	<header class="linger"><h1><?php echo $title; ?><a href="http://www.github.com/zaccolley/adventureget" target="_blank">come help!</a></h1></header>
 	<article id="terminal">		
 		<section id="text"></section>
 		<label>&gt;</label><input id="commands" autofocus autocomplete="off" spellcheck="false"/>
