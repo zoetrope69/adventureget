@@ -56,13 +56,15 @@ function updateTerminal(commandsInput){
 	data = game._parser.parseCommands(commands);
  	$('#text').append(data); // Append on to the end of existing content
 	$('#commands').val("");	// Clear input box
-	/*if($data.indexOf("clearthatshit") !== -1){ // If returned output has clearscreen in it
-		$('#text').html(""); // Clear screen
-	}
-	if($data.indexOf("fullscreen") !== -1){ // If returned output has fullscreen in it
-		$('#terminal').toggleClass("fullscreen"); // Add full screen class
-	}*/
 	$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal
+}
+
+function clearScreen(){
+	$('#text').html("");
+}
+
+function toggleFullscreen(){
+	$('#terminal').toggleClass("fullscreen"); // Add/remove full screen class
 }
 
 // Array Remove - By John Resig (MIT Licensed)
