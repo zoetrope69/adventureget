@@ -46,8 +46,8 @@ var game = new Game(commandListJSON, mapJSON);
 var data = game.launch();
 $('#text').append(data); // Append on to the end of existing content
 
-function updateTerminal(commandsInput){
-	data = game._parser.parseCommands(commandsInput);
+function updateTerminal(input){
+	data = game._parser.parseCommands(input);
  	$('#text').append(data); // Append on to the end of existing content
 	$('#commands').val("");	// Clear input box
 	$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal

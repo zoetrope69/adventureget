@@ -165,8 +165,15 @@ function Player(name, locX, locY, health, exp){
 		return "<p>You kick the " + noun + " so hard you break your big toe!</p>";
 	};
 
-	this.describe = function(noun){
-		return "The " + noun + " looks beautiful";
+	this.describe = function(noun, areas){
+		if(noun == "area"){
+			 playerLocX = this.character.getLoc('x');
+			playerLocY = this.character.getLoc('y');
+			data = areas[playerLocY][playerLocX].printDetails();
+			return data;
+		}else{
+			return "<p>The " + noun + " looks beautiful</p>";
+		}
 	};
 
 };
@@ -360,7 +367,7 @@ function Parser(commandList, area, player){
 
 	this.parseCommands = function(commands){
 		var verbs = new Array("pick","walk", "examine", "describe", "put", "open", "kick", "attack", "talk", "fuck", "break");
-	    var nouns = new Array("sword", "key", "knife", "fork", "spoon", "chest", "door", "table", "dragon", "john", "betty", "spork", "north", "south", "east", "west");
+	    var nouns = new Array("area", "sword", "key", "knife", "fork", "spoon", "chest", "door", "table", "dragon", "john", "betty", "spork", "north", "south", "east", "west");
 
 	    var adjectives = new Array("rusty", "heavy", "bronze");
 	    var preposition = new Array("on", "under", "inside");
@@ -441,7 +448,7 @@ function Parser(commandList, area, player){
 		    if (action["verb"] == "kick") { 
 			    output = output + "<p>" + this._player.kick(action['noun']) + "</p>";
 			}else if(action["verb"] == "describe"){
-			    output = output + "<p>" + this._player.describe(action['noun']) + "</p>";
+			    output = output + this._player.describe(action['noun'], this._areas);
 			}else if(action["verb"] == "walk"){
 				direction = action["noun"];
 				output = this._player.walk(direction, this._areas);					
