@@ -6,6 +6,13 @@ function Game(commandListJSON, mapJSON){
 	this._areas = this._map.loadMap();
 	this._player = new Player("", 0, 0, 100, 0);
 	this._parser = new Parser(commandListJSON, this._areas, this._player);
+
+	this.launch = function(){
+		playerLocX = this._player.character.getLoc('x');
+		playerLocY = this._player.character.getLoc('y');
+		data = this._areas[playerLocY][playerLocX].printDetails();
+		return data;
+	}
 };
 
 // map class
@@ -140,13 +147,18 @@ function Player(name, locX, locY, health, exp){
 
 	this.character = new Character(name, locX, locY, health, exp);
 
-	this.walk = function(direction){
+	this.walk = function(direction, areas){
 		direction = direction.charAt(0);
 
              if(direction == "n"){ this.character._locY--; } // north
         else if(direction == "e"){ this.character._locX++; } // east
         else if(direction == "s"){ this.character._locY++; } // south
         else if(direction == "w"){ this.character._locX--; } // west
+
+        playerLocX = this.character.getLoc('x');
+		playerLocY = this.character.getLoc('y');
+		data = areas[playerLocY][playerLocX].printDetails();
+		return data;
 	};
 
 	this.kick = function(noun){
@@ -331,7 +343,7 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
 // ------------
 function Parser(commandList, area, player){
 	this._commandList = commandList;
-	this._area = area;
+	this._areas = areas;
 	this._player = player;
 
 	this.printCommands = function()
@@ -348,7 +360,7 @@ function Parser(commandList, area, player){
 
 	this.parseCommands = function(commands){
 		var verbs = new Array("pick","walk", "examine", "describe", "put", "open", "kick", "attack", "talk", "fuck", "break");
-	    var nouns = new Array("northern", "sword", "key", "knife", "fork", "spoon", "chest", "door", "table", "dragon", "john", "betty", "spork", "north", "south", "east", "west");
+	    var nouns = new Array("sword", "key", "knife", "fork", "spoon", "chest", "door", "table", "dragon", "john", "betty", "spork", "north", "south", "east", "west");
 
 	    var adjectives = new Array("rusty", "heavy", "bronze");
 	    var preposition = new Array("on", "under", "inside");
@@ -380,7 +392,7 @@ function Parser(commandList, area, player){
 			} // end of verb loop
 
 			noun = null;
-			for(var j = 0; j < verbs.length; j++){
+			for(var j = 0; j < nouns.length; j++){
 				noun = nouns[j];
 				if(noun == command){
 					action["noun"] = noun;
@@ -432,10 +444,7 @@ function Parser(commandList, area, player){
 			    output = output + "<p>" + this._player.describe(action['noun']) + "</p>";
 			}else if(action["verb"] == "walk"){
 				direction = action["noun"];
-				output = output + "<p>" + this._player.walk(direction) + "</p>";
-				var playerLocX = this._player.character.getLoc('x');
-				var playerLocY = this._player.character.getLoc('y');
-				var data = this._areas[playerLocY][playerLocX].printDetails();	
+				output = this._player.walk(direction, this._areas);					
 			}else{
 	            output = output + "<p>(This function does not exist)</p>";
 	        }

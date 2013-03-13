@@ -1,6 +1,3 @@
-var prevCommands = new Array(); //list of entered commands
-var commandIndex = 0;
-
 // When the window is resized
 $(window).resize(function(){ 
 	$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal
@@ -10,6 +7,9 @@ $(window).resize(function(){
 $('#terminal').click(function(){ 
 	$('#commands').focus(); // Focus input #commands
 });
+
+var prevCommands = new Array(); // List of entered commands
+var commandIndex = 0;
 
 // If someone presses enter when inputting
 $('#commands').keydown(function(event) { // When keys are pressed in the input #commands
@@ -21,7 +21,7 @@ $('#commands').keydown(function(event) { // When keys are pressed in the input #
 			prevCommands[prevCommands.length] = $enterValue;
 			commandIndex = prevCommands.length;
 		}
-		updateTerminal(this); // Commands away!
+		updateTerminal(this.value); // Commands away!
 		event.preventDefault(); // Stops enter from doing what it normally does
 	}
 	if(code == 38){ // If it's the up key
@@ -41,31 +41,20 @@ $('#commands').keydown(function(event) { // When keys are pressed in the input #
 	
 });
 
-// THE GUBBINS
+// Intialisation of game
 var game = new Game(commandListJSON, mapJSON);
-var playerLocX = game._player.character.getLoc('x');
-var playerLocY = game._player.character.getLoc('y');
-var data = game._areas[playerLocY][playerLocX].printDetails();
+var data = game.launch();
 $('#text').append(data); // Append on to the end of existing content
 
-(function(){ // When document is done loading, load main.php
-})();
-
 function updateTerminal(commandsInput){
-	var commands = commandsInput.value;
-	data = game._parser.parseCommands(commands);
+	data = game._parser.parseCommands(commandsInput);
  	$('#text').append(data); // Append on to the end of existing content
 	$('#commands').val("");	// Clear input box
 	$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal
 }
 
-function clearScreen(){
-	$('#text').html("");
-}
-
-function toggleFullscreen(){
-	$('#terminal').toggleClass("fullscreen"); // Add/remove full screen class
-}
+function clearScreen(){ $('#text').html(""); }
+function toggleFullscreen(){ $('#terminal').toggleClass("fullscreen"); } // Add/remove full screen class
 
 // Array Remove - By John Resig (MIT Licensed)
 Array.prototype.remove = function(from, to) {
