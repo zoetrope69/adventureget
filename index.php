@@ -13,7 +13,6 @@
 	</article>
 	<script type="text/javascript" src="js/jquery.js"></script> <!-- jQuery -->
 
-	<script type="text/javascript" src="js/mapjson.js"></script> <!-- What should be JSON files -->
 	<script type="text/javascript" src="js/commandlistjson.js"></script>
 
 	<!-- This structure is for ease of coding -->

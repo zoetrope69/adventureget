@@ -1,7 +1,6 @@
 // parser class
 // ------------
-function Parser(commandList, area, player){
-	this._commandList = commandList;
+function Parser(areas, player){
 	this._areas = areas;
 	this._player = player;
 

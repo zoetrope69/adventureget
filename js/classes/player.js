@@ -15,7 +15,7 @@ function Player(name, locX, locY, health, exp){
 
         playerLocX = this.character.getLoc('x');
 		playerLocY = this.character.getLoc('y');
-		data = areas[playerLocY][playerLocX].printDetails();
+		data = areas[playerLocX][playerLocY].printDetails();
 		return data;
 	};
 
@@ -27,7 +27,7 @@ function Player(name, locX, locY, health, exp){
 		if(noun == "area"){
 			 playerLocX = this.character.getLoc('x');
 			playerLocY = this.character.getLoc('y');
-			data = areas[playerLocY][playerLocX].printDetails();
+			data = areas[playerLocX][playerLocY].printDetails();
 			return data;
 		}else{
 			return "<p>The " + noun + " looks beautiful</p>";

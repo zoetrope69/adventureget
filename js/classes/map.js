@@ -1,25 +1,22 @@
 // map class
 // ---------
 
-function Map(mapJSON){
-	this._mapJSON = mapJSON;
+function Map(){
 
-	this.loadMap = function(){
-	
-		json = jQuery.parseJSON(this._mapJSON);
-	
-		xMapLimit = 0;
-		yMapLimit = 0;
+	this.loadMap = function(json){	
+
+		var xMapLimit = 0;
+		var yMapLimit = 0;
 
 		for(var i = 0; i < json.area.length; i++){
-			area = json.area[i];
-			x = area.loc.x;
-			y = area.loc.y;
+			var area = json.area[i];
+			var x = area.loc.x;
+			var y = area.loc.y;
 			if(x > xMapLimit){ xMapLimit = x; }
 			if(y > yMapLimit){ yMapLimit = y; }
 		}
       			
-		areas = [];
+		var areas = [];
 
 		for(var i = 0; i < xMapLimit + 1; i++){
 			areas[i] = [];
@@ -56,6 +53,7 @@ function Map(mapJSON){
 
   		}
 
+
 		emptyExits = new Array(); // this code is messy :(
 
 		for(i = 0; i < xMapLimit + 1; i++){
@@ -67,6 +65,7 @@ function Map(mapJSON){
 		}
 
 		return areas;
+
 	};
 
 };
