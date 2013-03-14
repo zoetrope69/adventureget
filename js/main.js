@@ -1,33 +1,3 @@
-var prevCommands = new Array(); //list of entered commands
-var commandIndex = 0;
-
-(function(){ // When document is done loading, load main.php
-	$('#text').load("main.php");
-})();
-
-// AJAX
-function updateTerminal(commandsInput){
-	$.post("main.php", { commands: commandsInput.value })
-	.done(function(data) {		
-	 	$('#text').append(data); // Append on to the end of existing content
-		$('#commands').val("");	// Clear input box
-		if(data.indexOf("clearthatshit") !== -1){ // If returned output has clearscreen in it
-			$('#text').html(""); // Clear screen
-		}
-		if(data.indexOf("fullscreen") !== -1){ // If returned output has fullscreen in it
-			if($('#terminal').is('.fullscreen')){
-				$('#terminal').removeClass("fullscreen") // Add/remove .fullscreen
-				$('header').delay(100).slideDown('fast');
-			}else{
-				$('header').slideUp('fast', function(){
-					$('#terminal').addClass("fullscreen") // Add/remove .fullscreen
-				});
-			}
-			$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal
-		}
-	});
-}
-
 // When the window is resized
 $(window).resize(function(){ 
 	$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal
@@ -37,6 +7,9 @@ $(window).resize(function(){
 $('#terminal').click(function(){ 
 	$('#commands').focus(); // Focus input #commands
 });
+
+var prevCommands = new Array(); // List of entered commands
+var commandIndex = 0;
 
 // If someone presses enter when inputting
 $('#commands').keydown(function(event) { // When keys are pressed in the input #commands
@@ -48,7 +21,7 @@ $('#commands').keydown(function(event) { // When keys are pressed in the input #
 			prevCommands[prevCommands.length] = $enterValue;
 			commandIndex = prevCommands.length;
 		}
-		updateTerminal(this); // AJAX AWAY!
+		updateTerminal(this.value); // Commands away!
 		event.preventDefault(); // Stops enter from doing what it normally does
 	}
 	if(code == 38){ // If it's the up key
@@ -68,4 +41,28 @@ $('#commands').keydown(function(event) { // When keys are pressed in the input #
 	
 });
 
+var game = "";
+// Intialisation of game
+jQuery.getJSON("js/map.json", function(json){
+	game = new Game(json);
+	var data = game.launch();
+	$('#text').append(data); // Append on to the end of existing content
+}).complete(function(game){
+}); // end of JSON getting
 
+function updateTerminal(input){
+	var data = game._parser.parseCommands(input);
+ 	$('#text').append(data); // Append on to the end of existing content
+	$('#commands').val("");	// Clear input box
+	$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal
+}
+
+function clearScreen(){ $('#text').html(""); }
+function toggleFullscreen(){ $('#terminal').toggleClass("fullscreen"); } // Add/remove full screen class
+
+// Array Remove - By John Resig (MIT Licensed)
+Array.prototype.remove = function(from, to) {
+  var rest = this.slice((to || from) + 1 || this.length);
+  this.length = from < 0 ? this.length + from : from;
+  return this.push.apply(this, rest);
+};

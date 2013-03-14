@@ -21,13 +21,14 @@ header{
 	-webkit-animation: hueRotate 15s infinite linear;
 	   -moz-animation: hueRotate 15s infinite linear;
 	     -o-animation: hueRotate 15s infinite linear;
-	     	animation: hueRotate 15s infinite linear;
+	     	animation: hueRotate 15s infinite linear; 
 
 }
 	@-webkit-keyframes hueRotate { to { -webkit-filter: hue-rotate(360deg); } }
 	   @-moz-keyframes hueRotate { to {    -moz-filter: hue-rotate(360deg); } }
 		 @-o-keyframes hueRotate { to {      -o-filter: hue-rotate(360deg); } }
 			@keyframes hueRotate { to {    	 	filter: hue-rotate(360deg); } }
+
 
 header h1{
 	width: 80vw;
@@ -44,7 +45,7 @@ header a{
 	text-decoration: none;
 }
 
-header a:hover{ opacity: 0.9; }
+header a:hover{ color: #414141; }
 
 #terminal{
     cursor: default;
@@ -101,6 +102,12 @@ header a:hover{ opacity: 0.9; }
 	width: 100% !important; 
 	height: 100vh !important;
 	margin: 0 auto !important;
+
+	-webkit-transition: width .25s ease-in-out, height .25s ease-in-out, height .25s .25s ease-in-out;
+  	   -moz-transition: width .25s ease-in-out, height .25s ease-in-out, height .25s .25s ease-in-out;
+  		-ms-transition: width .25s ease-in-out, height .25s ease-in-out, height .25s .25s ease-in-out;
+  		 -o-transition: width .25s ease-in-out, height .25s ease-in-out, height .25s .25s ease-in-out;
+  			transition: width .25s ease-in-out, height .25s ease-in-out, height .25s .25s ease-in-out;
 }
 
 /* terminal text colours */
