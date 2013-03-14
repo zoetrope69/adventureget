@@ -9,18 +9,6 @@
         "description": "allows you to pickup items"
       },
       {
-        "variants": "climb",
-        "description": "climbs things"
-      },
-      {
-        "variants": "h help",
-        "description": "displays help"
-      },
-      {
-        "variants": "i inv inventory",
-        "description": "displays inventory"
-      },
-      {
         "variants": "drop",
         "description": "drops items in current area"
       },
@@ -35,14 +23,14 @@
       {
         "variants": "map",
         "description": "allows you to see the map"
+      },      
+      {
+        "variants": "i inv inventory",
+        "description": "displays inventory"
       },
       {
-        "variants": "setname",
-        "description": "allows you to set your name"
-      },
-      {
-        "variants": "getname myname",
-        "description": "displays your name"
+        "variants": "h help",
+        "description": "displays help"
       },
       {
         "variants": "clr clear clearscreen clearterminal",
@@ -51,10 +39,6 @@
       {
         "variants": "fullscreen flscrn fullscrn",
         "description": "makes terminal fullscreen"
-      },
-      {
-        "variants": "zacisadick",
-        "description": "magical command"
       }
     ]
 }

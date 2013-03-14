@@ -6,14 +6,18 @@ function Parser(areas, player){
 
 	this.printCommands = function()
 	{
-		var output = ""
-		json = jQuery.parseJSON(this._commandList);
-		for(var i = 0; i < json.commands.length; i++){
-			output = output + "<p> </p>";
-			output = output + "<p>\"" + json.commands[i].variants + "\"</p>";
-			output = output + "<p>" + json.commands[i].description + "</p>";
+		var output = new Array();
+		output.push("<p>Here is a list of commands:</p><p> </p>");
+		jQuery.getJSON("js/commandlist.json", function(json){
+		for(var i = 0; i < json.command.length; i++){
+			output.push("<p> </p>");
+			output.push("<p>\"" + json.command[i].variants + "\"</p>");
+			output.push("<p>" + json.command[i].description + "</p>");
 		}
-		return output;
+		}).complete(function(){
+			$('#text').append(output.join("")); // Append on to the end of existing content
+			$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal
+		});
 	};
 
 	this.parseCommands = function(commands){
@@ -86,6 +90,7 @@ function Parser(areas, player){
 
 	         if(commands[0] == "fullscreen"){  toggleFullscreen(); }
 	    else if(commands[0] == "clearscreen"){ clearScreen(); }
+	    else if(commands[0] == "help"){ this.printCommands(); }
 		else{
 
 	    	output = "";
