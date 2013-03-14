@@ -1,5 +1,5 @@
 <?php
-//The graphical map class
+//The graphical map class...
  
 class GraphicalMap{
 	private $_areas;
