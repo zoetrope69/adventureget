@@ -58,7 +58,10 @@ function updateTerminal(input){
 }
 
 function clearScreen(){ $('#text').html(""); }
-function toggleFullscreen(){ $('#terminal').toggleClass("fullscreen"); } // Add/remove full screen class
+function toggleFullscreen(){
+	$('header').slideToggle(250);
+	$('#terminal').toggleClass("fullscreen");
+} // Add/remove full screen class
 
 // Array Remove - By John Resig (MIT Licensed)
 Array.prototype.remove = function(from, to) {

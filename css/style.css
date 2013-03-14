@@ -14,6 +14,10 @@ body{
 }
 
 header{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
 	padding: 0.25em;
 	border-bottom: 1px solid #7BFF51;
 	background: #F0F0F0;
@@ -63,11 +67,11 @@ header a:hover{ color: #414141; }
   		-ms-user-select: none;
   			user-select: none;
 
-	-webkit-transition: margin .25s ease-in-out, height .25s ease-in-out, width .25s .25s ease-in-out;
-  	   -moz-transition: margin .25s ease-in-out, height .25s ease-in-out, width .25s .25s ease-in-out;
-  		-ms-transition: margin .25s ease-in-out, height .25s ease-in-out, width .25s .25s ease-in-out;
-  		 -o-transition: margin .25s ease-in-out, height .25s ease-in-out, width .25s .25s ease-in-out;
-  			transition: margin .25s ease-in-out, height .25s ease-in-out, width .25s .25s ease-in-out;
+	-webkit-transition: outline-width .15s linear, border-width .25s linear, margin .25s ease-in-out, height .25s ease-in-out, width .25s .25s ease-in-out;
+  	   -moz-transition: outline-width .15s linear, border-width .25s linear, margin .25s ease-in-out, height .25s ease-in-out, width .25s .25s ease-in-out;
+  		-ms-transition: outline-width .15s linear, border-width .25s linear, margin .25s ease-in-out, height .25s ease-in-out, width .25s .25s ease-in-out;
+  		 -o-transition: outline-width .15s linear, border-width .25s linear, margin .25s ease-in-out, height .25s ease-in-out, width .25s .25s ease-in-out;
+  			transition: outline-width .15s linear, border-width .25s linear, margin .25s ease-in-out, height .25s ease-in-out, width .25s .25s ease-in-out;
 }
 
 #terminal, #terminal input#commands{
@@ -102,12 +106,8 @@ header a:hover{ color: #414141; }
 	width: 100% !important; 
 	height: 100vh !important;
 	margin: 0 auto !important;
-
-	-webkit-transition: width .25s ease-in-out, height .25s ease-in-out, height .25s .25s ease-in-out;
-  	   -moz-transition: width .25s ease-in-out, height .25s ease-in-out, height .25s .25s ease-in-out;
-  		-ms-transition: width .25s ease-in-out, height .25s ease-in-out, height .25s .25s ease-in-out;
-  		 -o-transition: width .25s ease-in-out, height .25s ease-in-out, height .25s .25s ease-in-out;
-  			transition: width .25s ease-in-out, height .25s ease-in-out, height .25s .25s ease-in-out;
+	border-width: 0 !important;
+	outline-width: 0 !important;
 }
 
 /* terminal text colours */
