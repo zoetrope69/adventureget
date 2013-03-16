@@ -38,12 +38,26 @@ function Player(name, locX, locY, health, exp){
 
 	this.describe = function(noun, areas){
 		if(noun == "area"){
-			 playerLocX = this.character.getLoc('x');
+			playerLocX = this.character.getLoc('x');
 			playerLocY = this.character.getLoc('y');
 			data = areas[playerLocX][playerLocY].printDetails();
 			return data;
 		}else{
 			return "<p>The " + noun + " looks beautiful</p>";
+		}
+	};
+
+	this.inventory = function(){
+		var items = this.character.getItems();
+		if(items.length > 0){
+			var output = "";
+			output = output + "<p>In your inventory you have:</p>";
+			for(var i = 0; i < items.length; i++){
+				output = output + "<p>* " + items[i].getName() + "</p>";
+			}
+			return output;
+		}else{
+			return "<p class='warn'>Your inventory is empty</p>";
 		}
 	};
 
