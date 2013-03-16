@@ -89,7 +89,7 @@ function Parser(areas, player){
 	    // special commands
 
 	         if(commands[0] == "fullscreen"){  toggleFullscreen(); }
-	    else if(commands[0] == "clearscreen"){ clearScreen(); }
+	    else if(commands[0] == "clearscreen" || commands[0] == "clear"){ clearScreen(); }
 	    else if(commands[0] == "help"){ this.printCommands(); }
 		else{
 
@@ -103,9 +103,9 @@ function Parser(areas, player){
 
 		    if (action["verb"] == "kick") { 
 			    output = output + "<p>" + this._player.kick(action['noun']) + "</p>";
-			}else if(action["verb"] == "describe"){
+			}else if(action["verb"] == "describe" || action["verb"] == "examine"){
 			    output = output + this._player.describe(action['noun'], this._areas);
-			}else if(action["verb"] == "walk"){
+			}else if(action["verb"] == "walk" || action["verb"] == "move"){
 				direction = action["noun"];
 				output = this._player.walk(direction, this._areas);					
 			}else{

@@ -10,13 +10,13 @@ function Player(name, locX, locY, health, exp){
 		var validDirection = 0;	
         var playerLocX = this.character.getLoc('x');
 		var playerLocY = this.character.getLoc('y');
-		var currentArea =  areas[playerLocX][playerLocY]; 
+		var currentArea =  areas[playerLocX][playerLocY];
 		for(var exit = 0; exit < currentArea.getExits().length; exit++){
 			exits = currentArea.getExits();
 			if(direction == exits[exit].charAt(0)){
 				validDirection++;
 			}
-		}       
+		}
 
 		if(validDirection > 0){
 			     if(direction == "n"){ this.character._locY--; } // north
@@ -26,8 +26,6 @@ function Player(name, locX, locY, health, exp){
 
 	        var playerLocX = this.character.getLoc('x');
 			var playerLocY = this.character.getLoc('y');
-			console.log("x:"+playerLocX);
-			console.log("y:"+playerLocY);
 			return areas[playerLocX][playerLocY].printDetails();
 		}else{
 			return "<p class='warn'>You can't walk that way!</p>";
