@@ -96,7 +96,7 @@ function Parser(areas, player){
 	    	output = "";
 
 		    if(action["verb"] == null || action["noun"] == null){
-		        return "<p>(This is not a valid command)</p>";
+		        return "<p class='warn'>This is not a valid command</p>";
 		    }else{
 		        output = "<p>" + action["subject"] + " "  + action["verb"] + " " + action["article"] + " " + action["noun"] + "</p>";
 		    }
@@ -109,7 +109,7 @@ function Parser(areas, player){
 				direction = action["noun"];
 				output = this._player.walk(direction, this._areas);					
 			}else{
-	            output = output + "<p>(This function does not exist)</p>";
+	            output = output + "<p class='warn'>This function does not exist</p>";
 	        }
 
 	        return output;

@@ -13,8 +13,6 @@
 	</article>
 	<script type="text/javascript" src="js/jquery.js"></script> <!-- jQuery -->
 
-	<script type="text/javascript" src="js/commandlistjson.js"></script>
-
 	<!-- This structure is for ease of coding -->
 	<script type="text/javascript" src="js/classes/game.js"></script>
 	<script type="text/javascript" src="js/classes/parser.js"></script>
