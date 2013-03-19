@@ -21,7 +21,7 @@ function Parser(areas, player){
 	};
 
 	this.parseCommands = function(commands){
-		var verbs = new Array("pickup", "get","walk", "examine", "describe", "put", "open", "kick", "attack", "talk", "fuck", "break");
+		var verbs = new Array("drop", "pickup", "get","walk", "examine", "describe", "put", "open", "kick", "attack", "talk", "fuck", "break");
 	    var nouns = new Array("all", "area", "sword", "key", "knife", "fork", "spoon", "chest", "door", "table", "dragon", "john", "betty", "spork", "north", "south", "east", "west");
 
 	    var adjectives = new Array("rusty", "heavy", "bronze");
@@ -118,7 +118,12 @@ function Parser(areas, player){
 			else if(action["verb"] == "pickup" || action["verb"] == "get")
 			{
 				item = action["noun"];
-				output = this._player.pickup(item, this._areas);
+				output = this._player.moveItems(item, this._areas, "pick up");
+			}
+			else if(action["verb"] == "drop")
+			{
+				item = action["noun"];
+				output = this._player.moveItems(item, this._areas, "drop");
 			}
 			else{
 	            output = output + "<p class='warn'>This function does not exist</p>";
