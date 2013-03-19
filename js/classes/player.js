@@ -61,7 +61,7 @@ function Player(name, locX, locY, health, exp){
 		}
 	};
 
-	this.moveItems = function(noun, areas, option){
+	this.moveItems = function(noun, areas, option){ /* I need to improve this and comment */
 		var playerLocX = this.character.getLoc('x');
 		var playerLocY = this.character.getLoc('y');
 		var currentArea = areas[playerLocX][playerLocY];
@@ -89,7 +89,9 @@ function Player(name, locX, locY, health, exp){
 			}
 		}
 		output = output + "<p>You " + option + " the " + itemNameArray.join(", ") + ".</p>";
-		if(!movedItem){ output = output + "<p class='warn'>There is no " + noun + " to " + option + ".</p>"; }
+		var commaPos = output.lastIndexOf(',');
+		output = output.substring(0,commaPos) + " and" + output.substring(commaPos + 1)
+		if(!movedItem){ output = "<p class='warn'>There is no " + noun + " to " + option + ".</p>"; }
         return output;
 	};          
 
