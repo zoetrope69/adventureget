@@ -61,4 +61,34 @@ function Player(name, locX, locY, health, exp){
 		}
 	};
 
+	this.pickup = function(noun, areas){
+		var playerLocX = this.character.getLoc('x');
+		var playerLocY = this.character.getLoc('y');
+		var currentArea = areas[playerLocX][playerLocY];
+		var items = currentArea.getItems();
+		var pickup = false;
+		output = "";
+		if(noun == "all"){
+			for(var i = 0; i < items.length; i++){
+				output = output + "<p>You pick up the " + items[i].getName() + ".</p>";
+				this.character.addItem(items[i]);
+				currentArea.removeItem(items[i]);
+				pickup = true;
+			}
+		}else{
+			for(var i = 0; i < items.length; i++){
+				if(noun == items[i].getName()){
+					output = output + "<p>You pick up the " + items[i].getName() + ".</p>";
+					this.character.addItem(items[i]);
+					currentArea.removeItem(items[i]);
+					pickup = true;
+				}
+			}
+		}
+		if(!pickup){
+            output = output + "<p class='warn'>There is no " + noun + " to pick up.</p>";
+        }
+        return output;
+	};               
+
 };
