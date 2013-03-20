@@ -59,6 +59,12 @@ function updateTerminal(input){
 
 function clearScreen(){ $('#text').html(""); }
 
+function toggleColourScheme(){ // toggle colour scheme
+	$('#terminal').toggleClass("light");
+	$('#terminal').find('label').toggleClass("light");
+	$('#commands').toggleClass("light");
+}
+
 var fullscreen = false;
 function toggleFullscreen(){ 
 	if(!fullscreen){ // Make the actual page fullscreen

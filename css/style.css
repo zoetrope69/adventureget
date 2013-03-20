@@ -61,19 +61,21 @@ header a:hover{ color: #414141; }
 	height: 80vh;
 	border: 5px solid #F0F0F0;
 	outline: 1px solid #C0C0C0;
-	background: #181B33;
+	background-color: #181B33;
 
     -webkit-user-select: none; 
 	   -moz-user-select: none;
   		-ms-user-select: none;
   			user-select: none;
 
-	-webkit-transition: outline-width .15s .05s linear, border-width .25s .05s linear, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
+	-webkit-transition: background-color .75s, outline-width .15s .05s linear, border-width .25s .05s linear, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
   	   -moz-transition: outline-width .15s .5s linear, border-width .25s .5s linear, margin .25s .5s ease-in-out, height .25s .5s ease-in-out, width .25s .75s ease-in-out;
   		-ms-transition: outline-width .15s .5s linear, border-width .25s .5s linear, margin .25s .5s ease-in-out, height .25s .5s ease-in-out, width .25s .75s ease-in-out;
   		 -o-transition: outline-width .15s .5s linear, border-width .25s .5s linear, margin .25s .5s ease-in-out, height .25s .5s ease-in-out, width .25s .75s ease-in-out;
   			transition: outline-width .15s .5s linear, border-width .25s .5s linear, margin .25s .5s ease-in-out, height .25s .5s ease-in-out, width .25s .75s ease-in-out;
 }
+
+#terminal.light{ background-color: #EEE8D5; }
 
 #terminal, #terminal input#commands{
 	color: #C5FFA9;
@@ -82,17 +84,23 @@ header a:hover{ color: #414141; }
 	line-height: 1.15em;
 }
 
+#terminal input#commands, #terminal label{
+	-webkit-transition: background-color .75s;
+}
+
+#terminal input#commands.light, #terminal label.light{ color: #002B36; }
+
+#terminal label{
+	width: 10%;
+	margin-right: 0.65em;
+}
+
 #terminal input#commands{
 	font-size: 1em;
 	display: inline-block;
 	width: 90%;
 	background: none;
 	border: none;
-}
-
-#terminal label{
-	width: 10%;
-	margin-right: 0.65em;
 }
 
 #terminal input#commands:focus{
@@ -118,7 +126,7 @@ header a:hover{ color: #414141; }
 .title{	color: #EB9D0D; }
 .description{ color: #cc9966; }
 .npcs{ color: #5851FF; }
-.warn{ color: #FF0085; }
+.warn{ color: #DC322F; }
 
 /* map and it's icons */
 
