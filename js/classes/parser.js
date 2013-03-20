@@ -89,9 +89,9 @@ function Parser(areas, player){
 	    // special commands
 
 	         if(commands[0] == "fullscreen"){  toggleFullscreen(); }
-	    else if(commands[0] == "clearscreen" || commands[0] == "clear"){ clearScreen(); }
-	    else if(commands[0] == "help"){ this.printCommands(); }
-	    else if(commands[0] == "inventory" || commands[0] == "i"){ return this._player.inventory(); }
+	    else if(commands[0] == "clearscreen" || commands[0] == "clear" || commands[0] == "clr"){ clearScreen(); }
+	    else if(commands[0] == "help" || commands[0] == "h"){ this.printCommands(); }
+	    else if(commands[0] == "inventory" || commands[0] == "i" || commands[0] == "inv"){ return this._player.inventory(); }
 		else{
 
 	    	output = "";
@@ -111,7 +111,7 @@ function Parser(areas, player){
 			{
 			    output = output + this._player.describe(action['noun'], this._areas);
 			}
-			else if(action["verb"] == "walk" || action["verb"] == "move")
+			else if(action["verb"] == "walk" || action["verb"] == "move" || action["verb"] == "go")
 			{
 				direction = action["noun"];
 				output = this._player.walk(direction, this._areas);					

@@ -1,11 +1,11 @@
 {
     "command": [
       {
-        "variants": "move walk go north east south west n e s w",
+        "variants": "move walk go",
         "description": "allows you to move"
       },
       {
-        "variants": "pickup get grab",
+        "variants": "pickup get",
         "description": "allows you to pickup items"
       },
       {
@@ -13,11 +13,7 @@
         "description": "drops items in current area"
       },
       {
-        "variants": "talk chat speak",
-        "description": "talk [npc] allows you to start a conversation with a NPC"
-      },
-      {
-        "variants": "describe examine whatis",
+        "variants": "describe examine",
         "description": "allows you to get more info on areas, items and npcs"
       },
       {
@@ -33,11 +29,11 @@
         "description": "displays help"
       },
       {
-        "variants": "clr clear clearscreen clearterminal",
+        "variants": "clr clear clearscreen",
         "description": "clears the terminal window"
       },
       {
-        "variants": "fullscreen flscrn fullscrn",
+        "variants": "fullscreen",
         "description": "makes terminal fullscreen"
       }
     ]
