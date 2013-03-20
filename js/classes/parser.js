@@ -99,7 +99,8 @@ function Parser(areas, player){
 		    if(action["verb"] == null || action["noun"] == null){
 		        return "<p class='warn'>This is not a valid command</p>";
 		    }else{
-		        output = "<p>" + action["subject"] + " "  + action["verb"] + " " + action["article"] + " " + action["noun"] + "</p>";
+		        output = "<p>" + action["subject"] + " "  + action["verb"] + " " + action["article"] + " " + action["noun"] + ".</p>";
+
 		    }
 
 		    if(action["verb"] == "kick")

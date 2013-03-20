@@ -37,13 +37,24 @@ function Player(name, locX, locY, health, exp){
 	};
 
 	this.describe = function(noun, areas){
+		playerLocX = this.character.getLoc('x');
+		playerLocY = this.character.getLoc('y');
+		currentArea = areas[playerLocX][playerLocY];
+		var items = new Array();
+		items = this.character.getItems().concat(currentArea.getItems());
+
 		if(noun == "area"){
-			playerLocX = this.character.getLoc('x');
-			playerLocY = this.character.getLoc('y');
-			data = areas[playerLocX][playerLocY].printDetails();
-			return data;
-		}else{
-			return "<p>The " + noun + " looks beautiful</p>";
+			return currentArea.printDetails();
+		}
+		else{
+			var itemFound = false;
+			for(var i = 0; i < items.length; i++){
+				if(noun == items[i].getName()){
+					return "<p>" + items[i].getDescription() + "</p>";
+					itemFound = true;
+				}
+			}
+			if(!itemFound){ return "<p>The " + noun + " is of little interest...</p>"; }
 		}
 	};
 
