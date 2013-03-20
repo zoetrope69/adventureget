@@ -92,6 +92,7 @@ function Parser(areas, player){
 	    else if(commands[0] == "clearscreen" || commands[0] == "clear" || commands[0] == "clr"){ clearScreen(); }
 	    else if(commands[0] == "help" || commands[0] == "h"){ this.printCommands(); }
 	    else if(commands[0] == "inventory" || commands[0] == "i" || commands[0] == "inv"){ return this._player.inventory(); }
+		else if(commands[0] == "map"){ return this._player.map(this._areas); }
 		else{
 
 	    	output = "";

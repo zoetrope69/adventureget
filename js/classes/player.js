@@ -104,6 +104,8 @@ function Player(name, locX, locY, health, exp){
 		output = output.substring(0,commaPos) + " and" + output.substring(commaPos + 1)
 		if(!movedItem){ output = "<p class='warn'>There is no " + noun + " to " + option + ".</p>"; }
         return output;
-	};          
+	};
+
+	this.map = function(areas){ return "<p class='warn'>You've lost your map! (Or I haven't implemented it yet...)</p>"};
 
 };
