@@ -73,8 +73,8 @@ function toggleFullscreen(){ // Make the actual page fullscreen
 	else if(document.webkitCancelFullScreen){ document.webkitCancelFullScreen(); }
 		fullscreen = false;
 	}
-	$('header').slideToggle(250);
-	$('#terminal').toggleClass("fullscreen");
+		$('#terminal').toggleClass("fullscreen");
+		$('header').delay(50).slideToggle(250);
 }
 
 // Array Remove - By John Resig (MIT Licensed)
