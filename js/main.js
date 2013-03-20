@@ -60,21 +60,21 @@ function updateTerminal(input){
 function clearScreen(){ $('#text').html(""); }
 
 var fullscreen = false;
-function toggleFullscreen(){ // Make the actual page fullscreen
-	if(!fullscreen){
+function toggleFullscreen(){ 
+	if(!fullscreen){ // Make the actual page fullscreen
 		var d = document.documentElement;
 			 if(d.requestFullscreen){ d.requestFullscreen(); }
 		else if(d.mozRequestFullScreen){ d.mozRequestFullScreen(); }
 		else if(d.webkitRequestFullScreen){ d.webkitRequestFullScreen(); }
 		fullscreen = true;
-	}else{
+	}else{ // Exit full screen mode of actual page
 		 if(document.exitFullscreen){ document.exitFullscreen(); }
 	else if(document.mozCancelFullScreen){ document.mozCancelFullScreen(); }
 	else if(document.webkitCancelFullScreen){ document.webkitCancelFullScreen(); }
 		fullscreen = false;
 	}
-		$('#terminal').toggleClass("fullscreen");
-		$('header').delay(50).slideToggle(250);
+		$('#terminal').toggleClass("fullscreen"); // Make terminal grow/shrink
+		$('header').delay(50).slideToggle(250); // Slide header up/down
 }
 
 // Array Remove - By John Resig (MIT Licensed)
