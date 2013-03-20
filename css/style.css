@@ -116,8 +116,8 @@ header a:hover{ color: #414141; }
 .exits{	color: #cc6666; }
 .title{	color: #EB9D0D; }
 .description{ color: #cc9966; }
-.npcs{ color: #7BFF51; }
-.warn{ color: rgb(173, 0, 255); }
+.npcs{ color: #5851FF; }
+.warn{ color: #FF0085; }
 
 /* map and it's icons */
 
