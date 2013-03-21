@@ -89,6 +89,13 @@
                     "exp": 19,
                     "hostile": 0
                 }
+            ],
+            "items": [
+                {
+                    "name": "dog",
+                    "description": "It's fluffy... Ah fuck, it bit me!",
+                    "weight": 100
+                }
             ]
         }
     ]
