@@ -22,7 +22,10 @@ function Parser(areas, player){
 
 	this.parseCommands = function(commands){
 		var verbs = new Array("drop", "pickup", "get","walk", "examine", "describe", "put", "open", "kick", "attack", "talk", "fuck", "break");
-	    var nouns = new Array("all", "area", "sword", "key", "knife", "fork", "spoon", "chest", "door", "table", "dragon", "john", "jane", "spork", "north", "south", "east", "west");
+	    var nouns = new Array("all", "area", "north", "south", "east", "west");
+	    var items = new Array("sword", "key", "knife", "fork", "spoon", "chest", "door", "table");
+	    var npcs = new Array("john", "jane");
+	    nouns = items.concat(npcs);
 
 	    var adjectives = new Array("rusty", "heavy", "bronze");
 	    var preposition = new Array("on", "under", "inside");
@@ -83,7 +86,13 @@ function Parser(areas, player){
 		} // end of command loop
 
 		if(action["article"] == null){
-	        action["article"] = "the";
+			var anyNpcs = 0;
+			for(var i = 0; i < npcs.length; i++){
+				if(action["noun"] == npcs[i].toLowerCase()){ anyNpcs++; }
+
+				if(anyNpcs > 0){ action["article"] = "" }
+				else{ action["article"] = "the"; }		
+			}	
 	    }
 
 	    // special commands
@@ -101,8 +110,9 @@ function Parser(areas, player){
 		    if(action["verb"] == null || action["noun"] == null){
 		        return "<p class='warn'>This is not a valid command</p>";
 		    }else{
-		        output = "<p>" + action["subject"] + " "  + action["verb"] + " " + action["article"] + " " + action["noun"] + ".</p>";
-
+		    	if(action["article"] != ""){ action["article"] =   action["article"] + " "; }
+		        output = action["subject"] + " "  + action["verb"] + " " + action["article"] + action["noun"];
+		        output = "<p class='dull'>" +  output.charAt(0).toUpperCase() + output.slice(1) + ".</p>";
 		    }
 
 		    if(action["verb"] == "kick")
