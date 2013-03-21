@@ -128,11 +128,13 @@ header a:hover{ color: #414141; }
 /* terminal text colours */
 
 .items{	color: #0099FF; }
-.exits{	color: #CC6666; }
+.exits{	color: #83CC66; }
 .title{	color: #EB9D0D; }
 .description{ color: #CC9966; }
 .npcs{ color: #5851FF; }
+
 .warn{ color: #DC322F; }
+.dull{ color: #DDD; }
 
 /* map and it's icons */
 

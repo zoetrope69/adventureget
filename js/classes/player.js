@@ -39,22 +39,32 @@ function Player(name, locX, locY, health, exp){
 	this.describe = function(noun, areas){
 		playerLocX = this.character.getLoc('x');
 		playerLocY = this.character.getLoc('y');
-		currentArea = areas[playerLocX][playerLocY];
-		var items = new Array();
-		items = this.character.getItems().concat(currentArea.getItems());
+		currentArea = areas[playerLocX][playerLocY];		
 
 		if(noun == "area"){
 			return currentArea.printDetails();
 		}
 		else{
-			var itemFound = false;
+			var items = new Array();
+			items = this.character.getItems().concat(currentArea.getItems());
+			var descFound = false;
 			for(var i = 0; i < items.length; i++){
 				if(noun == items[i].getName()){
-					return "<p>" + items[i].getDescription() + "</p>";
-					itemFound = true;
+					return "<p class='items'>" + items[i].getDescription() + "</p>";
+					descFound = true;
 				}
 			}
-			if(!itemFound){ return "<p>The " + noun + " is of little interest...</p>"; }
+			if(!descFound){
+				var npcs = currentArea.getNpcs();
+				for(var i = 0; i < npcs.length; i++){
+					npc = npcs[i].getCharacter();
+					if(noun == npc.getName().toLowerCase()){
+						return "<p class='npcs'>" + npcs[i].getDescription() + "</p>";
+						descFound = true;
+					}
+				}
+			}
+			if(!descFound){ return "<p class='dull'>The " + noun + " is of little interest...</p>"; }
 		}
 	};
 

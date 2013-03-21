@@ -29,7 +29,7 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
 	
 	this.getItems = function(){ return this._items; };
 
-	this.getNPCs = function(){ return this._npcs; };
+	this.getNpcs = function(){ return this._npcs; };
 
 	// mutators
 
