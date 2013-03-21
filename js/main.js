@@ -1,3 +1,9 @@
+// First things first!
+(function(){
+	$('#terminal').addClass('terminal-transitions');
+})()
+
+
 // When the window is resized
 $(window).resize(function(){ 
 	$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal

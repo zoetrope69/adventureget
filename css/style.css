@@ -67,12 +67,14 @@ header a:hover{ color: #414141; }
 	   -moz-user-select: none;
   		-ms-user-select: none;
   			user-select: none;
+	}
 
+.terminal-transitions{
 	-webkit-transition: background-color .75s, outline-width .15s .05s linear, border-width .25s .05s linear, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
-  	   -moz-transition: outline-width .15s .5s linear, border-width .25s .5s linear, margin .25s .5s ease-in-out, height .25s .5s ease-in-out, width .25s .75s ease-in-out;
-  		-ms-transition: outline-width .15s .5s linear, border-width .25s .5s linear, margin .25s .5s ease-in-out, height .25s .5s ease-in-out, width .25s .75s ease-in-out;
-  		 -o-transition: outline-width .15s .5s linear, border-width .25s .5s linear, margin .25s .5s ease-in-out, height .25s .5s ease-in-out, width .25s .75s ease-in-out;
-  			transition: outline-width .15s .5s linear, border-width .25s .5s linear, margin .25s .5s ease-in-out, height .25s .5s ease-in-out, width .25s .75s ease-in-out;
+  	   -moz-transition: background-color .75s, outline-width .15s .05s linear, border-width .25s .05s linear, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
+  		-ms-transition: background-color .75s, outline-width .15s .05s linear, border-width .25s .05s linear, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
+  		 -o-transition: background-color .75s, outline-width .15s .05s linear, border-width .25s .05s linear, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
+  			transition: background-color .75s, outline-width .15s .05s linear, border-width .25s .05s linear, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
 }
 
 #terminal.light{ background-color: #EEE8D5; }
@@ -86,6 +88,10 @@ header a:hover{ color: #414141; }
 
 #terminal input#commands, #terminal label{
 	-webkit-transition: background-color .75s;
+	   -moz-transition: background-color .75s;
+		-ms-transition: background-color .75s;
+		 -o-transition: background-color .75s;
+			transition: background-color .75s;
 }
 
 #terminal input#commands.light, #terminal label.light{ color: #002B36; }
@@ -121,10 +127,10 @@ header a:hover{ color: #414141; }
 
 /* terminal text colours */
 
-.items{	color: #0099ff; }
-.exits{	color: #cc6666; }
+.items{	color: #0099FF; }
+.exits{	color: #CC6666; }
 .title{	color: #EB9D0D; }
-.description{ color: #cc9966; }
+.description{ color: #CC9966; }
 .npcs{ color: #5851FF; }
 .warn{ color: #DC322F; }
 
