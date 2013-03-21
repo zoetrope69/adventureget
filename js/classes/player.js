@@ -6,23 +6,23 @@ function Player(name, locX, locY, health, exp){
 	this.character = new Character(name, locX, locY, health, exp);
 
 	this.walk = function(direction, areas){
-		var direction = direction.charAt(0);
 		var validDirection = 0;	
         var playerLocX = this.character.getLoc('x');
 		var playerLocY = this.character.getLoc('y');
 		var currentArea =  areas[playerLocX][playerLocY];
+
 		for(var exit = 0; exit < currentArea.getExits().length; exit++){
 			exits = currentArea.getExits();
-			if(direction == exits[exit].charAt(0)){
+			if(direction == exits[exit]){
 				validDirection++;
 			}
 		}
 
 		if(validDirection > 0){
-			     if(direction == "n"){ this.character._locY--; } // north
-	        else if(direction == "e"){ this.character._locX++; } // east
-	        else if(direction == "s"){ this.character._locY++; } // south
-	        else if(direction == "w"){ this.character._locX--; } // west
+			     if(direction == "north"){ this.character._locY--; } // north
+	        else if(direction == "east"){ this.character._locX++; } // east
+	        else if(direction == "south"){ this.character._locY++; } // south
+	        else if(direction == "west"){ this.character._locX--; } // west
 
 	        var playerLocX = this.character.getLoc('x');
 			var playerLocY = this.character.getLoc('y');
@@ -57,8 +57,7 @@ function Player(name, locX, locY, health, exp){
 			if(!descFound){
 				var npcs = currentArea.getNpcs();
 				for(var i = 0; i < npcs.length; i++){
-					npc = npcs[i].getCharacter();
-					if(noun == npc.getName().toLowerCase()){
+					if(noun == npcs[i].getName().toLowerCase()){
 						return "<p class='npcs'>" + npcs[i].getDescription() + "</p>";
 						descFound = true;
 					}

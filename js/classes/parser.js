@@ -21,11 +21,28 @@ function Parser(areas, player){
 	};
 
 	this.parseCommands = function(commands){
+		var playerLocX = this._player.character.getLoc('x');
+		var playerLocY = this._player.character.getLoc('y');
+		var currentArea = areas[playerLocX][playerLocY];
+
 		var verbs = new Array("drop", "pickup", "get","walk", "examine", "describe", "put", "open", "kick", "attack", "talk", "fuck", "break");
-	    var nouns = new Array("all", "area", "north", "south", "east", "west");
-	    var items = new Array("sword", "key", "knife", "fork", "spoon", "chest", "door", "table");
-	    var npcs = new Array("john", "jane");
-	    nouns = items.concat(npcs);
+	    var nouns = new Array("all", "area", "north", "east", "south", "west", "n", "e", "s", "w");
+
+	    var items =  currentArea.getItems();
+	    items.concat(this._player..character.getItems());
+	    var itemNames = new Array();
+	    for(var i = 0; i < items.length; i++){
+	    	itemNames.push(items[i].getName());
+	    }
+
+	    var npcs = currentArea.getNpcs();
+	    var npcNames = new Array();
+	    for(var i = 0; i < npcs.length; i++){
+	    	npcNames.push(npcs[i].getName().toLowerCase());
+	    	console.log(npcs[i].getName());
+	    }
+
+	    nouns = nouns.concat(itemNames.concat(npcNames));
 
 	    var adjectives = new Array("rusty", "heavy", "bronze");
 	    var preposition = new Array("on", "under", "inside");
@@ -88,7 +105,7 @@ function Parser(areas, player){
 		if(action["article"] == null){
 			var anyNpcs = 0;
 			for(var i = 0; i < npcs.length; i++){
-				if(action["noun"] == npcs[i].toLowerCase()){ anyNpcs++; }
+				if(action["noun"] == npcs[i].getName().toLowerCase()){ anyNpcs++; }
 
 				if(anyNpcs > 0){ action["article"] = "" }
 				else{ action["article"] = "the"; }		
@@ -126,7 +143,7 @@ function Parser(areas, player){
 			else if(action["verb"] == "walk" || action["verb"] == "move" || action["verb"] == "go")
 			{
 				direction = action["noun"];
-				output = this._player.walk(direction, this._areas);					
+				output = this._player.walk(direction, this._areas);				
 			}
 			else if(action["verb"] == "pickup" || action["verb"] == "get")
 			{

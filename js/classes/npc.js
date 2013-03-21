@@ -8,7 +8,8 @@ function Npc(name, locX, locY, health, exp, hostile, description){
 
 	// accessors
 
-	this.getCharacter = function(){ return this.character; }
+	this.getName = function(){ return this.character.getName(); };
+	this.getCharacter = function(){ return this.character; };
 	this.getHostile = function(){ return this._hostile; };
 	this.getDescription = function(){ return this._description; };
 
