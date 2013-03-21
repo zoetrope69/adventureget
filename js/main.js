@@ -77,7 +77,7 @@ function toggleFullscreen(){
 		var d = document.documentElement;
 			 if(d.requestFullscreen){ d.requestFullscreen(); }
 		else if(d.mozRequestFullScreen){ d.mozRequestFullScreen(); }
-		else if(d.webkitRequestFullScreen){ d.webkitRequestFullScreen(); }
+		else if(d.webkitRequestFullScreen){ d.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT); }
 		fullscreen = true;
 	}else{ // Exit full screen mode of actual page
 		 if(document.exitFullscreen){ document.exitFullscreen(); }

@@ -29,7 +29,7 @@ function Parser(areas, player){
 	    var nouns = new Array("all", "area", "north", "east", "south", "west", "n", "e", "s", "w");
 
 	    var items =  currentArea.getItems();
-	    items.concat(this._player..character.getItems());
+	    items.concat(this._player.character.getItems());
 	    var itemNames = new Array();
 	    for(var i = 0; i < items.length; i++){
 	    	itemNames.push(items[i].getName());
