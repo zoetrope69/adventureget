@@ -44,11 +44,6 @@ function Parser(areas, player){
 	    }
 
 	    nouns = nouns.concat(itemNames.concat(npcNames));
-		var verbs = new Array("drop", "pickup", "get","walk", "examine", "describe", "put", "open", "kick", "attack", "talk", "fuck", "break");
-	    var nouns = new Array("all", "area", "north", "south", "east", "west");
-	    var items = new Array("sword", "key", "knife", "fork", "spoon", "chest", "door", "table");
-	    var npcs = new Array("john", "jane");
-	    nouns = nouns.concat(items.concat(npcs));
 
 	    var adjectives = new Array("rusty", "heavy", "bronze");
 	    var preposition = new Array("on", "under", "inside");
