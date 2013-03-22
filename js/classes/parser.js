@@ -25,24 +25,25 @@ function Parser(areas, player){
 		var playerLocY = this._player.character.getLoc('y');
 		var currentArea = areas[playerLocX][playerLocY];
 
-		var verbs = new Array("drop", "pickup", "get","walk", "examine", "describe", "put", "open", "kick", "attack", "talk", "fuck", "break");
+		var verbs = new Array("drop", "pickup", "get", "walk", "move", "go", "examine", "describe", "put", "open", "kick", "attack", "talk", "fuck", "break");
 	    var nouns = new Array("all", "area", "north", "east", "south", "west", "n", "e", "s", "w");
 
 	    var items =  currentArea.getItems();
-	    items.concat(this._player..character.getItems());
+	    items = items.concat(this._player.character.getItems());
 	    var itemNames = new Array();
 	    for(var i = 0; i < items.length; i++){
 	    	itemNames.push(items[i].getName());
+	    	console.log(items[i].getName());
 	    }
 
 	    var npcs = currentArea.getNpcs();
 	    var npcNames = new Array();
 	    for(var i = 0; i < npcs.length; i++){
 	    	npcNames.push(npcs[i].getName().toLowerCase());
-	    	console.log(npcs[i].getName());
 	    }
 
 	    nouns = nouns.concat(itemNames.concat(npcNames));
+	    console.log(nouns);
 
 	    var adjectives = new Array("rusty", "heavy", "bronze");
 	    var preposition = new Array("on", "under", "inside");
@@ -114,7 +115,8 @@ function Parser(areas, player){
 
 	    // special commands
 
-	         if(commands[0] == "fullscreen"){  toggleFullscreen(); }
+	         if(commands.join('') == ""){ return "<p class='warn'>Enter something yo!</p>"; }
+	    else if(commands[0] == "fullscreen"){  toggleFullscreen(); }
 	    else if(commands[0] == "clearscreen" || commands[0] == "clear" || commands[0] == "clr"){ clearScreen(); }
 	    else if(commands[0] == "help" || commands[0] == "h"){ this.printCommands(); }
 	    else if(commands[0] == "inventory" || commands[0] == "i" || commands[0] == "inv"){ return this._player.inventory(); }
@@ -143,7 +145,11 @@ function Parser(areas, player){
 			else if(action["verb"] == "walk" || action["verb"] == "move" || action["verb"] == "go")
 			{
 				direction = action["noun"];
-				output = this._player.walk(direction, this._areas);				
+				if(direction == "north" || direction == "east" || direction == "south" || direction == "west"){
+					output = this._player.walk(direction, this._areas);				
+				}else{
+					output = "<p class='warn'>That's not even a direction!</p>";
+				}
 			}
 			else if(action["verb"] == "pickup" || action["verb"] == "get")
 			{
