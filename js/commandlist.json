@@ -33,6 +33,10 @@
         "description": "clears the terminal window"
       },
       {
+        "variants": "colourscheme",
+        "description": "changes colourscheme"
+      },
+      {
         "variants": "fullscreen",
         "description": "makes terminal fullscreen"
       }
