@@ -10,9 +10,11 @@ function Parser(areas, player){
 		output.push("<p>Here is a list of commands:</p><p> </p>");
 		jQuery.getJSON("js/commandlist.json", function(json){
 		for(var i = 0; i < json.command.length; i++){
+			var variants = json.command[i].variants.split(" ");
+			variants = variants.join(", ");
+			output.push("<p class='dull'>> \'" + variants + "\'</p>");
+			output.push("<p class='items'>   " + json.command[i].description + "</p>");
 			output.push("<p> </p>");
-			output.push("<p>\"" + json.command[i].variants + "\"</p>");
-			output.push("<p>" + json.command[i].description + "</p>");
 		}
 		}).complete(function(){
 			$('#text').append(output.join("")); // Append on to the end of existing content
@@ -33,7 +35,6 @@ function Parser(areas, player){
 	    var itemNames = new Array();
 	    for(var i = 0; i < items.length; i++){
 	    	itemNames.push(items[i].getName());
-	    	console.log(items[i].getName());
 	    }
 
 	    var npcs = currentArea.getNpcs();
@@ -43,7 +44,6 @@ function Parser(areas, player){
 	    }
 
 	    nouns = nouns.concat(itemNames.concat(npcNames));
-	    console.log(nouns);
 
 	    var adjectives = new Array("rusty", "heavy", "bronze");
 	    var preposition = new Array("on", "under", "inside");
