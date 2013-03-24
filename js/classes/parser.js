@@ -54,11 +54,8 @@ function Parser(areas, player){
 	    commands = command.split(" ");
 
 	    var action = {};
-	    action["subject"] = "you";
-	    action["verb"] = null;
-	    action["preps"] = null;
-	    action["noun"] = null;
-	    action["article"] = null;
+	    action.subject = "you";
+	    action.verb = action.preps = action.noun = action.article = null;
 
 	    var commandPos = 0;
 
@@ -70,7 +67,7 @@ function Parser(areas, player){
 			for(var j = 0; j < verbs.length; j++){
 		  		verb = verbs[j];
 		  		if(verb == command){
-					action["verb"] = verb;
+					action.verb = verb;
 		  		}
 			} // end of verb loop
 
@@ -78,13 +75,13 @@ function Parser(areas, player){
 			for(var j = 0; j < nouns.length; j++){
 				noun = nouns[j];
 				if(noun == command){
-					action["noun"] = noun;
+					action.noun = noun;
 
 					adjective = null;
 					for(var k = 0; k < adjectives.length; k++){
 						adjective = adjectives[k];
 						if(commands[commandPos - 1] == adjective){
-							action["noun"] = adjective + " " + action["noun"];
+							action.noun = adjective + " " + action.noun;
 						}
 					} // end of adjective loop
 
@@ -95,7 +92,7 @@ function Parser(areas, player){
 			for(var j = 0; j < verbs.length; j++){
 				article = articles[j];
 				if(article == command){
-					action["article"] = article;
+					action.article = article;
 				}
 			} // end of article loop
 
@@ -103,13 +100,13 @@ function Parser(areas, player){
 
 		} // end of command loop
 
-		if(action["article"] == null){
+		if(action.article == null){
 			var anyNpcs = 0;
 			for(var i = 0; i < npcs.length; i++){
-				if(action["noun"] == npcs[i].getName().toLowerCase()){ anyNpcs++; }
+				if(action.noun == npcs[i].getName().toLowerCase()){ anyNpcs++; }
 
-				if(anyNpcs > 0){ action["article"] = "" }
-				else{ action["article"] = "the"; }		
+				if(anyNpcs > 0){ action.article = "" }
+				else{ action.article = "the"; }		
 			}	
 	    }
 
@@ -124,45 +121,45 @@ function Parser(areas, player){
 		else if(commands[0] == "colourscheme"){ toggleColourScheme(); }
 		else{
 
-	    	output = "";
+	    	var output;
 
-		    if(action["verb"] == null || action["noun"] == null){
+		    if(action.verb == null || action.noun == null){
 		        return "<p class='warn'>This is not a valid command</p>";
 		    }else{
-		    	if(action["article"] != ""){ action["article"] =   action["article"] + " "; }
-		        output = action["subject"] + " "  + action["verb"] + " " + action["article"] + action["noun"];
+		    	if(action.article != ""){ action.article += " "; }
+		        output = action.subject + " "  + action.verb + " " + action.article + action.noun;
 		        output = "<p class='dull'>" +  output.charAt(0).toUpperCase() + output.slice(1) + ".</p>";
 		    }
 
-		    if(action["verb"] == "kick")
+		    if(action.verb == "kick")
 		    { 
-			    output = output + "<p>" + this._player.kick(action['noun']) + "</p>";
+			    output += "<p>" + this._player.kick(action.noun) + "</p>";
 			}
-			else if(action["verb"] == "describe" || action["verb"] == "examine")
+			else if(action.verb == "describe" || action.verb == "examine")
 			{
-			    output = output + this._player.describe(action['noun'], this._areas);
+			    output += this._player.describe(action.noun, this._areas);
 			}
-			else if(action["verb"] == "walk" || action["verb"] == "move" || action["verb"] == "go")
+			else if(action.verb == "walk" || action.verb == "move" || action.verb == "go")
 			{
-				direction = action["noun"];
+				direction = action.noun;
 				if(direction == "north" || direction == "east" || direction == "south" || direction == "west"){
-					output = this._player.walk(direction, this._areas);				
+					output += this._player.walk(direction, this._areas);				
 				}else{
-					output = "<p class='warn'>That's not even a direction!</p>";
+					output += "<p class='warn'>That's not even a direction!</p>";
 				}
 			}
-			else if(action["verb"] == "pickup" || action["verb"] == "get")
+			else if(action.verb == "pickup" || action.verb == "get")
 			{
-				item = action["noun"];
-				output = this._player.moveItems(item, this._areas, "pick up");
+				item = action.noun;
+				output += this._player.moveItems(item, this._areas, "pick up");
 			}
-			else if(action["verb"] == "drop")
+			else if(action.verb == "drop")
 			{
-				item = action["noun"];
-				output = this._player.moveItems(item, this._areas, "drop");
+				item = action.noun;
+				output += this._player.moveItems(item, this._areas, "drop");
 			}
 			else{
-	            output = output + "<p class='warn'>This function does not exist</p>";
+	            output += "<p class='warn'>This function does not exist</p>";
 	        }
 
 	        return output;
