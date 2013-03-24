@@ -1,65 +1,72 @@
-// First things first!
-(function(){
+(function(){ // First things first!
+	// Add class for the fancy transitions, this prevents the transition happening when loading
 	$('#terminal').addClass('terminal-transitions');
 })()
 
-
-// When the window is resized
-$(window).resize(function(){ 
-	$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal
-});
-
+// When the window is resized		
+$(window).resize(function(){ scrollTerminalBottom(); });
 // When clicking the main terminal
-$('#terminal').click(function(){ 
-	$('#commands').focus(); // Focus input #commands
-});
+$('#terminal').click(function(){ $('#commands').focus(); }); // Focus input #commands
 
-var prevCommands = new Array(); // List of entered commands
-var commandIndex = 0;
+var prevCommands, commandIndex, key;
+
+key = {}
+key.enter = 13;
+key.uparrow = 38;
+key.downarrow = 40;
+
+prevCommands = []; // List of entered commands
+commandIndex = 0;
 
 // If someone presses enter when inputting
 $('#commands').keydown(function(event) { // When keys are pressed in the input #commands
-	code = event.keyCode || event.which; // Checks for key
-	
-	if(code == 13){ // If it's enter
-		$enterValue = this.value.trim();
-		if($enterValue !== ""){ //add the entered command to the commands array
-			prevCommands[prevCommands.length] = $enterValue;
-			commandIndex = prevCommands.length;
-		}
-		updateTerminal(this.value); // Commands away!
-		event.preventDefault(); // Stops enter from doing what it normally does
+	var keyPressed = event.keyCode || event.which; // Checks for key
+
+	if(keyPressed == key.enter || keyPressed == key.uparrow || keyPressed == key.downarrow){
+		event.preventDefault(); // Stops enter from doing what it normally does		
 	}
-	if(code == 38){ // If it's the up key
-		if(commandIndex > 0){
-			commandIndex--;
-			$('#commands').val(prevCommands[commandIndex]);
-		}
-		event.preventDefault(); // Stops enter from doing what it normally does
+
+	switch(keyPressed){
+		case key.enter:
+			var enterValue = this.value.trim();
+				if(enterValue !== ""){ // Add the entered command to the commands array
+					prevCommands[prevCommands.length] = enterValue;
+					commandIndex = prevCommands.length;
+				}
+				updateTerminal(this.value); // Commands away!
+		break;
+		case key.uparrow:
+			if(commandIndex > 0){
+				commandIndex--;
+				$('#commands').val(prevCommands[commandIndex]);
+			}
+		break;
+		case key.downarrow:
+			if(commandIndex < prevCommands.length){
+				commandIndex++;
+				$('#commands').val(prevCommands[commandIndex]);
+			}
+		break;
 	}
-	if(code == 40){ // If it's the down key
-		if(commandIndex < prevCommands.length){
-			commandIndex++;
-			$('#commands').val(prevCommands[commandIndex]);
-		}
-		event.preventDefault(); // Stops enter from doing what it normally does
-	}
-	
 });
 
-var game = "";
+var game;
+
 // Intialisation of game
 jQuery.getJSON("js/map.json", function(json){
 	game = new Game(json);
 	var data = game.launch();
 	$('#text').append(data); // Append on to the end of existing content
-}).complete(function(game){
-}); // end of JSON getting
+});
 
 function updateTerminal(input){
 	var data = game._parser.parseCommands(input);
  	$('#text').append(data); // Append on to the end of existing content
 	$('#commands').val("");	// Clear input box
+	scrollTerminalBottom();
+}
+
+function scrollTerminalBottom(){
 	$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal
 }
 
