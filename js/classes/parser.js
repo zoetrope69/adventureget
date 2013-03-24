@@ -6,52 +6,49 @@ function Parser(areas, player){
 
 	this.printCommands = function()
 	{
-		var output = new Array();
-		output.push("<p>Here is a list of commands:</p><p> </p>");
+		var output = "<p>Here is a list of commands:</p><p> </p>";
 		jQuery.getJSON("js/commandlist.json", function(json){
-		for(var i = 0; i < json.command.length; i++){
-			var variants = json.command[i].variants.split(" ");
-			variants = variants.join(", ");
-			output.push("<p class='dull'>> \'" + variants + "\'</p>");
-			output.push("<p class='items'>   " + json.command[i].description + "</p>");
-			output.push("<p> </p>");
-		}
+			for(var i = 0; i < json.command.length; i++){
+				var variants = json.command[i].variants.split(" ").join(", "); // Split them up and put commas between
+				output += "<p class='dull'>&gt; \'" + variants + "\'</p>";
+				output += "<p class='items'>   " + json.command[i].description + "</p><p> </p>";
+			}
 		}).complete(function(){
-			$('#text').append(output.join("")); // Append on to the end of existing content
-			$('#terminal').scrollTop( $('#terminal').prop("scrollHeight") ); // Scroll to bottom of terminal
+			$('#text').append(output); // Append on to the end of existing content
+			scrollTerminalBottom();
 		});
 	};
 
-	this.parseCommands = function(commands){
+	this.parseCommands = function(input){
 		var playerLocX = this._player.character.getLoc('x');
 		var playerLocY = this._player.character.getLoc('y');
 		var currentArea = areas[playerLocX][playerLocY];
 
 		var verbs = new Array("drop", "pickup", "get", "walk", "move", "go", "examine", "describe", "put", "open", "kick", "attack", "talk", "fuck", "break");
-	    var nouns = new Array("all", "area", "north", "east", "south", "west", "n", "e", "s", "w");
+	    var miscNouns = new Array("all", "area", "north", "east", "south", "west", "n", "e", "s", "w");
 
 	    var items =  currentArea.getItems();
 	    items = items.concat(this._player.character.getItems());
-	    var itemNames = new Array();
+	    var itemNames = [];
 	    for(var i = 0; i < items.length; i++){
 	    	itemNames.push(items[i].getName());
 	    }
 
 	    var npcs = currentArea.getNpcs();
-	    var npcNames = new Array();
+	    var npcNames = [];
 	    for(var i = 0; i < npcs.length; i++){
 	    	npcNames.push(npcs[i].getName().toLowerCase());
 	    }
 
-	    nouns = nouns.concat(itemNames.concat(npcNames));
+	    var nouns = [];
+	    nouns = miscNouns.concat(itemNames.concat(npcNames));
 
 	    var adjectives = new Array("rusty", "heavy", "bronze");
 	    var preposition = new Array("on", "under", "inside");
 	    var articles = new Array("the", "to");
 
-	    var command = commands.toLowerCase();
-	    var commands = new Array();
-	    commands = command.split(" ");
+	    var commands = [];
+	    commands = input.toLowerCase().split(" ");
 
 	    var action = {};
 	    action.subject = "you";
@@ -59,42 +56,31 @@ function Parser(areas, player){
 
 	    var commandPos = 0;
 
-		command = null;
+		
+		var command = null;
 		for(var i = 0; i < commands.length; i++){
 			command = commands[i];
 
-			verb = null;
 			for(var j = 0; j < verbs.length; j++){
-		  		verb = verbs[j];
-		  		if(verb == command){
-					action.verb = verb;
-		  		}
-			} // end of verb loop
+		  		if(verbs[j] == command){ action.verb = verbs[j]; }
+			}
 
-			noun = null;
 			for(var j = 0; j < nouns.length; j++){
-				noun = nouns[j];
-				if(noun == command){
-					action.noun = noun;
+				if(nouns[j] == command){
+					action.noun = nouns[j];
 
-					adjective = null;
 					for(var k = 0; k < adjectives.length; k++){
-						adjective = adjectives[k];
-						if(commands[commandPos - 1] == adjective){
-							action.noun = adjective + " " + action.noun;
+						if(commands[commandPos - 1] ==  adjectives[k]){
+							action.noun =  adjectives[k] + " " + action.noun;
 						}
 					} // end of adjective loop
 
 		  		}
 			} // end of noun loop
 
-			article = null;
 			for(var j = 0; j < verbs.length; j++){
-				article = articles[j];
-				if(article == command){
-					action.article = article;
-				}
-			} // end of article loop
+				if(articles[j] == command){ action.article = articles[j]; }
+			}
 
 			commandPos++;
 
@@ -121,6 +107,7 @@ function Parser(areas, player){
 		else if(commands[0] == "colourscheme"){ toggleColourScheme(); }
 		else{
 
+
 	    	var output;
 
 		    if(action.verb == null || action.noun == null){
@@ -131,35 +118,31 @@ function Parser(areas, player){
 		        output = "<p class='dull'>" +  output.charAt(0).toUpperCase() + output.slice(1) + ".</p>";
 		    }
 
-		    if(action.verb == "kick")
-		    { 
-			    output += "<p>" + this._player.kick(action.noun) + "</p>";
-			}
-			else if(action.verb == "describe" || action.verb == "examine")
-			{
-			    output += this._player.describe(action.noun, this._areas);
-			}
-			else if(action.verb == "walk" || action.verb == "move" || action.verb == "go")
-			{
-				direction = action.noun;
-				if(direction == "north" || direction == "east" || direction == "south" || direction == "west"){
-					output += this._player.walk(direction, this._areas);				
-				}else{
-					output += "<p class='warn'>That's not even a direction!</p>";
-				}
-			}
-			else if(action.verb == "pickup" || action.verb == "get")
-			{
-				item = action.noun;
-				output += this._player.moveItems(item, this._areas, "pick up");
-			}
-			else if(action.verb == "drop")
-			{
-				item = action.noun;
-				output += this._player.moveItems(item, this._areas, "drop");
-			}
-			else{
-	            output += "<p class='warn'>This function does not exist</p>";
+		    // player commands
+
+		    switch(action.verb){
+
+		    	case "kick":
+			    	output += this._player.kick(action.noun);
+		    		break;
+		    	case "describe": case "examine":
+			    	output += this._player.describe(action.noun, this._areas);
+			    	break;
+		    	case "walk": case "move": case "go":
+					var directionCondition = (action.noun == "north" || action.noun == "east" ||
+											  action.noun == "south" || action.noun == "west");
+					// if this is a valid direction
+					if(directionCondition){ output += this._player.walk(action.noun, this._areas); }
+					else{ output += "<p class='warn'>That's not even a direction!</p>"; }
+					break;
+				case "pickup": case "get":
+					output = this._player.moveItems(action.noun, this._areas, "pick up");
+					break;
+				case "drop":
+					output = this._player.moveItems(action.noun, this._areas, "drop");
+					break;
+				default:
+	            	output += "<p class='warn'>This function does not exist</p>";
 	        }
 
 	        return output;
