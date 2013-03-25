@@ -82,6 +82,9 @@ function Player(name, locX, locY, health, exp){
 		}
 	};
 
+	// this is a change to my files
+	// another change to my files
+
 	this.moveItems = function(noun, areas, option){
 		var currentArea = this.getCurrentArea(areas);
 		var items, itemNameArray = [];
