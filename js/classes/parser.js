@@ -118,7 +118,7 @@ function Parser(areas, player){
 		        output = "<p class='dull'>" +  output.charAt(0).toUpperCase() + output.slice(1) + ".</p>";
 		    }
 
-		    // player commands and some sht
+		    // player commands
 
 		    switch(action.verb){
 
