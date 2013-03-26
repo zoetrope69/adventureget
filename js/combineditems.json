@@ -1,0 +1,18 @@
+{
+	"combineditems": [
+		{
+            "name": "deaddog",
+            "description": "Eww, it's a dead dog. D:",
+            "recipe": { "items": "dog knife", "commands": "stab use" },
+            "leftoveritems": "knife",
+            "weight": 10
+        },
+        {
+            "name": "supercutlery",
+            "description": "It's just a spoon, knife and fork strapped together...",
+            "recipe": { "items": "knife spoon fork", "commands": "combine" },
+            "leftoveritems": "none",
+            "weight": 100
+        }
+	]
+}

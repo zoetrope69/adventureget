@@ -141,6 +141,12 @@ function Parser(areas, player){
 				case "drop":
 					output = this._player.moveItems(action.noun, this._areas, "drop");
 					break;
+				case "use":
+					// do the use thing
+					break;
+				case "combine":
+					// do the other thing
+					break;
 				default:
 	            	output += "<p class='warn'>This function does not exist</p>";
 	        }
