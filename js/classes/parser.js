@@ -24,7 +24,7 @@ function Parser(areas, player){
 		var playerLocY = this._player.character.getLoc('y');
 		var currentArea = areas[playerLocX][playerLocY];
 
-		var verbs = new Array("drop", "pickup", "get", "walk", "move", "go", "examine", "describe", "put", "open", "kick", "attack", "talk", "fuck", "break");
+		var verbs = new Array("use", "combine", "drop", "pickup", "get", "walk", "move", "go", "examine", "describe", "put", "open", "kick", "attack", "talk", "fuck", "break");
 	    var miscNouns = new Array("all", "area", "north", "east", "south", "west", "n", "e", "s", "w");
 
 	    var items =  currentArea.getItems();
@@ -44,7 +44,7 @@ function Parser(areas, player){
 	    nouns = miscNouns.concat(itemNames.concat(npcNames));
 
 	    var adjectives = new Array("rusty", "heavy", "bronze");
-	    var preposition = new Array("on", "under", "inside");
+	    var prepositions = new Array("on", "under", "inside", "with");
 	    var articles = new Array("the", "to");
 
 	    var commands = [];
@@ -52,12 +52,13 @@ function Parser(areas, player){
 
 	    var action = {};
 	    action.subject = "you";
-	    action.verb = action.preps = action.noun = action.article = null;
+	    action.verb = action.preps = action.noun = action.article = action.object = null;
 
 	    var commandPos = 0;
 
 		
 		var command = null;
+		var nounsCount = 0;
 		for(var i = 0; i < commands.length; i++){
 			command = commands[i];
 
@@ -67,25 +68,46 @@ function Parser(areas, player){
 
 			for(var j = 0; j < nouns.length; j++){
 				if(nouns[j] == command){
-					action.noun = nouns[j];
+					if(nounsCount < 1){
+						action.noun = nouns[j];
 
-					for(var k = 0; k < adjectives.length; k++){
-						if(commands[commandPos - 1] ==  adjectives[k]){
-							action.noun =  adjectives[k] + " " + action.noun;
-						}
-					} // end of adjective loop
-
+						for(var k = 0; k < adjectives.length; k++){
+							if(commands[commandPos - 1] ==  adjectives[k]){
+								action.noun =  adjectives[k] + " " + action.noun;
+							}
+						} // end of adjective loop
+						
+					}
+					nounsCount++;
 		  		}
 			} // end of noun loop
 
+			// articles
 			for(var j = 0; j < verbs.length; j++){
 				if(articles[j] == command){ action.article = articles[j]; }
 			}
+
+			// prepositions
+			for(var j = 0; j < verbs.length; j++){
+				if(prepositions[j] == command){
+					action.preps = prepositions[j];
+
+					for(var k = 0; k < nouns.length; k++){
+						if(commands[commandPos + 1] ==  nouns[k]){
+							action.object =  nouns[k];
+						}
+					} // end of adjective loop
+				}
+			}
+
 
 			commandPos++;
 
 		} // end of command loop
 
+
+
+		// removal of 'the' if names of npcs
 		if(action.article == null){
 			var anyNpcs = 0;
 			for(var i = 0; i < npcs.length; i++){
@@ -113,8 +135,10 @@ function Parser(areas, player){
 		    if(action.verb == null || action.noun == null){
 		        return "<p class='warn'>This is not a valid command</p>";
 		    }else{
+		    	if(action.preps == null){ action.preps = ""; }
+		    	if(action.object == null){ action.object = ""; }
 		    	if(action.article != ""){ action.article += " "; }
-		        output = action.subject + " "  + action.verb + " " + action.article + action.noun;
+		        output = action.subject + " "  + action.verb + " " + action.article + action.noun + " " + action.preps + " " + action.object;
 		        output = "<p class='dull'>" +  output.charAt(0).toUpperCase() + output.slice(1) + ".</p>";
 		    }
 
@@ -141,11 +165,16 @@ function Parser(areas, player){
 				case "drop":
 					output = this._player.moveItems(action.noun, this._areas, "drop");
 					break;
-				case "use":
-					// do the use thing
-					break;
-				case "combine":
-					// do the other thing
+				case "use": case "combine":
+					if(action.preps != ""){ // with another item/thing
+						if(action.object != ""){
+							output += this._player.combine(action.noun, action.object, this._areas);
+						}else{
+							output = "<p class='warn'>What with?</p>";
+						}
+					}else{
+						// just use item
+					}
 					break;
 				default:
 	            	output += "<p class='warn'>This function does not exist</p>";

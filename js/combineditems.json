@@ -3,16 +3,16 @@
 		{
             "name": "deaddog",
             "description": "Eww, it's a dead dog. D:",
+            "weight": 10,
             "recipe": { "items": "dog knife", "commands": "stab use" },
-            "leftoveritems": "knife",
-            "weight": 10
+            "discard": "dog"
         },
         {
-            "name": "supercutlery",
-            "description": "It's just a spoon, knife and fork strapped together...",
-            "recipe": { "items": "knife spoon fork", "commands": "combine" },
-            "leftoveritems": "none",
-            "weight": 100
+            "name": "knorfe",
+            "description": "It's just a knife and fork strapped together...",
+            "weight": 100,
+            "recipe": { "items": "knife fork", "commands": "combine" },
+            "discard": ""
         }
 	]
 }

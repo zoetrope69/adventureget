@@ -122,6 +122,68 @@ function Player(name, locX, locY, health, exp){
         return output;
 	};
 
+	this.combine = function(noun, object, areas){
+		var playerChar = this.character;
+		var currentArea = this.getCurrentArea(areas);
+		var items = playerChar.getItems().concat(currentArea.getItems());
+
+		var output = "";
+
+		jQuery.getJSON("js/combineditems.json", function(json){
+		}).done(function(json){
+
+			// loop through combined items
+			for(var i = 0; i < json.combineditems.length; i++){
+
+				var recipe = json.combineditems[i].recipe.items.split(" ");
+				if(recipe[0] == noun && recipe [1] == object){
+
+					// add new item
+					var name = json.combineditems[i].name;
+					var desc = json.combineditems[i].description;
+					var weight = json.combineditems[i].weight;
+
+					var item = new Item(name, desc, weight);
+					playerChar.addItem(item);
+
+					var discards = json.combineditems[i].recipe.discard;
+
+					var nounItem = objectItem = null;
+
+					// find item objects corresponding to names of noun and object
+					var playerItems = playerChar.getItems();
+					for(var j = 0; j < playerItems.length; j++){
+						if(playerItems[j].getName() == noun){ nounItem = playerItems[j]; }
+						if(playerItems[j].getName() == object){ objectItem = playerItems[j]; }
+					}
+
+					if(nounItem != null && objectItem != null){
+						var areaItems = currentArea.getItems();
+						for(var j = 0; j < areaItems.length; j++){
+							if(areaItems[j].getName() == noun){ nounItem = areaItems[j]; }
+							if(areaItems[j].getName() == object){ objectItem = areaItems[j]; }
+						}
+					}
+
+					// remove items that are to be discarded in combining process
+					for(var j = 0; j < discards.length; j++){
+						if(discards[j] == noun){ playerChar.removeItem(nounItem); }
+						if(discards[j] == object){ playerChar.removeItem(objectItem); }
+					}
+
+					output = "<p>You combined '" + noun + "' and '" + object + "' and made '" + name + "'</p>";
+					console.log(output);			
+				}
+			} // end of combined items loop
+
+			// if combined item not find
+			output = "<p class='warn'>That does nothing...</p>";
+		});
+
+		return output;
+		
+	};
+
 	this.map = function(areas){
 		return "<p class='warn'>You've lost your map! (Or I haven't implemented it yet...)</p>"
 	};
