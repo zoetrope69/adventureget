@@ -82,7 +82,7 @@ function Player(name, locX, locY, health, exp){
 		}
 	};
 
-	this.moveItems = function(noun, areas, option){
+	this.moveItems = function(noun, areas, option){ //pickup and dropping
 		var currentArea = this.getCurrentArea(areas);
 		var items, itemNameArray = [];
 
@@ -114,9 +114,11 @@ function Player(name, locX, locY, health, exp){
 		if(!movedItem){ output = "<p class='warn'>There is no " + noun + " to " + option + ".</p>"; }
 		else{
 			// Output what happened
-			output += "<p>You " + option + " the " + itemNameArray.join(", ") + ".</p>";
-			var commaPos = output.lastIndexOf(','); // Replace last comma with an 'and'
-			output = output.substring(0,commaPos) + " and" + output.substring(commaPos + 1);
+			output += "<p>You " + option + " the '" + itemNameArray.join("', '") + "'.</p>";
+			if(output.lastIndexOf(',') != -1){
+				var commaPos = output.lastIndexOf(','); // Replace last comma with an 'and'
+				output = output.substring(0,commaPos) + " and" + output.substring(commaPos + 1);
+			}
 		}
 
         return output;
@@ -125,18 +127,29 @@ function Player(name, locX, locY, health, exp){
 	this.combine = function(noun, object, areas){
 		var playerChar = this.character;
 		var currentArea = this.getCurrentArea(areas);
-		var items = playerChar.getItems().concat(currentArea.getItems());
+
+		var playerItems = playerChar.getItems();
+		var areaItems = currentArea.getItems();
 
 		var output = "";
 
-		jQuery.getJSON("js/combineditems.json", function(json){
-		}).done(function(json){
+		for(var i = 0; i < areaItems.length; i++){
+			var areaItem = areaItems[i].getName();
+			if(noun == areaItem || object == areaItem){
+				return "<p class='warn'>You need to pick '" + areaItem + "' up!</p>";
+			}
+		}
 
-			// loop through combined items
+		$.ajax({ url: "js/combineditems.json", dataType: 'json', async: false,
+		  success: function(json) {
+		  	var combinationFound = false;
+		    // loop through combined items
 			for(var i = 0; i < json.combineditems.length; i++){
 
 				var recipe = json.combineditems[i].recipe.items.split(" ");
-				if(recipe[0] == noun && recipe [1] == object){
+				var recipeCondition = (recipe[0] == noun && recipe [1] == object)
+								   || (recipe[1] == noun && recipe [0] == object) 
+				if(recipeCondition){
 
 					// add new item
 					var name = json.combineditems[i].name;
@@ -146,42 +159,29 @@ function Player(name, locX, locY, health, exp){
 					var item = new Item(name, desc, weight);
 					playerChar.addItem(item);
 
-					var discards = json.combineditems[i].recipe.discard;
-
-					var nounItem = objectItem = null;
-
-					// find item objects corresponding to names of noun and object
-					var playerItems = playerChar.getItems();
+					var discards = json.combineditems[i].discard.split(" ");
+					// loops through inventory items and removes any that match the discards
 					for(var j = 0; j < playerItems.length; j++){
-						if(playerItems[j].getName() == noun){ nounItem = playerItems[j]; }
-						if(playerItems[j].getName() == object){ objectItem = playerItems[j]; }
+						for(var k = 0; k < discards.length ; k++){
+							if(playerItems[j].getName() == discards[k]){
+								playerChar.removeItem(playerItems[j]);			
+							}
+						}	
 					}
 
-					if(nounItem != null && objectItem != null){
-						var areaItems = currentArea.getItems();
-						for(var j = 0; j < areaItems.length; j++){
-							if(areaItems[j].getName() == noun){ nounItem = areaItems[j]; }
-							if(areaItems[j].getName() == object){ objectItem = areaItems[j]; }
-						}
-					}
-
-					// remove items that are to be discarded in combining process
-					for(var j = 0; j < discards.length; j++){
-						if(discards[j] == noun){ playerChar.removeItem(nounItem); }
-						if(discards[j] == object){ playerChar.removeItem(objectItem); }
-					}
-
-					output = "<p>You combined '" + noun + "' and '" + object + "' and made '" + name + "'</p>";
-					console.log(output);			
+					combinationFound = true;
+					output += "<p>You combined '" + noun + "' and '" + object + "'...</p>";
+					output += "<p>.. and it made '" + name + "'!</p>";
 				}
+				
 			} // end of combined items loop
 
 			// if combined item not find
-			output = "<p class='warn'>That does nothing...</p>";
+			if(!combinationFound){ output = "<p class='warn'>That does nothing...</p>"; }
+		  }
 		});
 
-		return output;
-		
+		return output;		
 	};
 
 	this.map = function(areas){

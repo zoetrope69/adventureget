@@ -7,16 +7,18 @@ function Parser(areas, player){
 	this.printCommands = function()
 	{
 		var output = "<p>Here is a list of commands:</p><p> </p>";
-		jQuery.getJSON("js/commandlist.json", function(json){
-			for(var i = 0; i < json.command.length; i++){
+
+		$.ajax({ url: "js/commandlist.json", dataType: 'json', async: false,
+		  success: function(json) {
+		    for(var i = 0; i < json.command.length; i++){
 				var variants = json.command[i].variants.split(" ").join(", "); // Split them up and put commas between
 				output += "<p class='dull'>&gt; \'" + variants + "\'</p>";
 				output += "<p class='items'>   " + json.command[i].description + "</p><p> </p>";
 			}
-		}).complete(function(){
-			$('#text').append(output); // Append on to the end of existing content
-			scrollTerminalBottom();
+		  }
 		});
+
+		return output;
 	};
 
 	this.parseCommands = function(input){
@@ -90,11 +92,11 @@ function Parser(areas, player){
 			// prepositions
 			for(var j = 0; j < verbs.length; j++){
 				if(prepositions[j] == command){
-					action.preps = prepositions[j];
+					action.preps = " " + prepositions[j];
 
 					for(var k = 0; k < nouns.length; k++){
 						if(commands[commandPos + 1] ==  nouns[k]){
-							action.object =  nouns[k];
+							action.object = " " + nouns[k];
 						}
 					} // end of adjective loop
 				}
@@ -104,7 +106,6 @@ function Parser(areas, player){
 			commandPos++;
 
 		} // end of command loop
-
 
 
 		// removal of 'the' if names of npcs
@@ -123,7 +124,7 @@ function Parser(areas, player){
 	         if(commands.join('') == ""){ return "<p class='warn'>Enter something yo!</p>"; }
 	    else if(commands[0] == "fullscreen"){  toggleFullscreen(); }
 	    else if(commands[0] == "clearscreen" || commands[0] == "clear" || commands[0] == "clr"){ clearScreen(); }
-	    else if(commands[0] == "help" || commands[0] == "h"){ this.printCommands(); }
+	    else if(commands[0] == "help" || commands[0] == "h"){ return this.printCommands(); }
 	    else if(commands[0] == "inventory" || commands[0] == "i" || commands[0] == "inv"){ return this._player.inventory(); }
 		else if(commands[0] == "map"){ return this._player.map(this._areas); }
 		else if(commands[0] == "colourscheme"){ toggleColourScheme(); }
@@ -138,8 +139,8 @@ function Parser(areas, player){
 		    	if(action.preps == null){ action.preps = ""; }
 		    	if(action.object == null){ action.object = ""; }
 		    	if(action.article != ""){ action.article += " "; }
-		        output = action.subject + " "  + action.verb + " " + action.article + action.noun + " " + action.preps + " " + action.object;
-		        output = "<p class='dull'>" +  output.charAt(0).toUpperCase() + output.slice(1) + ".</p>";
+		        output = action.subject + " "  + action.verb + " " + action.article + action.noun + action.preps + action.object;
+		        output = "<p class='dull'>" +  output.charAt(0).toUpperCase() + output.slice(1) + ".</p><p> </p>";
 		    }
 
 		    // player commands
@@ -168,7 +169,7 @@ function Parser(areas, player){
 				case "use": case "combine":
 					if(action.preps != ""){ // with another item/thing
 						if(action.object != ""){
-							output += this._player.combine(action.noun, action.object, this._areas);
+							output = this._player.combine(action.noun, action.object, this._areas);
 						}else{
 							output = "<p class='warn'>What with?</p>";
 						}

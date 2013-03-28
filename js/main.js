@@ -53,7 +53,7 @@ $('#commands').keydown(function(event) { // When keys are pressed in the input #
 var game;
 
 // Intialisation of game
-jQuery.getJSON("js/map.json", function(json){
+$.getJSON("js/map.json", function(json){
 	game = new Game(json);
 	var data = game.launch();
 	$('#text').append(data); // Append on to the end of existing content

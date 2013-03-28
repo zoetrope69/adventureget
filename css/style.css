@@ -155,9 +155,10 @@ header a:hover{ color: #414141; }
 		 @-o-keyframes iconSpin { to {      -o-transform: rotateY(360deg); } }
 			@keyframes iconSpin { to {    	   transform: rotateY(360deg); } }
 
-@media (max-width: 640px) {
+@media (max-width: 740px) {
 	header h1{ font-size: 0.85em; }
 	header a{ display: none; }
+	#terminal{ 	margin: 5% auto; }
 	#terminal, #terminal input#commands{
 		font-size: 1em;
 		line-height: 1em;

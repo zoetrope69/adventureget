@@ -4,15 +4,15 @@
             "name": "deaddog",
             "description": "Eww, it's a dead dog. D:",
             "weight": 10,
-            "recipe": { "items": "dog knife", "commands": "stab use" },
+            "recipe": { "items": "knife dog" },
             "discard": "dog"
         },
         {
             "name": "knorfe",
             "description": "It's just a knife and fork strapped together...",
             "weight": 100,
-            "recipe": { "items": "knife fork", "commands": "combine" },
-            "discard": ""
+            "recipe": { "items": "knife fork" },
+            "discard": "knife fork" 
         }
 	]
 }
