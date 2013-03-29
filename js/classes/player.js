@@ -185,7 +185,55 @@ function Player(name, locX, locY, health, exp){
 	};
 
 	this.map = function(areas){
-		return "<p class='warn'>You've lost your map! (Or I haven't implemented it yet...)</p>"
+		var areaX = 4;
+		var areaY = 4;
+		var lineLength = (areaX * 7) + areaX;
+
+		var topLineChars = 	  new Array("┌","┬","┐");
+		var middleLineChars = new Array("├","┼","┤");
+		var bottomLineChars = new Array("└","┴","┘");
+
+		var linesArray = [];
+
+		for(var y = 0; y < areaY; y++){
+
+				 	 if(y == 0){ var lineChars = topLineChars; }
+					       else{ var lineChars = middleLineChars; }
+
+			for(var x = 0; x < areaX; x++){
+
+				var line1, line2, line3, line4;
+
+				line1 = lineChars[0];
+				line2 = line3 = line4 = "│";
+				for(var i = 1; i <= areaX; i++){
+					line1 += "─".repeat(7);
+					line2 = line3 = line4 += " ".repeat(7) + "│";
+					if(i != areaX){ line1 += lineChars[1]; }
+				}
+				line1 += lineChars[2];
+
+			} // end of x loop
+
+				linesArray.push("<p>" + line1 + "</p>");
+				linesArray.push("<p>" + line2 + "</p>");
+				linesArray.push("<p>" + line3 + "</p>");
+				linesArray.push("<p>" + line4 + "</p>");
+
+		} // end of y loop
+
+		var lastLine = bottomLineChars[0];
+		for(var i = 1; i <= areaX; i++){
+			lastLine += "─".repeat(7);
+			if(i != areaX){ lastLine += bottomLineChars[1]; }
+		}
+		lastLine += bottomLineChars[2];
+
+		linesArray.push("<p>" + lastLine + "</p>");
+
+
+		return "<p>" + linesArray.join("") + "</p>";
+		// return "<p class='warn'>You've lost your map! (Or I haven't implemented it yet...)</p>"
 	};
 
 };

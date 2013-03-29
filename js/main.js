@@ -102,3 +102,8 @@ Array.prototype.remove = function(from, to) {
   this.length = from < 0 ? this.length + from : from;
   return this.push.apply(this, rest);
 };
+
+// credit: peter bailey - http://stackoverflow.com/questions/202605/repeat-string-javascript
+String.prototype.repeat = function(num){
+    return new Array(parseInt(num)+ 1).join(this);
+}
