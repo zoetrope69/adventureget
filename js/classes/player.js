@@ -226,10 +226,10 @@ function Player(name, locX, locY, health, exp){
 				if(x == 0 && y == 0){ explored = true; } // As you start here
 
 				// log of coords and what is present
-				console.log("| " + x + ":" + y + " |");
+				/*console.log("| " + x + ":" + y + " |");
 				console.log("| items: " + itemsPresent + " | npcs: " + npcsPresent + " | player: " + playerPresent + " |");
 				console.log("| locked: " + locked + " | explored: " + explored + " |");
-				console.log(" ");
+				console.log(" ");*/
 
 				var lockedDoor = ["──", "│"];
 				var exits = area.getExits();
