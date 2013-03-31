@@ -185,8 +185,11 @@ function Player(name, locX, locY, health, exp){
 	};
 
 	this.map = function(areas){
-		var areaX = 4;
-		var areaY = 4;
+		var currentArea = this.getCurrentArea(areas);
+		var itemsPresent = npcsPresent = false;
+
+		var areaX = 1;
+		var areaY = 3;
 		var lineLength = (areaX * 7) + areaX;
 
 		var topLineChars = 	  new Array("┌","┬","┐");
@@ -197,21 +200,33 @@ function Player(name, locX, locY, health, exp){
 
 		for(var y = 0; y < areaY; y++){
 
-				 	 if(y == 0){ var lineChars = topLineChars; }
-					       else{ var lineChars = middleLineChars; }
+		 	if(y == 0){ var lineChars = topLineChars; }
+			      else{ var lineChars = middleLineChars; }
 
-			for(var x = 0; x < areaX; x++){
+			var line1, line2, line3, line4;
 
-				var line1, line2, line3, line4;
+			line1 = lineChars[0];
+			line2 = line3 = line4 = "│";
 
-				line1 = lineChars[0];
-				line2 = line3 = line4 = "│";
-				for(var i = 1; i <= areaX; i++){
-					line1 += "─".repeat(7);
-					line2 = line3 = line4 += " ".repeat(7) + "│";
-					if(i != areaX){ line1 += lineChars[1]; }
-				}
-				line1 += lineChars[2];
+			for(var x = 0; x <= areaX; x++){
+
+				// are items and npcs present
+				itemsPresent = areas[x][y].getItems().length;
+				npcsPresent = areas[x][y].getNpcs().length;
+				playerPresent = (currentArea == areas[x][y]);
+
+				// log of coords and what is present
+				console.log(x + ":" + y + "| i: " + itemsPresent + " n: " + npcsPresent + " p: " + playerPresent);
+
+				line1 += "─".repeat(7);
+				if(x != areaX){ line1 += lineChars[1]; }else{ line1 += lineChars[2]; }
+
+				line2 += " ".repeat(7) + "│";
+				line3 += " ".repeat(7) + "│";
+				line4 += " ".repeat(7) + "│";
+
+				if(itemsPresent){ line2 = replaceWithStringAt((line2.length - 1), line2, "<span class='mapicon'>i</span>"); }
+				if(npcsPresent){ line3 = replaceWithStringAt((line3.length - 1), line3, "<span class='mapicon'>☺</span>"); }
 
 			} // end of x loop
 
@@ -223,7 +238,7 @@ function Player(name, locX, locY, health, exp){
 		} // end of y loop
 
 		var lastLine = bottomLineChars[0];
-		for(var i = 1; i <= areaX; i++){
+		for(var i = 0; i <= areaX; i++){
 			lastLine += "─".repeat(7);
 			if(i != areaX){ lastLine += bottomLineChars[1]; }
 		}
@@ -232,8 +247,11 @@ function Player(name, locX, locY, health, exp){
 		linesArray.push("<p>" + lastLine + "</p>");
 
 
-		return "<p>" + linesArray.join("") + "</p>";
-		// return "<p class='warn'>You've lost your map! (Or I haven't implemented it yet...)</p>"
+		return "<p class='map'>" + linesArray.join("") + "</p>";
 	};
 
 };
+
+function replaceWithStringAt(pos, string, replacement){
+	return string.substring(0, pos - 1) + replacement + string.substring(pos);
+}
