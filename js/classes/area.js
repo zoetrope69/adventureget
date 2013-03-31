@@ -4,7 +4,8 @@
 function Area(title, description, locked, locX, locY, exits, items, npcs){
 	this._title = title;
 	this._description = description;
-	this._locked = locked; // make sure this is bool
+	this._locked = locked;
+	this._explored = locked;
 	this._locX = locX;
 	this._locY = locY;
 	if(exits != null){ this._exits = exits; } else{ this._exits = new Array(); }
@@ -18,6 +19,8 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
 	this.getDescription = function(){ return this._description; };
 
 	this.getLocked = function(){ return this._locked; };
+	
+	this.getExplored = function(){ return this._explored; };
 
 	this.getLoc = function(coord){ //specify which coord, if none return both with a space between
         coord = coord.trim().toLowerCase();
@@ -38,6 +41,8 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
 	this.setDescription = function(value){ this._description = value; };
 	
 	this.setLocked = function(value){ this._locked = value; };
+
+	this.setExplored = function(value){ this._explored = value; };
 
 	this.setLoc = function(coord, value){
 			 if(coord == 'x'){ this._locX = value; }

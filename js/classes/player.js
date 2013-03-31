@@ -28,9 +28,14 @@ function Player(name, locX, locY, health, exp){
 	        else if(direction == "south"){ this.character._locY++; } // south
 	        else if(direction == "west"){ this.character._locX--; } // west
 
+
+	        // Get data for new area
 	        var playerLocX = this.character.getLoc('x');
 			var playerLocY = this.character.getLoc('y');
-			return areas[playerLocX][playerLocY].printDetails();
+			var newArea = areas[playerLocX][playerLocY];
+
+			newArea.setExplored(true); // Set area to explored
+			return newArea.printDetails(); // Return area's details
 		}else{
 			return "<p class='warn'>You can't walk that way!</p>";
 		}
@@ -186,7 +191,7 @@ function Player(name, locX, locY, health, exp){
 
 	this.map = function(areas){
 		var currentArea = this.getCurrentArea(areas);
-		var itemsPresent = npcsPresent = false;
+		var itemsPresent = npcsPresent = playerPresent = locked = explored = false;
 
 		var areaX = 1;
 		var areaY = 3;
@@ -210,29 +215,57 @@ function Player(name, locX, locY, health, exp){
 
 			for(var x = 0; x <= areaX; x++){
 
+				var area = areas[x][y];
+
 				// are items and npcs present
-				itemsPresent = areas[x][y].getItems().length;
-				npcsPresent = areas[x][y].getNpcs().length;
-				playerPresent = (currentArea == areas[x][y]);
+				itemsPresent = area.getItems().length;
+				npcsPresent = area.getNpcs().length;
+				playerPresent =  (area == currentArea);
+				locked = area.getLocked();
+				explored = area.getExplored();
+				if(x == 0 && y == 0){ explored = true; } // As you start here
 
 				// log of coords and what is present
-				console.log(x + ":" + y + "| i: " + itemsPresent + " n: " + npcsPresent + " p: " + playerPresent);
+				console.log("| " + x + ":" + y + " |");
+				console.log("| items: " + itemsPresent + " | npcs: " + npcsPresent + " | player: " + playerPresent + " |");
+				console.log("| locked: " + locked + " | explored: " + explored + " |");
+				console.log(" ");
+
+				var lockedDoor = ["──", "│"];
+				var exits = area.getExits();
+				if(x != areaX){
+					var exitFound = false;
+					for(var i = 0; i < exits.length; i++){
+						if(exits[i] == 'east'){ lockedDoor[1] = "<span class='unlocked'>║</span>"; exitFound = true; }
+					}
+					if(!exitFound){ lockedDoor[1] = "<span class='locked'>║</span>"; }
+				}
+
+				if(y != 0){
+					var exitFound = false;
+					for(var i = 0; i < exits.length; i++){
+						if(exits[i] == 'north'){ lockedDoor[0] = "<span class='unlocked'>══</span>"; exitFound = true; }
+					}
+					if(!exitFound){ lockedDoor[0] = "<span class='locked'>══</span>"; }
+				}
 
 				// first line
-				line1 += "─".repeat(6);
+				line1 += "───" + lockedDoor[0] + "─";
 				if(x != areaX){ line1 += lineChars[1]; }else{ line1 += lineChars[2]; }
 
-				// second line				
-				if(playerPresent && itemsPresent){ line2 += " <span class='player'>.☺.</span> <span class='mapicon'>i</span>│"; } // both player and items
+				// second line	
+				if(locked || !explored){ line2 += "<span class='fog'>XXXXXX</span>│";}			
+				else if(playerPresent && itemsPresent){ line2 += " <span class='player'>.☺.</span> <span class='mapicon'>i</span>│"; } // both player and items
 						   else if(playerPresent){ line2 += " <span class='player'>.☺.</span>  │"; } // just player
 							else if(itemsPresent){ line2 += "     <span class='mapicon'>i</span>│"; } // just items
-											 else{ line2 += "      │"; } // none
-				
+											 else{ line2 += "      │"; } // none		
+
 				// third line
-				if(playerPresent && npcsPresent){ line3 += "  <span class='player'>^</span>  <span class='mapicon'>☺</span>│"; } // both npcs and players					
-					      else if(playerPresent){ line3 += "  <span class='player'>^</span>   │"; } // just player
-						    else if(npcsPresent){ line3 += "     <span class='mapicon'>☺</span>│"; } // just npc
-											else{ line3 += "      │"; } // none
+				if(locked || !explored){ line3 += "<span class='fog'>XXXXXX</span>" + lockedDoor[1];}			
+				else if(playerPresent && npcsPresent){ line3 += "  <span class='player'>^</span>  <span class='mapicon'>☺</span>" + lockedDoor[1]; } // both npcs and players					
+					      else if(playerPresent){ line3 += "  <span class='player'>^</span>   " + lockedDoor[1]; } // just player
+						    else if(npcsPresent){ line3 += "     <span class='mapicon'>☺</span>" + lockedDoor[1]; } // just npc
+											else{ line3 += "      " + lockedDoor[1]; } // none
 
 			} // end of x loop
 
