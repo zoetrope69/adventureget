@@ -193,10 +193,12 @@ function Player(name, locX, locY, health, exp){
 		var currentArea = this.getCurrentArea(areas);
 		var itemsPresent = npcsPresent = playerPresent = locked = explored = false;
 
+		// how big the map should be
 		var areaX = 1;
 		var areaY = 3;
 		var lineLength = (areaX * 7) + areaX;
 
+		// The special characters for the corner bits
 		var topLineChars = 	  new Array("┌","┬","┐");
 		var middleLineChars = new Array("├","┼","┤");
 		var bottomLineChars = new Array("└","┴","┘");
@@ -217,13 +219,14 @@ function Player(name, locX, locY, health, exp){
 
 				var area = areas[x][y];
 
-				// are items and npcs present
+				// are items, npcs and player present
 				itemsPresent = area.getItems().length;
 				npcsPresent = area.getNpcs().length;
 				playerPresent =  (area == currentArea);
+
+				// locked and explored areas
 				locked = area.getLocked();
 				explored = area.getExplored();
-				if(x == 0 && y == 0){ explored = true; } // As you start here
 
 				// log of coords and what is present
 				/*console.log("| " + x + ":" + y + " |");
@@ -231,8 +234,11 @@ function Player(name, locX, locY, health, exp){
 				console.log("| locked: " + locked + " | explored: " + explored + " |");
 				console.log(" ");*/
 
+				// locked doors yo
 				var lockedDoor = ["──", "│"];
 				var exits = area.getExits();
+
+				// east facing doors
 				if(x != areaX){
 					var exitFound = false;
 					for(var i = 0; i < exits.length; i++){
@@ -241,6 +247,7 @@ function Player(name, locX, locY, health, exp){
 					if(!exitFound){ lockedDoor[1] = "<span class='locked'>║</span>"; }
 				}
 
+				// bottom south facing doors
 				if(y != 0){
 					var exitFound = false;
 					for(var i = 0; i < exits.length; i++){
@@ -254,38 +261,39 @@ function Player(name, locX, locY, health, exp){
 				if(x != areaX){ line1 += lineChars[1]; }else{ line1 += lineChars[2]; }
 
 				// second line	
-				if(locked || !explored){ line2 += "<span class='fog'>XXXXXX</span>│";}			
+							   if(locked || !explored){ line2 += "<span class='fog'>XXXXXX</span>│";}			
 				else if(playerPresent && itemsPresent){ line2 += " <span class='player'>.☺.</span> <span class='mapicon'>i</span>│"; } // both player and items
-						   else if(playerPresent){ line2 += " <span class='player'>.☺.</span>  │"; } // just player
-							else if(itemsPresent){ line2 += "     <span class='mapicon'>i</span>│"; } // just items
-											 else{ line2 += "      │"; } // none		
+							    else if(playerPresent){ line2 += " <span class='player'>.☺.</span>  │"; } // just player
+								 else if(itemsPresent){ line2 += "     <span class='mapicon'>i</span>│"; } // just items
+								     			  else{ line2 += "      │"; } // none		
 
 				// third line
-				if(locked || !explored){ line3 += "<span class='fog'>XXXXXX</span>" + lockedDoor[1];}			
+							  if(locked || !explored){ line3 += "<span class='fog'>XXXXXX</span>" + lockedDoor[1];}			
 				else if(playerPresent && npcsPresent){ line3 += "  <span class='player'>^</span>  <span class='mapicon'>☺</span>" + lockedDoor[1]; } // both npcs and players					
-					      else if(playerPresent){ line3 += "  <span class='player'>^</span>   " + lockedDoor[1]; } // just player
-						    else if(npcsPresent){ line3 += "     <span class='mapicon'>☺</span>" + lockedDoor[1]; } // just npc
-											else{ line3 += "      " + lockedDoor[1]; } // none
+					      	   else if(playerPresent){ line3 += "  <span class='player'>^</span>   " + lockedDoor[1]; } // just player
+						         else if(npcsPresent){ line3 += "     <span class='mapicon'>☺</span>" + lockedDoor[1]; } // just npc
+												 else{ line3 += "      " + lockedDoor[1]; } // none
 
 			} // end of x loop
 
+				// put in dat array, this is a 'row' of areas
 				linesArray.push("<p>" + line1 + "</p>");
 				linesArray.push("<p>" + line2 + "</p>");
 				linesArray.push("<p>" + line3 + "</p>");
 
 		} // end of y loop
 
+		// last line of whole map
 		var lastLine = bottomLineChars[0];
 		for(var i = 0; i <= areaX; i++){
 			lastLine += "─".repeat(6);
 			if(i != areaX){ lastLine += bottomLineChars[1]; }
 		}
 		lastLine += bottomLineChars[2];
-
 		linesArray.push("<p>" + lastLine + "</p>");
 
-
-		return "<p class='map'>" + linesArray.join("") + "</p>";
+		// put all of it into a map class!
+		return "<span class='map'>" + linesArray.join("") + "</span>";
 	};
 
 };

@@ -50,9 +50,7 @@ function Map(){
 			}
 
 			areas[x][y] = new Area(area.title, area.description, area.locked, x, y, exits, items, npcs);
-
   		}
-
 
 		emptyExits = new Array(); // this code is messy :(
 
@@ -63,6 +61,9 @@ function Map(){
 				}
 			}
 		}
+		
+ 		// As you start here it is auto explored
+		areas[0][0].setExplored(true);
 
 		return areas;
 
