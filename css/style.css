@@ -141,7 +141,7 @@ header a:hover{ color: #414141; }
 .map{ color: #226997; line-height: 1em; }
 .player{ color: #FFFF8E; }
 .locked{ color: #B64242; }
-.fog{ color: #ddd; -webkit-filter: blur(0.8em); }
+.fog{ color: transparent; -webkit-filter: blur(0.5em); text-shadow: 0 0 1.5em #DDD;}
 .unlocked{ color: #4CA34C; }
 .mapicon{ display: inline-block; color: #EB9D0D; 
 
