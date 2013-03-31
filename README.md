@@ -1,4 +1,4 @@
-#getadventure
+# adventureget
 
 super awesome text *adventure* game
 
