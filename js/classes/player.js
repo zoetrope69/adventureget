@@ -293,7 +293,7 @@ function Player(name, locX, locY, health, exp){
 		linesArray.push("<p>" + lastLine + "</p>");
 
 		// put all of it into a map class!
-		return "<span class='map'>" + linesArray.join("") + "</span>";
+		return "<div class='map'>" + linesArray.join("") + "</div><p> </p>";
 	};
 
 };

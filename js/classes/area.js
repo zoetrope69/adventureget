@@ -83,41 +83,56 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
 
 	this.printDetails = function(){
 		var output = "";
-		output = output + "<p class='title'>" + this._title + "</p>";
-		output = output + "<p> </p>";
-		output = output + "<p class='description'>" + this._description + "</p>";
-		output = output + "<p> </p>";		
+		output += "<p class='description'>You are now in: <span class='title'>" + this._title + "</span>.</p>";
+		output += "<p> </p>";
+		output += "<p class='description'>" + this._description + "</p>";
+		output += "<p> </p>";
 
+		// items
 		if(this._items.length > 0){ // if there are items
-			output = output + "<p class='items'>Items (<span class='mapicon'>i</span>) in area:</p>";
+			output += "<p class='description'>In this area you find the following items (<span class='mapicon'>i</span>): ";
+
 			for(var i = 0; i < this._items.length; i++){
-				output = output + "<p class='items'>  ❖ " + this._items[i].getName() + "</p>"; 
+				output += "<span class='items'>" + this._items[i].getName() + "</span>";
+				if(i == this._items.length - 2){ output += " and "; }
+				else if(i == this._items.length - 1){ output += "."; }
+				else{ output += ", "; }
 			}
 
-		output = output + "<p> </p>";		
+			output += "</p>";
 		}
 
-
+		// npcs
 		if(this._npcs.length > 0){ // if there are npcs
-			output = output + "<p class='npcs'>NPCs (<span class='mapicon'>☺</span>) in area:</p>";
+			output += "<p class='description'>There are the following NPCs (<span class='mapicon'>☺</span>): ";
+			
 			for(var i = 0; i < this._npcs.length; i++){
-				output = output + "<p class='npcs'>  ❖ " + this._npcs[i].character.getName() + "</p>"; 
+				output += "<span class='npcs'>" + this._npcs[i].character.getName() + "</span>";
+				if(i == this._npcs.length - 2){ output += " and "; }
+				else if(i == this._npcs.length - 1){ output += "."; }
+				else{ output += ", "; }
 			}
 
-		output = output + "<p> </p>";		
+			output += "</p>";		
 		}
 
+		// exits
 		if(this._exits.length > 0){ // if there are exits
-			output = output + "<p class='exits'>Available Exits:</p>";
+			output += "<p class='description'>You can go: ";
+			
 			for(var i = 0; i < this._exits.length; i++){
-				output = output + "<p class='exits'>  ❖ " + this._exits[i] + "</p>"; 
+				output += "<span class='exits'>" + this._exits[i] + "</span>";
+				if(i == this._exits.length - 2){ output += " and "; }
+				else if(i == this._exits.length - 1){ output += "."; }
+				else{ output += ", "; }
 			}
-		
-		output = output + "<p> </p>";
+
+			output += "</p><p> </p>";		
 		}
 
-		output = output + "<p class='map'>You can display the map with: \"map\".</p>";
-		output = output + "<p> </p>";
+		output += "<p class='description'>You can display the <span class='map'>map</span> with: <span class='dull'>\"map\"</span>.</p>";
+		output += "<p class='description'>You can display a list of commands with: <span class='dull'>\"help\"</span>.</p>";
+		output += "<p> </p>";
 
 		return output;
 	};

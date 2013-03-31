@@ -130,7 +130,7 @@ header a:hover{ color: #414141; }
 .items{	color: #0099FF; }
 .exits{	color: #83CC66; }
 .title{	color: #EB9D0D; }
-.description{ color: #CC9966; }
+.description{ color: #84AB9E; }
 .npcs{ color: #5851FF; }
 
 .warn{ color: #DC322F; }
@@ -141,7 +141,7 @@ header a:hover{ color: #414141; }
 .map{ color: #226997; line-height: 1em; }
 .player{ color: #FFFF8E; }
 .locked{ color: #B64242; }
-.fog{ color: transparent; -webkit-filter: blur(0.5em); text-shadow: 0 0 1.5em #DDD;}
+.fog{ color: transparent; -webkit-filter: blur(0.5em); text-shadow: 0 0 1.5em #EEE;}
 .unlocked{ color: #4CA34C; }
 .mapicon{ display: inline-block; color: #EB9D0D; 
 
