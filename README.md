@@ -9,4 +9,7 @@ some code we've used on this project:
 + [Peter Bailey](http://stackoverflow.com/questions/202605/repeat-string-javascript)'s string repeat code
 + [jQuery](http://www.jquery.com 'jQuery') too!
 
+
 _*It's meant to be anyway..._
+
+_p.s This used to be in PHP._
