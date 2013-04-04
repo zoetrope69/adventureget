@@ -124,7 +124,7 @@ function Parser(areas, player){
 	    // special commands
 
 	         if(commands.join('') == ""){ return "<p class='warn'>Enter something yo!</p>"; }
-	    else if(commands[0] == "fullscreen"){  toggleFullscreen(); }
+	    else if(commands[0] == "fullscreen" || commands[0] == "flscrn"){  toggleFullscreen(); }
 	    else if(commands[0] == "clearscreen" || commands[0] == "clear" || commands[0] == "clr"){ clearScreen(); }
 	    else if(commands[0] == "help" || commands[0] == "h"){ return this.printCommands(); }
 	    else if(commands[0] == "inventory" || commands[0] == "i" || commands[0] == "inv"){ return this._player.inventory(); }

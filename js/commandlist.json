@@ -37,7 +37,7 @@
         "description": "changes colourscheme"
       },
       {
-        "variants": "fullscreen",
+        "variants": "flscrn fullscreen",
         "description": "makes terminal fullscreen"
       }
     ]

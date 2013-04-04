@@ -10,6 +10,8 @@ $('#terminal').click(function(){ $('#commands').focus(); }); // Focus input #com
 
 var prevCommands, commandIndex, key;
 
+
+// key values
 key = {}
 key.enter = 13;
 key.uparrow = 38;
@@ -93,7 +95,7 @@ function toggleFullscreen(){
 		fullscreen = false;
 	}
 		$('#terminal').toggleClass("fullscreen"); // Make terminal grow/shrink
-		$('header').delay(50).slideToggle(250); // Slide header up/down
+		$('header').delay(150).slideToggle(250, function(){ scrollTerminalBottom(); }); // Slide header up/down then scroll terminal to bottom
 }
 
 // Array Remove - By John Resig (MIT Licensed)
