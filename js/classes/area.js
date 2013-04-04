@@ -15,11 +15,8 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
 	// accessors
 
 	this.getTitle = function(){ return this._title;	};
-
 	this.getDescription = function(){ return this._description; };
-
-	this.getLocked = function(){ return this._locked; };
-	
+	this.getLocked = function(){ return this._locked; };	
 	this.getExplored = function(){ return this._explored; };
 
 	this.getLoc = function(coord){ //specify which coord, if none return both with a space between
@@ -28,22 +25,17 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
         else if(coord == "y"){ return this._locY; }
     };
 
-    this.getExits = function(){ return this._exits; };
-	
+    this.getExits = function(){ return this._exits; };	
 	this.getItems = function(){ return this._items; };
-
 	this.getNpcs = function(){ return this._npcs; };
 
 	// mutators
 
 	this.setTitle = function(value){ this._title = value; };
-
-	this.setDescription = function(value){ this._description = value; };
-	
+	this.setDescription = function(value){ this._description = value; };	
 	this.setLocked = function(value){ this._locked = value; };
-
 	this.setExplored = function(value){ this._explored = value; };
-
+	
 	this.setLoc = function(coord, value){
 			 if(coord == 'x'){ this._locX = value; }
 		else if(coord == 'y'){ this._locY = value; }

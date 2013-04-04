@@ -194,8 +194,19 @@ function Player(name, locX, locY, health, exp){
 		var itemsPresent = npcsPresent = playerPresent = locked = explored = false;
 
 		// how big the map should be
-		var areaX = 1;
-		var areaY = 3;
+
+		var areaX = areaY = 0;
+
+		for(var x = 0; x < areas.length; x++){
+			for(var y = 0; y < areas[x].length; y++){
+				// find the biggest location, if the found location is more the limit grows to that
+				if(areas[x][y].getLoc('x') > areaX){ areaX = areas[x][y].getLoc('x'); }
+				if(areas[x][y].getLoc('y') > areaY){ areaY = areas[x][y].getLoc('y'); }
+			}
+		}
+
+		console.log(areaX + " " + areaY);
+
 		var lineLength = (areaX * 7) + areaX;
 
 		// The special characters for the corner bits
