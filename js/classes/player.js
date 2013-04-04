@@ -2,14 +2,36 @@
 // ---------------------------
 
 function Player(name, locX, locY, health, exp){
-
 	this.character = new Character(name, locX, locY, health, exp);
+	this._conscience = 0;
+
+	// accessors
 
 	this.getCurrentArea = function(areas){
 		var playerLocX = this.character.getLoc('x');
 		var playerLocY = this.character.getLoc('y');
 		return areas[playerLocX][playerLocY];
 	};
+
+	this.getConscience = function(descriptive){
+		// if you give "descriptive" it pumps out a nice phrase
+		if(descriptive = 'descriptive'){
+				 if(this._conscience >= 10){return "<p class='conscience-good'>You are angelic.</p>"; }
+			else if(this._conscience > 0){ return "<p class='conscience-good'>You are good.</p>"; }
+			else if(this._conscience <= -10){ return "<p class='conscience-bad'>You are evil.</p>"; }
+			else if(this._conscience < 0){ return "<p class='conscience-bad'>You are bad.</p>"; }
+									 else{ return "<p class='conscience'>You are neutral.</p>"; }
+		}
+		else{ return this._conscience; } // otherwise just the value
+	};
+
+	// mutators
+
+	this.setConscience = function(value){
+		this._conscience += value;
+	};
+
+	// action functions
 
 	this.walk = function(direction, areas){
 		var validDirection = 0;	

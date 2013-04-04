@@ -8,6 +8,7 @@
 
 }
 
+
 html{ background-color: #f5f5f5; }
 
 body{
@@ -135,6 +136,10 @@ header a:hover{ color: #414141; }
 
 .warn{ color: #DC322F; }
 .dull{ color: #DDD; }
+
+.conscience{ color: #DDD; text-shadow: 0 0 .45em; }
+.conscience-good{ color: #FFF; text-shadow: 0 0 .45em; }
+.conscience-bad{ color: #B9462B; text-shadow: 0 0 .45em; }
 
 /* map and it's icons */
 
