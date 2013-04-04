@@ -145,6 +145,7 @@ header a:hover{ color: #414141; }
 
 .map{ color: #226997; line-height: 1em; }
 .player{ color: #FFFF8E; }
+.player-head{ margin-left: -.15em; letter-spacing: -.15em; }
 .locked{ color: #B64242; }
 .fog{ color: transparent; -webkit-filter: blur(0.5em); text-shadow: 0 0 1.5em #EEE;}
 .unlocked{ color: #4CA34C; }

@@ -4,6 +4,8 @@
 function Player(name, locX, locY, health, exp){
 	this.character = new Character(name, locX, locY, health, exp);
 	this._conscience = 0;
+	this._faces = ['⚇','⚆','♾','⚈','⚉','☉','☯']; // faces for the map player icon
+	this._playerFace = "<span class='player-head'>" + this._faces[0] + "</span>"; // set default face
 
 	// accessors
 
@@ -11,6 +13,10 @@ function Player(name, locX, locY, health, exp){
 		var playerLocX = this.character.getLoc('x');
 		var playerLocY = this.character.getLoc('y');
 		return areas[playerLocX][playerLocY];
+	};
+
+	this.getPlayerFace = function(){
+		return this._playerFace;
 	};
 
 	this.getConscience = function(descriptive){
@@ -29,6 +35,15 @@ function Player(name, locX, locY, health, exp){
 
 	this.setConscience = function(value){
 		this._conscience += value;
+	};
+
+	this.setPlayerFace = function(value){
+		// any other number than indexes results in a random face
+		var face = this._faces[ Math.floor(Math.random() * this._faces.length) ];
+		// if the number selected is an index in the faces then use that instead
+		if(value >= 0 && value < this._faces.length){ face = this._faces[value]; }
+		
+		this._playerFace = "<span class='player-head'>" + face + "</span>";
 	};
 
 	// action functions
@@ -227,8 +242,6 @@ function Player(name, locX, locY, health, exp){
 			}
 		}
 
-		console.log(areaX + " " + areaY);
-
 		var lineLength = (areaX * 7) + areaX;
 
 		// The special characters for the corner bits
@@ -295,8 +308,8 @@ function Player(name, locX, locY, health, exp){
 
 				// second line	
 							   if(locked || !explored){ line2 += "<span class='fog'>XXXXXX</span>│";}			
-				else if(playerPresent && itemsPresent){ line2 += " <span class='player'>.☺.</span> <span class='mapicon'>i</span>│"; } // both player and items
-							    else if(playerPresent){ line2 += " <span class='player'>.☺.</span>  │"; } // just player
+				else if(playerPresent && itemsPresent){ line2 += " <span class='player'>." + this._playerFace + ".</span> <span class='mapicon'>i</span>│"; } // both player and items
+							    else if(playerPresent){ line2 += " <span class='player'>." + this._playerFace + ".</span>  │"; } // just player
 								 else if(itemsPresent){ line2 += "     <span class='mapicon'>i</span>│"; } // just items
 								     			  else{ line2 += "      │"; } // none		
 
