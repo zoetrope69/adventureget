@@ -29,35 +29,38 @@ function Parser(areas, player){
 		var verbs = new Array("use", "combine", "drop", "pickup", "get", "walk", "move", "go", "examine", "describe", "put", "open", "kick", "attack", "talk", "fuck", "break");
 	    var miscNouns = new Array("all", "area", "north", "east", "south", "west", "n", "e", "s", "w");
 
+
+	    // get an array for the names of items
 	    var items =  currentArea.getItems();
-	    items = items.concat(this._player.character.getItems());
-	    var itemNames = [];
-	    for(var i = 0; i < items.length; i++){
+	    items = items.concat(this._player.character.getItems()); // mix the player items and current area's items
+	    for(var i = 0, itemNames = []; i < items.length; i++){
 	    	itemNames.push(items[i].getName());
 	    }
 
+	    // get an array for the names of npcs
 	    var npcs = currentArea.getNpcs();
-	    var npcNames = [];
-	    for(var i = 0; i < npcs.length; i++){
+	    for(var i = 0, npcNames = []; i < npcs.length; i++){
 	    	npcNames.push(npcs[i].getName().toLowerCase());
 	    }
 
 	    var nouns = [];
-	    nouns = miscNouns.concat(itemNames.concat(npcNames));
+	    nouns = miscNouns.concat(itemNames.concat(npcNames)); // add miscNouns and npcNames to the nouns array
 
 	    var adjectives = new Array("rusty", "heavy", "bronze");
 	    var prepositions = new Array("on", "under", "inside", "with");
 	    var articles = new Array("the", "to");
 
 	    var commands = [];
-	    commands = input.toLowerCase().split(" ");
+	    commands = input.toLowerCase().split(" "); // split up the input and make it lower case, put in an array
 
+	    // intialising action items
 	    var action = {};
 	    action.subject = "you";
 	    action.verb = action.preps = action.noun = action.article = action.object = null;
 
-	    var commandPos = 0;
+	    // ripping out the different parts from the input
 
+	    var commandPos = 0;
 		
 		var command = null;
 		var nounsCount = 0;
@@ -101,7 +104,6 @@ function Parser(areas, player){
 					} // end of adjective loop
 				}
 			}
-
 
 			commandPos++;
 
