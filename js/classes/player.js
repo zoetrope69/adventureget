@@ -21,7 +21,7 @@ function Player(name, locX, locY, health, exp){
 
 	this.getConscience = function(descriptive){
 		// if you give "descriptive" it pumps out a nice phrase
-		if(descriptive = 'descriptive'){
+		if(descriptive == 'descriptive'){
 				 if(this._conscience >= 10){return "<p class='conscience-good'>You are angelic.</p>"; }
 			else if(this._conscience > 0){ return "<p class='conscience-good'>You are good.</p>"; }
 			else if(this._conscience <= -10){ return "<p class='conscience-bad'>You are evil.</p>"; }
@@ -42,16 +42,15 @@ function Player(name, locX, locY, health, exp){
 		var face = this._faces[ Math.floor(Math.random() * this._faces.length) ];
 		// if the number selected is an index in the faces then use that instead
 		if(value >= 0 && value < this._faces.length){ face = this._faces[value]; }
-		
+
 		this._playerFace = "<span class='player-head'>" + face + "</span>";
 	};
 
 	// action functions
 
 	this.walk = function(direction, areas){
-		var validDirection = 0;	
-       	var currentArea = this.getCurrentArea(areas);
-
+		var validDirection = 0;
+		var currentArea = this.getCurrentArea(areas);
 		for(var exit = 0; exit < currentArea.getExits().length; exit++){
 			exits = currentArea.getExits();
 			if(direction == exits[exit]){
@@ -60,14 +59,14 @@ function Player(name, locX, locY, health, exp){
 		}
 
 		if(validDirection > 0){
-			     if(direction == "north"){ this.character._locY--; } // north
-	        else if(direction == "east"){ this.character._locX++; } // east
-	        else if(direction == "south"){ this.character._locY++; } // south
-	        else if(direction == "west"){ this.character._locX--; } // west
+				 if(direction == "north"){ this.character._locY--; } // north
+			else if(direction == "east"){ this.character._locX++; } // east
+			else if(direction == "south"){ this.character._locY++; } // south
+			else if(direction == "west"){ this.character._locX--; } // west
 
 
-	        // Get data for new area
-	        var playerLocX = this.character.getLoc('x');
+			// Get data for new area
+			var playerLocX = this.character.getLoc('x');
 			var playerLocY = this.character.getLoc('y');
 			var newArea = areas[playerLocX][playerLocY];
 
@@ -83,31 +82,28 @@ function Player(name, locX, locY, health, exp){
 	};
 
 	this.describe = function(noun, areas){
-		var currentArea = this.getCurrentArea(areas);		
+		var currentArea = this.getCurrentArea(areas);
 
-		if(noun == "area"){
+		if(noun == "area"){ // if 'describe area'
 			return currentArea.printDetails();
-		}
-		else{
-			var items = new Array();
+		}else{ // otherwise
+			var items = [];
 			items = this.character.getItems().concat(currentArea.getItems());
-			var descFound = false;
+			// items
 			for(var i = 0; i < items.length; i++){
-				if(noun == items[i].getName()){
+				if(noun == items[i].getName()){ // if input equals the name of an item
 					return "<p class='items'>" + items[i].getDescription() + "</p>";
-					descFound = true;
 				}
 			}
-			if(!descFound){
-				var npcs = currentArea.getNpcs();
-				for(var i = 0; i < npcs.length; i++){
-					if(noun == npcs[i].getName().toLowerCase()){
-						return "<p class='npcs'>" + npcs[i].getDescription() + "</p>";
-						descFound = true;
-					}
+			// npcs
+			var npcs = currentArea.getNpcs();
+			for(var i = 0; i < npcs.length; i++){
+				if(noun == npcs[i].getName().toLowerCase()){ // if input equals the name of a npc
+					return "<p class='npcs'>" + npcs[i].getDescription() + "</p>";
 				}
 			}
-			if(!descFound){ return "<p class='dull'>The " + noun + " is of little interest...</p>"; }
+			// if no descriptions are found return this
+			return "<p class='dull'>The " + noun + " is of little interest...</p>";
 		}
 	};
 
@@ -147,7 +143,7 @@ function Player(name, locX, locY, health, exp){
 				}else{
 					this.character.removeItem(items[i]);
 					currentArea.addItem(items[i]);
-				}				
+				}
 				movedItem = true;
 			}
 		}
@@ -163,7 +159,7 @@ function Player(name, locX, locY, health, exp){
 			}
 		}
 
-        return output;
+		return output;
 	};
 
 	this.combine = function(noun, object, areas){
@@ -184,13 +180,13 @@ function Player(name, locX, locY, health, exp){
 
 		$.ajax({ url: "js/combineditems.json", dataType: 'json', async: false,
 		  success: function(json) {
-		  	var combinationFound = false;
-		    // loop through combined items
+			var combinationFound = false;
+			// loop through combined items
 			for(var i = 0; i < json.combineditems.length; i++){
 
 				var recipe = json.combineditems[i].recipe.items.split(" ");
 				var recipeCondition = (recipe[0] == noun && recipe [1] == object)
-								   || (recipe[1] == noun && recipe [0] == object) 
+								   || (recipe[1] == noun && recipe [0] == object);
 				if(recipeCondition){
 
 					// add new item
@@ -206,16 +202,16 @@ function Player(name, locX, locY, health, exp){
 					for(var j = 0; j < playerItems.length; j++){
 						for(var k = 0; k < discards.length ; k++){
 							if(playerItems[j].getName() == discards[k]){
-								playerChar.removeItem(playerItems[j]);			
+								playerChar.removeItem(playerItems[j]);
 							}
-						}	
+						}
 					}
 
 					combinationFound = true;
 					output += "<p>You combined '" + noun + "' and '" + object + "'...</p>";
 					output += "<p>.. and it made '" + name + "'!</p>";
 				}
-				
+
 			} // end of combined items loop
 
 			// if combined item not find
@@ -223,16 +219,21 @@ function Player(name, locX, locY, health, exp){
 		  }
 		});
 
-		return output;		
+		return output;
 	};
 
 	this.map = function(areas){
 		var currentArea = this.getCurrentArea(areas);
-		var itemsPresent = npcsPresent = playerPresent = locked = explored = false;
+		var itemsPresent = false;
+		var npcsPresent = false;
+		var playerPresent = false;
+		var locked = false;
+		var explored = false;
 
 		// how big the map should be
 
-		var areaX = areaY = 0;
+		var areaX = 0;
+		var areaY = 0;
 
 		for(var x = 0; x < areas.length; x++){
 			for(var y = 0; y < areas[x].length; y++){
@@ -245,16 +246,17 @@ function Player(name, locX, locY, health, exp){
 		var lineLength = (areaX * 7) + areaX;
 
 		// The special characters for the corner bits
-		var topLineChars = 	  new Array("┌","┬","┐");
-		var middleLineChars = new Array("├","┼","┤");
-		var bottomLineChars = new Array("└","┴","┘");
+		var topLineChars =		new Array("┌","┬","┐");
+		var middleLineChars =	new Array("├","┼","┤");
+		var bottomLineChars =	new Array("└","┴","┘");
 
 		var linesArray = [];
+		var lineChars;
 
 		for(var y = 0; y <= areaY; y++){
 
-		 	if(y == 0){ var lineChars = topLineChars; }
-			      else{ var lineChars = middleLineChars; }
+			if(y === 0){ lineChars = topLineChars; }
+				   else{ lineChars = middleLineChars; }
 
 			var line1, line2, line3, line4;
 
@@ -286,20 +288,20 @@ function Player(name, locX, locY, health, exp){
 
 				// east facing doors
 				if(x != areaX){
-					var exitFound = false;
+					var exitXFound = false;
 					for(var i = 0; i < exits.length; i++){
-						if(exits[i] == 'east'){ lockedDoor[1] = "<span class='unlocked'>║</span>"; exitFound = true; }
+						if(exits[i] == 'east'){ lockedDoor[1] = "<span class='unlocked'>║</span>"; exitXFound = true; }
 					}
-					if(!exitFound){ lockedDoor[1] = "<span class='locked'>║</span>"; }
+					if(!exitXFound){ lockedDoor[1] = "<span class='locked'>║</span>"; }
 				}
 
 				// bottom south facing doors
-				if(y != 0){
-					var exitFound = false;
+				if(y !== 0){
+					var exitYFound = false;
 					for(var i = 0; i < exits.length; i++){
-						if(exits[i] == 'north'){ lockedDoor[0] = "<span class='unlocked'>══</span>"; exitFound = true; }
+						if(exits[i] == 'north'){ lockedDoor[0] = "<span class='unlocked'>══</span>"; exitYFound = true; }
 					}
-					if(!exitFound){ lockedDoor[0] = "<span class='locked'>══</span>"; }
+					if(!exitYFound){ lockedDoor[0] = "<span class='locked'>══</span>"; }
 				}
 
 				// first line
@@ -307,17 +309,17 @@ function Player(name, locX, locY, health, exp){
 				if(x != areaX){ line1 += lineChars[1]; }else{ line1 += lineChars[2]; }
 
 				// second line	
-							   if(locked || !explored){ line2 += "<span class='fog'>XXXXXX</span>│";}			
+							   if(locked || !explored){ line2 += "<span class='fog'>XXXXXX</span>│";}
 				else if(playerPresent && itemsPresent){ line2 += " <span class='player'>." + this._playerFace + ".</span> <span class='mapicon'>i</span>│"; } // both player and items
-							    else if(playerPresent){ line2 += " <span class='player'>." + this._playerFace + ".</span>  │"; } // just player
+								else if(playerPresent){ line2 += " <span class='player'>." + this._playerFace + ".</span>  │"; } // just player
 								 else if(itemsPresent){ line2 += "     <span class='mapicon'>i</span>│"; } // just items
-								     			  else{ line2 += "      │"; } // none		
+												  else{ line2 += "      │"; } // none		
 
 				// third line
-							  if(locked || !explored){ line3 += "<span class='fog'>XXXXXX</span>" + lockedDoor[1];}			
+							  if(locked || !explored){ line3 += "<span class='fog'>XXXXXX</span>" + lockedDoor[1];}
 				else if(playerPresent && npcsPresent){ line3 += "  <span class='player'>^</span>  <span class='mapicon'>☺</span>" + lockedDoor[1]; } // both npcs and players					
-					      	   else if(playerPresent){ line3 += "  <span class='player'>^</span>   " + lockedDoor[1]; } // just player
-						         else if(npcsPresent){ line3 += "     <span class='mapicon'>☺</span>" + lockedDoor[1]; } // just npc
+							   else if(playerPresent){ line3 += "  <span class='player'>^</span>   " + lockedDoor[1]; } // just player
+								 else if(npcsPresent){ line3 += "     <span class='mapicon'>☺</span>" + lockedDoor[1]; } // just npc
 												 else{ line3 += "      " + lockedDoor[1]; } // none
 
 			} // end of x loop
@@ -342,4 +344,4 @@ function Player(name, locX, locY, health, exp){
 		return "<div class='map'>" + linesArray.join("") + "</div><p> </p>";
 	};
 
-};
+}

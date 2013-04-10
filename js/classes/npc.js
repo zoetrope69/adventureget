@@ -18,4 +18,4 @@ function Npc(name, locX, locY, health, exp, hostile, description){
 	this.setHostile = function(value){ this._hostile = value; };
 	this.setDescription = function(value){ this._description = value; };
 
-};
+}

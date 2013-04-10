@@ -8,34 +8,34 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
 	this._explored = locked;
 	this._locX = locX;
 	this._locY = locY;
-	if(exits != null){ this._exits = exits; } else{ this._exits = new Array(); }
-	if(items != null){ this._items = items; } else{ this._items = new Array(); }
-	if(npcs != null){ this._npcs = npcs; } else{ this._npcs = new Array(); }
-	
+	if(exits !== null){ this._exits = exits; } else{ this._exits = []; }
+	if(items !== null){ this._items = items; } else{ this._items = []; }
+	if(npcs !== null){ this._npcs = npcs; } else{ this._npcs = []; }
+
 	// accessors
 
 	this.getTitle = function(){ return this._title;	};
 	this.getDescription = function(){ return this._description; };
-	this.getLocked = function(){ return this._locked; };	
+	this.getLocked = function(){ return this._locked; };
 	this.getExplored = function(){ return this._explored; };
 
 	this.getLoc = function(coord){ //specify which coord, if none return both with a space between
-        coord = coord.trim().toLowerCase();
-        if(coord == "x"){ return this._locX; }
-        else if(coord == "y"){ return this._locY; }
-    };
+		coord = coord.trim().toLowerCase();
+		if(coord == "x"){ return this._locX; }
+		else if(coord == "y"){ return this._locY; }
+	};
 
-    this.getExits = function(){ return this._exits; };	
+	this.getExits = function(){ return this._exits; };
 	this.getItems = function(){ return this._items; };
 	this.getNpcs = function(){ return this._npcs; };
 
 	// mutators
 
 	this.setTitle = function(value){ this._title = value; };
-	this.setDescription = function(value){ this._description = value; };	
+	this.setDescription = function(value){ this._description = value; };
 	this.setLocked = function(value){ this._locked = value; };
 	this.setExplored = function(value){ this._explored = value; };
-	
+
 	this.setLoc = function(coord, value){
 			 if(coord == 'x'){ this._locX = value; }
 		else if(coord == 'y'){ this._locY = value; }
@@ -47,7 +47,7 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
 
 	this.removeExit = function(exit){
 		this._exits = jQuery.grep(this._exits, function(value) {
-	  		return value != exit;
+			return value != exit;
 		});
 	};
 
@@ -57,7 +57,7 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
 
 	this.removeItem = function(item){
 		this._items = jQuery.grep(this._items, function(value) {
-	  		return value != item;
+			return value != item;
 		});
 	};
 
@@ -67,7 +67,7 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
 
 	this.removeNpc = function(npc){
 		this._npcs = jQuery.grep(this._npcs, function(value) {
-	  		return value != npc;
+			return value != npc;
 		});
 	};
 
@@ -97,7 +97,7 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
 		// npcs
 		if(this._npcs.length > 0){ // if there are npcs
 			output += "<p class='description'>There are the following NPCs (<span class='mapicon'>☺</span>): ";
-			
+
 			for(var i = 0; i < this._npcs.length; i++){
 				output += "<span class='npcs'>" + this._npcs[i].character.getName() + "</span>";
 				if(i == this._npcs.length - 2){ output += " and "; }
@@ -105,13 +105,13 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
 				else{ output += ", "; }
 			}
 
-			output += "</p>";		
+			output += "</p>";
 		}
 
 		// exits
 		if(this._exits.length > 0){ // if there are exits
 			output += "<p class='description'>You can go: ";
-			
+
 			for(var i = 0; i < this._exits.length; i++){
 				output += "<span class='exits'>" + this._exits[i] + "</span>";
 				if(i == this._exits.length - 2){ output += " and "; }
@@ -119,7 +119,7 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
 				else{ output += ", "; }
 			}
 
-			output += "</p><p> </p>";		
+			output += "</p><p> </p>";
 		}
 
 		output += "<p class='description'>You can display the <span class='map'>map</span> with: <span class='dull'>\"map\"</span>.</p>";
@@ -128,5 +128,5 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
 
 		return output;
 	};
-	
-};	 
+
+}

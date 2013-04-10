@@ -1,7 +1,7 @@
 (function(){ // First things first!
 	// Add class for the fancy transitions, this prevents the transition happening when loading
 	$('#terminal').addClass('terminal-transitions');
-})()
+})();
 
 // When the window is resized		
 $(window).resize(function(){ scrollTerminalBottom(); });
@@ -12,7 +12,7 @@ var prevCommands, commandIndex, key;
 
 
 // key values
-key = {}
+key = {};
 key.enter = 13;
 key.uparrow = 38;
 key.downarrow = 40;
@@ -63,7 +63,7 @@ $.getJSON("js/map.json", function(json){
 
 function updateTerminal(input){
 	var data = game._parser.parseCommands(input);
- 	$('#text').append(data); // Append on to the end of existing content
+	$('#text').append(data); // Append on to the end of existing content
 	$('#commands').val("");	// Clear input box
 	scrollTerminalBottom();
 }
@@ -81,7 +81,7 @@ function toggleColourScheme(){ // toggle colour scheme
 }
 
 var fullscreen = false;
-function toggleFullscreen(){ 
+function toggleFullscreen(){
 	if(!fullscreen){ // Make the actual page fullscreen
 		var d = document.documentElement;
 			 if(d.requestFullscreen){ d.requestFullscreen(); }
@@ -107,5 +107,5 @@ Array.prototype.remove = function(from, to) {
 
 // credit: peter bailey - http://stackoverflow.com/questions/202605/repeat-string-javascript
 String.prototype.repeat = function(num){
-    return new Array(parseInt(num)+ 1).join(this);
-}
+    return new Array(parseInt(num, 10)+ 1).join(this);
+};

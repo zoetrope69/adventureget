@@ -7,11 +7,10 @@ function Character(name, locX, locY, health, exp){
 	this._locY = locY;
 	this._health = health;
 	this._exp = exp;
-    this._items = new Array();
-
+    this._items = [];
 
 	// accessors
-	 
+
 	this.getName = function(){ return this._name; };
 
 	this.getLoc = function(value){
@@ -44,8 +43,8 @@ function Character(name, locX, locY, health, exp){
 
 	this.removeItem = function(item){
 		this._items = jQuery.grep(this._items, function(value) {
-	  		return value != item;
+			return value != item;
 		});
 	};
 
-};
+}
