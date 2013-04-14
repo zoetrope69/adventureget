@@ -122,7 +122,7 @@ function Area(title, description, locked, locX, locY, exits, items, npcs){
 			output += "</p><p> </p>";
 		}
 
-		output += "<p class='description'>You can display the <span class='map'>map</span> with: <span class='dull'>\"map\"</span>.</p>";
+		output += "<p class='description'>You can display the map with: <span class='dull'>\"map\"</span>.</p>";
 		output += "<p class='description'>You can display a list of commands with: <span class='dull'>\"help\"</span>.</p>";
 		output += "<p> </p>";
 

@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Inconsolata); /* Google webfont: Inconsolata! */
+
 *{
 	margin: 0;
 	padding: 0;
@@ -13,44 +15,6 @@ body{
 	font-family: Helvetica, Arial, sans-serif;
 }
 
-header{
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	padding: 0.25em;
-	border-bottom: 1px solid #7BFF51;
-	background: #F0F0F0;
-
-	-webkit-animation: hueRotate 15s infinite linear;
-	   -moz-animation: hueRotate 15s infinite linear;
-	     -o-animation: hueRotate 15s infinite linear;
-	     	animation: hueRotate 15s infinite linear; 
-
-}
-	@-webkit-keyframes hueRotate { to { -webkit-filter: hue-rotate(360deg); } }
-	   @-moz-keyframes hueRotate { to {    -moz-filter: hue-rotate(360deg); } }
-		 @-o-keyframes hueRotate { to {      -o-filter: hue-rotate(360deg); } }
-			@keyframes hueRotate { to {    	 	filter: hue-rotate(360deg); } }
-
-
-header h1{
-	width: 80vw;
-	margin: 0 auto;
-	font-size: 1em;
-	font-family: "Courier New";
-	font-weight: 100;
-	color: #414141;
-}
-
-header a{
-	float: right;
-	color: #7BFF51;
-	text-decoration: none;
-}
-
-header a:hover{ color: #414141; }
-
 #terminal{
     cursor: default;
 	overflow-y: scroll;
@@ -58,8 +22,6 @@ header a:hover{ color: #414141; }
 	margin: 2.5% auto;
 	width: 80%;
 	height: 80vh;
-	border: 5px solid #F0F0F0;
-	outline: 1px solid #C0C0C0;
 	background-color: #181B33;
 
     -webkit-user-select: none; 
@@ -69,18 +31,18 @@ header a:hover{ color: #414141; }
 	}
 
 .terminal-transitions{
-	-webkit-transition: background-color .75s, outline-width .15s .05s linear, border-width .25s .05s linear, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
-  	   -moz-transition: background-color .75s, outline-width .15s .05s linear, border-width .25s .05s linear, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
-  		-ms-transition: background-color .75s, outline-width .15s .05s linear, border-width .25s .05s linear, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
-  		 -o-transition: background-color .75s, outline-width .15s .05s linear, border-width .25s .05s linear, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
-  			transition: background-color .75s, outline-width .15s .05s linear, border-width .25s .05s linear, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
+	-webkit-transition: background-color .75s, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
+  	   -moz-transition: background-color .75s, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
+  		-ms-transition: background-color .75s, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
+  		 -o-transition: background-color .75s, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
+  			transition: background-color .75s, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
 }
 
 #terminal.light{ background-color: #EEE8D5; }
 
 #terminal, #terminal input#commands{
 	color: #C5FFA9;
-	font-family: "Courier New";
+	font-family: 'Inconsolata', 'Courier New';
 	font-size: 1em;
 	line-height: 1.15em;
 }
@@ -120,8 +82,6 @@ header a:hover{ color: #414141; }
 	width: 100% !important; 
 	height: 100vh !important;
 	margin: 0 auto !important;
-	border-width: 0 !important;
-	outline-width: 0 !important;
 }
 
 /* terminal text colours */
@@ -141,7 +101,7 @@ header a:hover{ color: #414141; }
 
 /* map and it's icons */
 
-.map{ color: #226997; line-height: 1em; }
+.map{ color: #226997; line-height: 1em; font-family: 'Courier New'; }
 .player{ color: #FFFF8E; }
 .player-head{ margin-left: -.15em; letter-spacing: -.15em; }
 .locked{ color: #B64242; }
@@ -160,9 +120,6 @@ header a:hover{ color: #414141; }
 			@keyframes iconSpin { to {    	   transform: rotateY(360deg); } }
 
 @media (max-width: 740px) {
-	header h1{ font-size: 0.85em; }
-	header a{ display: none; }
-	#terminal{ 	margin: 5% auto; }
 	#terminal, #terminal input#commands{
 		font-size: 1em;
 		line-height: 1em;
@@ -170,7 +127,6 @@ header a:hover{ color: #414141; }
 }
 
 @media (max-width: 480px) {
-	header h1{ font-size: 0.55em; }
 	#terminal, #terminal input#commands{
 		font-size: 0.8em;
 		line-height: 0.9em;
