@@ -1,5 +1,7 @@
 # adventureget
 
+[check it out 5minforked](http://5minfork.com/zaccolley/adventureget/)
+
 super awesome text *adventure* game*
 
 ### cool cat's code
