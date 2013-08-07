@@ -1,19 +1,10 @@
 @import url(http://fonts.googleapis.com/css?family=Inconsolata); /* Google webfont: Inconsolata! */
 
-*{
-	margin: 0;
-	padding: 0;
-
-	-webkit-box-sizing: border-box;
-	   -moz-box-sizing: border-box;
-			box-sizing: border-box;
-}
+*{ margin: 0; padding: 0; box-sizing: border-box; }
 
 html{ background-color: #f5f5f5; }
 
-body{
-	font-family: Helvetica, Arial, sans-serif;
-}
+body{ font-family: Helvetica, Arial, sans-serif; }
 
 #terminal{
     cursor: default;
@@ -23,19 +14,11 @@ body{
 	width: 80%;
 	height: 80vh;
 	background-color: #181B33;
-
-    -webkit-user-select: none; 
-	   -moz-user-select: none;
-  		-ms-user-select: none;
-  			user-select: none;
-	}
+	user-select: none;
+}
 
 .terminal-transitions{
-	-webkit-transition: background-color .75s, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
-  	   -moz-transition: background-color .75s, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
-  		-ms-transition: background-color .75s, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
-  		 -o-transition: background-color .75s, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
-  			transition: background-color .75s, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
+	transition: background-color .75s, margin .25s .05s ease-in-out, height .25s .05s ease-in-out, width .25s .30s ease-in-out;
 }
 
 #terminal.light{ background-color: #EEE8D5; }
@@ -48,11 +31,7 @@ body{
 }
 
 #terminal input#commands, #terminal label{
-	-webkit-transition: background-color .75s;
-	   -moz-transition: background-color .75s;
-		-ms-transition: background-color .75s;
-		 -o-transition: background-color .75s;
-			transition: background-color .75s;
+	transition: background-color .75s;
 }
 
 #terminal input#commands.light, #terminal label.light{ color: #002B36; }
@@ -105,19 +84,14 @@ body{
 .player{ color: #FFFF8E; }
 .player-head{ margin-left: -.15em; letter-spacing: -.15em; }
 .locked{ color: #B64242; }
-.fog{ color: transparent; -webkit-filter: blur(0.5em); text-shadow: 0 0 1.5em #EEE;}
+.fog{ color: transparent; filter: blur(0.5em); text-shadow: 0 0 1.5em #EEE;}
 .unlocked{ color: #4CA34C; }
-.mapicon{ display: inline-block; color: #EB9D0D; 
-
-	-webkit-animation: iconSpin 2s infinite linear;
-	   -moz-animation: iconSpin 2s infinite linear;
-	     -o-animation: iconSpin 2s infinite linear;
-	     	animation: iconSpin 2s infinite linear;
+.mapicon{
+	display: inline-block;
+	color: #EB9D0D; 
+	animation: iconSpin 2s infinite linear;
 }
-	@-webkit-keyframes iconSpin { to { -webkit-transform: rotateY(360deg); } }
-	   @-moz-keyframes iconSpin { to {    -moz-transform: rotateY(360deg); } }
-		 @-o-keyframes iconSpin { to {      -o-transform: rotateY(360deg); } }
-			@keyframes iconSpin { to {    	   transform: rotateY(360deg); } }
+	@keyframes iconSpin { to { transform: rotateY(360deg); } }
 
 @media (max-width: 740px) {
 	#terminal, #terminal input#commands{
