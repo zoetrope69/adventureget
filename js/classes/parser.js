@@ -136,7 +136,7 @@ function Parser(areas, player){
 			var output;
 
 			if(action.verb === null || action.noun === null){
-				return "<p class='warn'>This is not a valid command</p>";
+				return "<p class='warn'>'" + input + "' is not a valid command</p>";
 			}else{
 				if(action.preps === null){ action.preps = ""; }
 				if(action.object === null){ action.object = ""; }
@@ -173,7 +173,7 @@ function Parser(areas, player){
 						if(action.object !== ""){
 							output = this._player.combine(action.noun, action.object, this._areas);
 						}else{
-							output = "<p class='warn'>What with?</p>";
+							output = "<p class='warn'>With what?</p>";
 						}
 					}else{
 						// just use item
