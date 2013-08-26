@@ -1,6 +1,6 @@
 # adventureget
 
-[check it out 5minforked](http://5minfork.com/zaccolley/adventureget/)
+[check it out](http://zaccolley.com/adventureget/)
 
 super awesome text *adventure* game*
 
