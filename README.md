@@ -1,7 +1,5 @@
 # adventureget
 
-[check it out](http://zaccolley.com/adventureget/)
-
 super awesome text *adventure* game*
 
 ### cool cat's code:
